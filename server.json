@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kawal393/apex-psi-mcp",
+  "title": "APEX PSI",
+  "description": "Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, audit.",
+  "repository": {
+    "url": "https://github.com/kawal393/apex-psi-mcp-server",
+    "source": "github"
+  },
+  "version": "1.0.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "apex-psi-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Optional API base URL override (default: APEX PSI production notary)",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "APEX_API_BASE"
+        },
+        {
+          "description": "Optional API key for authenticated institutional access",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true,
+          "name": "APEX_API_KEY"
+        }
+      ]
+    }
+  ]
+}

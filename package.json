@@ -1,6 +1,7 @@
 {
   "name": "apex-psi-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "mcpName": "io.github.kawal393/apex-psi-mcp",
   "description": "APEX PSI MCP Server - Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, audit",
   "type": "module",
   "main": "dist/index.js",
