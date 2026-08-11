@@ -1,9 +1,13 @@
 {
-  "name": "@apex/psi-mcp-server",
+  "name": "apex-psi-mcp",
   "version": "1.0.0",
-  "description": "APEX PSI MCP Server - Cryptographic truth infrastructure for AI agents",
+  "description": "APEX PSI MCP Server - Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, audit",
   "type": "module",
   "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "bin": {
     "apex-psi-mcp": "dist/index.js"
   },
@@ -14,23 +18,29 @@
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
+    "mcp-server",
     "apex-psi",
     "cryptographic-verification",
+    "provenance",
     "truth-infrastructure",
     "ai-agents"
   ],
   "author": "APEX PSI",
   "license": "MIT",
+  "homepage": "https://apex-infrastructure.com",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.5.0",
-    "node-fetch": "^3.3.2"
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

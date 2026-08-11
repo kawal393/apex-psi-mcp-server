@@ -2,9 +2,7 @@
 
 Cryptographic truth infrastructure for AI agents.
 
-## What It Does
-
-This MCP server provides 5 tools that let any AI agent (Claude, Cursor, Copilot, etc.) stamp cryptographic receipts on content, verify them, anchor them to Bitcoin, generate citations, and audit chains of receipts.
+One config line gives any MCP-capable AI agent (Claude, Cursor, Qoder, Cline, Windsurf, and more) five provenance tools: seal, verify, anchor, cite, audit.
 
 ## Tools
 
@@ -18,8 +16,6 @@ This MCP server provides 5 tools that let any AI agent (Claude, Cursor, Copilot,
 
 ## Installation
 
-### For AI Agents (MCP Clients)
-
 Add to your MCP client config:
 
 ```json
@@ -27,24 +23,24 @@ Add to your MCP client config:
   "mcpServers": {
     "apex-psi": {
       "command": "npx",
-      "args": ["-y", "@apex/psi-mcp-server"]
+      "args": ["-y", "apex-psi-mcp"]
     }
   }
 }
 ```
 
-### For Developers
+Or install locally:
 
 ```bash
-npm install @apex/psi-mcp-server
+npm install apex-psi-mcp
 ```
 
 ## Configuration
 
-Set these environment variables:
+Environment variables (optional):
 
-- `APEX_API_BASE` — API endpoint (default: `https://sovereign-ai.services/api`)
-- `APEX_API_KEY` — API key for authenticated access (optional)
+- `APEX_API_BASE` — API endpoint (default: `https://apex-infrastructure.com/api`)
+- `APEX_API_KEY` — API key for authenticated access
 
 ## Usage
 
@@ -56,12 +52,13 @@ Once installed, your AI agent can:
 4. **Generate citations** — "Cite this receipt in APA format"
 5. **Audit chains** — "Audit this chain of receipts"
 
+Every receipt carries a verify link to `https://apex-infrastructure.com/verify` — sealed arithmetic, public provenance.
+
 ## Links
 
-- **Website:** https://sovereign-ai.services
-- **MCP Registry:** https://registry.modelcontextprotocol.io (search: apex-psi)
-- **GitHub:** https://github.com/apex-psi/mcp-server
-- **npm:** https://www.npmjs.com/package/@apex/psi-mcp-server
+- **Website:** https://apex-infrastructure.com
+- **Public Verifier:** https://apex-infrastructure.com/verify
+- **npm:** https://www.npmjs.com/package/apex-psi-mcp
 
 ## License
 
