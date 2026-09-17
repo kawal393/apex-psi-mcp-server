@@ -1,5 +1,7 @@
 # APEX PSI MCP Server
 
+> **Apex PSI is not a tool and not a product. It is the verification substrate — the layer beneath proof. It does not judge. It does not certify. It only remembers.** This server is an application built on that layer.
+
 Cryptographic truth infrastructure for AI agents.
 
 One config line gives any MCP-capable AI agent (Claude, Cursor, Qoder, Cline, Windsurf, and more) five provenance tools: seal, verify, anchor, cite, audit.
