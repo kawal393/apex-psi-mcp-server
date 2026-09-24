@@ -4,9 +4,13 @@
  * APEX PSI MCP Server
  * Cryptographic truth infrastructure for AI agents.
  *
- * 5 tools: seal, verify, anchor, cite, audit
+ * 5 tools: seal, verify, anchor, cite, verify_chain
  * Backend: APEX NOTARY v1.0 (Supabase Edge Functions) — SHA-256 + Ed25519 + LMS-W4-SHA256 (post-quantum)
  * Override base URL with APEX_API_BASE if self-hosting.
+ *
+ * Scope: this server anchors the existence and integrity of a record at a point
+ * in time. It does not judge the truth of a record's contents. It is an
+ * independent verification service, not advice or an attestable opinion.
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -18,6 +22,8 @@ const APEX_API_BASE = (
   process.env.APEX_API_BASE || "https://qhtntebpcribjiwrdtdd.supabase.co/functions/v1"
 ).replace(/\/$/, "");
 const APEX_API_KEY = process.env.APEX_API_KEY || "";
+
+const VERSION = "1.0.2";
 
 // Helper: make an API call to the Apex PSI backend
 async function apexApiCall(
@@ -79,7 +85,7 @@ const receiptSchema = z
 
 const server = new McpServer({
   name: "apex-psi-mcp",
-  version: "1.0.0",
+  version: VERSION,
 });
 
 // Tool: seal
@@ -88,7 +94,7 @@ server.registerTool(
   {
     title: "Seal content",
     description:
-      "Stamp a cryptographic receipt on content. Writes to the APEX PSI immutable ledger with SHA-256 hash, Ed25519 signature, and post-quantum LMS-W4-SHA256 signature.",
+      "Stamp a cryptographic receipt on content. Writes to the APEX PSI append-only ledger with SHA-256 hash, Ed25519 signature, and post-quantum LMS-W4-SHA256 signature. Proves existence and integrity at a point in time — not the truth of the contents.",
     inputSchema: {
       content: z.string().max(10000).describe("The content to seal (text, up to 10000 characters)"),
       context: z.string().optional().describe("Optional context label (e.g. document name, case ID)"),
@@ -100,7 +106,7 @@ server.registerTool(
     try {
       const receipt = await apexApiCall("/notarize", "POST", {
         decision: content,
-        model_id: model_id || "apex-psi-mcp/1.0.0",
+        model_id: model_id || `apex-psi-mcp/${VERSION}`,
         context: context || "mcp-seal",
         predicate: predicate || "sealed-via-mcp",
       });
@@ -111,7 +117,7 @@ server.registerTool(
         receipt_id: receipt.receipt_id,
         verify_hash: decisionHash,
         verify_url: `${APEX_API_BASE}/verify-hash?hash=${decisionHash}`,
-        message: "Content sealed in the APEX PSI immutable ledger",
+        message: "Content sealed in the APEX PSI append-only ledger",
       });
     } catch (error) {
       return mcpError(error);
@@ -123,9 +129,9 @@ server.registerTool(
 server.registerTool(
   "verify",
   {
-    title: "Verify receipt",
+    title: "Verify a receipt",
     description:
-      "Verify a seal against the APEX PSI immutable ledger. Accepts a receipt object (from the seal tool) or a raw SHA-256 hash.",
+      "Confirm a seal's integrity against the APEX PSI append-only ledger. Accepts a receipt object (from the seal tool) or a raw SHA-256 hash. Reports whether the hash is present and anchored — integrity, not the truth of the original content.",
     inputSchema: {
       hash: z
         .string()
@@ -148,7 +154,7 @@ server.registerTool(
         success: true,
         verification: result,
         message: result.verified
-          ? "Seal verified — hash exists in the APEX PSI immutable ledger"
+          ? "Seal verified — hash is present in the APEX PSI append-only ledger"
           : "Hash not found in the ledger",
       });
     } catch (error) {
@@ -157,29 +163,34 @@ server.registerTool(
   },
 );
 
-// Tool: anchor
+// Tool: anchor (status by default; explicit request to anchor pending roots)
 server.registerTool(
   "anchor",
   {
-    title: "Anchor to Bitcoin",
+    title: "Bitcoin anchoring status / request",
     description:
-      "Request a Bitcoin anchor of pending ledger Merkle roots via OpenTimestamps. Aggregates unanchored roots and submits them to OTS calendars.",
+      "Read the Bitcoin (OpenTimestamps) anchoring state of the ledger's pending Merkle roots, or — only when action:'anchor' is passed explicitly — request that pending roots be aggregated and submitted to the OTS calendars. Defaults to 'status' (read-only) so a routine call never triggers a batch write. An anchor becomes confirmed only when a real Bitcoin block is found.",
     inputSchema: {
       action: z
         .enum(["anchor", "status"])
         .optional()
-        .describe("'anchor' submits pending roots; 'status' checks anchor state (default: anchor)"),
+        .describe("'status' reads the anchor state (default); 'anchor' explicitly requests anchoring of pending roots"),
     },
   },
   async ({ action }) => {
     try {
+      const resolved = action || "status";
       const result = await apexApiCall("/blockchain-anchor", "POST", {
-        action: action || "anchor",
+        action: resolved,
       });
       return mcpResult({
         success: true,
         anchorResult: result,
-        message: "Bitcoin anchoring request processed (OpenTimestamps)",
+        action: resolved,
+        message:
+          resolved === "anchor"
+            ? "Bitcoin anchoring requested for pending roots (OpenTimestamps); confirmation follows only on a real block"
+            : "Bitcoin anchoring status read (OpenTimestamps)",
       });
     } catch (error) {
       return mcpError(error);
@@ -217,15 +228,15 @@ server.registerTool(
           `  author       = {APEX PSI Notary},`,
           `  title        = {Cryptographic Seal ${receiptId}},`,
           `  year         = {${year}},`,
-          `  howpublished = {APEX PSI Immutable Ledger (${algorithm})},`,
+          `  howpublished = {APEX PSI Append-Only Ledger (${algorithm})},`,
           `  note         = {Receipt ${receiptId}, sealed ${date}},`,
           `  url          = {${verifyUrl}}`,
           `}`,
         ].join("\n");
       } else if (fmt === "mla") {
-        citation = `"Cryptographic Seal ${receiptId}." APEX PSI Immutable Ledger, ${date}, ${verifyUrl}. ${algorithm}.`;
+        citation = `"Cryptographic Seal ${receiptId}." APEX PSI Append-Only Ledger, ${date}, ${verifyUrl}. ${algorithm}.`;
       } else {
-        citation = `APEX PSI Notary. (${year}). Cryptographic seal ${receiptId} [APEX PSI immutable ledger entry; ${algorithm}]. Retrieved from ${verifyUrl}`;
+        citation = `APEX PSI Notary. (${year}). Cryptographic seal ${receiptId} [APEX PSI append-only ledger entry; ${algorithm}]. Retrieved from ${verifyUrl}`;
       }
 
       return mcpResult({
@@ -241,20 +252,20 @@ server.registerTool(
   },
 );
 
-// Tool: audit
+// Tool: verify_chain (independent verification of a receipt chain)
 server.registerTool(
-  "audit",
+  "verify_chain",
   {
-    title: "Audit receipt chain",
+    title: "Verify a receipt chain",
     description:
-      "Audit a chain of receipts against the APEX PSI ledger. Checks each hash's presence and integrity, and reports Merkle chain continuity.",
+      "Independently verify a chain of receipts against the APEX PSI ledger. Recomputes each hash's presence and integrity and reports Merkle chain continuity. Returns a verification report — a recomputation result, not an opinion or a certification.",
     inputSchema: {
-      receipts: z.array(receiptSchema).min(1).describe("Array of receipt objects to audit (in order)"),
+      receipts: z.array(receiptSchema).min(1).describe("Array of receipt objects to verify (in order)"),
     },
   },
   async ({ receipts }) => {
     try {
-      const findings: Array<{ index: number; receipt_id: string; verified: boolean; found: boolean; hash: string }> = [];
+      const results: Array<{ index: number; receipt_id: string; verified: boolean; found: boolean; hash: string }> = [];
       let previousRoot = "";
       let chainIntact = true;
 
@@ -262,7 +273,7 @@ server.registerTool(
         const r = receipts[i];
         const hash = stripHashPrefix(r.decision_hash ?? r.merkle_leaf ?? r.merkle_root);
         if (!hash) {
-          findings.push({ index: i, receipt_id: String(r.receipt_id || "?"), verified: false, found: false, hash: "" });
+          results.push({ index: i, receipt_id: String(r.receipt_id || "?"), verified: false, found: false, hash: "" });
           chainIntact = false;
           continue;
         }
@@ -270,7 +281,7 @@ server.registerTool(
           verified?: boolean;
           found?: boolean;
         };
-        findings.push({
+        results.push({
           index: i,
           receipt_id: String(r.receipt_id || "?"),
           verified: !!result.verified,
@@ -279,24 +290,24 @@ server.registerTool(
         });
         const root = stripHashPrefix(r.merkle_root);
         if (previousRoot && root && previousRoot === root && i > 0) {
-          // Identical consecutive roots are suspicious only if receipts differ; flag for review
+          // Identical consecutive roots are noted only; the ledger decides continuity.
         }
         previousRoot = root;
         if (!result.verified) chainIntact = false;
       }
 
-      const verifiedCount = findings.filter((f) => f.verified).length;
+      const verifiedCount = results.filter((f) => f.verified).length;
       return mcpResult({
         success: true,
-        auditReport: {
+        verification_report: {
           total: receipts.length,
           verified: verifiedCount,
           failed: receipts.length - verifiedCount,
           chainIntact,
-          findings,
-          audited_at: new Date().toISOString(),
+          results,
+          verified_at: new Date().toISOString(),
         },
-        message: `Audit complete: ${verifiedCount}/${receipts.length} receipts verified${chainIntact ? ", chain intact" : ", chain broken"}`,
+        message: `Chain verification complete: ${verifiedCount}/${receipts.length} receipts verified${chainIntact ? ", chain intact" : ", chain broken"}`,
       });
     } catch (error) {
       return mcpError(error);

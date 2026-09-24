@@ -4,17 +4,19 @@
 
 Cryptographic truth infrastructure for AI agents.
 
-One config line gives any MCP-capable AI agent (Claude, Cursor, Qoder, Cline, Windsurf, and more) five provenance tools: seal, verify, anchor, cite, audit.
+One config line gives any MCP-capable AI agent (Claude, Cursor, Qoder, Cline, Windsurf, and more) five provenance tools: seal, verify, anchor, cite, verify_chain.
+
+This server proves the existence and integrity of a record at a point in time. It does not judge the truth of a record's contents. It is an independent verification service, not advice.
 
 ## Tools
 
 | Tool | Description |
 |------|-------------|
-| **seal** | Stamp a cryptographic receipt on content (SHA-256 + Ed25519) |
-| **verify** | Verify a receipt is authentic |
-| **anchor** | Anchor a receipt to Bitcoin via OpenTimestamps |
+| **seal** | Stamp a cryptographic receipt on content (SHA-256 + Ed25519 + post-quantum LMS-W4) |
+| **verify** | Confirm a receipt's integrity (hash present in the append-only ledger) |
+| **anchor** | Read Bitcoin anchoring status (default), or request anchoring of pending roots |
 | **cite** | Generate a citation for a receipt (APA, BibTeX, MLA) |
-| **audit** | Audit a chain of receipts for integrity |
+| **verify_chain** | Independently verify a chain of receipts for integrity |
 
 ## Installation
 
@@ -49,10 +51,10 @@ Environment variables (optional):
 Once installed, your AI agent can:
 
 1. **Seal content** — "Seal this document with APEX PSI"
-2. **Verify receipts** — "Verify this receipt is authentic"
-3. **Anchor to Bitcoin** — "Anchor this receipt to the Bitcoin blockchain"
+2. **Verify receipts** — "Verify this receipt against the ledger"
+3. **Check anchoring** — "What is the Bitcoin anchor status of this seal?"
 4. **Generate citations** — "Cite this receipt in APA format"
-5. **Audit chains** — "Audit this chain of receipts"
+5. **Verify a chain** — "Independently verify this chain of receipts"
 
 Every receipt carries a verify link to `https://apex-infrastructure.com/verify` — sealed arithmetic, public provenance.
 
