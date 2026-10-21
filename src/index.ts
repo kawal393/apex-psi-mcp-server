@@ -169,21 +169,29 @@ server.registerTool(
 server.registerTool(
   "anchor",
   {
-    title: "Bitcoin anchoring status / request",
+    title: "Bitcoin anchoring history",
     description:
-      "Read the Bitcoin (OpenTimestamps) anchoring state of the ledger's pending Merkle roots, or — only when action:'anchor' is passed explicitly — request that pending roots be aggregated and submitted to the OTS calendars. Defaults to 'status' (read-only) so a routine call never triggers a batch write. An anchor becomes confirmed only when a real Bitcoin block is found.",
+      "Read the Bitcoin (OpenTimestamps) anchoring record for the ledger's Merkle roots. Defaults to action:'history', which is read-only and returns each anchor transaction with its txid, block height, confirmation state and how many ledger entries it covers. Pass action:'verify' with a txid to check one transaction, or action:'anchor' to explicitly request that pending roots be aggregated and submitted to the OTS calendars. Defaults to 'history' so a routine call never triggers a batch write. An anchor counts as confirmed only when a real Bitcoin block contains it.",
     inputSchema: {
       action: z
-        .enum(["anchor", "status"])
+        .enum(["history", "verify", "anchor"])
         .optional()
-        .describe("'status' reads the anchor state (default); 'anchor' explicitly requests anchoring of pending roots"),
+        .describe("'history' reads the anchored transactions (default); 'verify' checks one txid; 'anchor' explicitly requests anchoring of pending roots"),
+      txid: z
+        .string()
+        .optional()
+        .describe("Bitcoin transaction id — required only when action is 'verify'"),
     },
   },
-  async ({ action }) => {
+  async ({ action, txid }) => {
     try {
-      const resolved = action || "status";
+      const resolved = action || "history";
+      if (resolved === "verify" && !txid) {
+        return mcpError(new Error("action 'verify' needs a txid to check"));
+      }
       const result = await apexApiCall("/blockchain-anchor", "POST", {
         action: resolved,
+        ...(txid ? { txid } : {}),
       });
       return mcpResult({
         success: true,
@@ -192,7 +200,9 @@ server.registerTool(
         message:
           resolved === "anchor"
             ? "Bitcoin anchoring requested for pending roots (OpenTimestamps); confirmation follows only on a real block"
-            : "Bitcoin anchoring status read (OpenTimestamps)",
+            : resolved === "verify"
+              ? `Bitcoin transaction ${String(txid).slice(0, 16)}… checked against the anchor record`
+              : "Read the anchored Bitcoin transactions (OpenTimestamps)",
       });
     } catch (error) {
       return mcpError(error);

@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "src/**"
+      - "scripts/**"
       - "package.json"
       - "server.json"
   workflow_dispatch:
@@ -28,6 +29,10 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: node -e "require('./dist/index.js'); console.log('dist loadable')"
+      - name: The advertised default call must work against the live endpoint
+        run: node scripts/anchor-tool-check.mjs
+      - name: No card file may carry a phrase the repository has cut
+        run: node scripts/card-copy-check.mjs
 
   # server.json is published on GitHub raw, so a stranger can read it. If it names a
   # package version the registry does not serve, the card is a broken promise, and the
