@@ -1,8 +1,8 @@
 {
   "name": "apex-psi-mcp",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "mcpName": "io.github.kawal393/apex-psi-mcp",
-  "description": "APEX PSI MCP Server - Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, verify_chain",
+  "description": "APEX PSI MCP server - append-only evidence receipts for AI decisions and documents: seal a record, verify a hash against the public ledger, check a chain, cite a receipt, read Bitcoin anchoring status. Verification is free and needs no account.",
   "type": "module",
   "main": "dist/index.js",
   "files": [
@@ -24,12 +24,23 @@
     "apex-psi",
     "cryptographic-verification",
     "provenance",
-    "truth-infrastructure",
+    "evidence",
+    "audit-trail",
+    "record-integrity",
+    "tamper-evident",
+    "append-only-ledger",
+    "post-quantum",
+    "ai-governance",
+    "compliance",
     "ai-agents"
   ],
   "author": "APEX PSI",
   "license": "MIT",
-  "homepage": "https://apex-infrastructure.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kawal393/apex-psi-mcp-server.git"
+  },
+  "homepage": "https://www.ai-governance-standard.com/mcp",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
     "zod": "^3.23.8"

@@ -2,15 +2,17 @@
 
 /**
  * APEX PSI MCP Server
- * Cryptographic truth infrastructure for AI agents.
+ * Append-only evidence receipts for AI agents and auditors.
  *
  * 5 tools: seal, verify, anchor, cite, verify_chain
- * Backend: APEX NOTARY v1.0 (Supabase Edge Functions) — SHA-256 + Ed25519 + LMS-W4-SHA256 (post-quantum)
+ * Backend: APEX NOTARY (Supabase Edge Functions) — SHA-256, Ed25519 over the Merkle
+ * leaf, ML-DSA-65, and LMS-W4-SHA256 when a slot is available. Each receipt states in
+ * its own `algorithm` field which signatures it actually carries.
  * Override base URL with APEX_API_BASE if self-hosting.
  *
- * Scope: this server anchors the existence and integrity of a record at a point
- * in time. It does not judge the truth of a record's contents. It is an
- * independent verification service, not advice or an attestable opinion.
+ * Scope: this server records the existence and integrity of a record at a point in
+ * time. It does not judge the truth of a record's contents. It is an independent
+ * verification service, not advice or an attestable opinion.
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -23,7 +25,7 @@ const APEX_API_BASE = (
 ).replace(/\/$/, "");
 const APEX_API_KEY = process.env.APEX_API_KEY || "";
 
-const VERSION = "1.0.2";
+const VERSION = "1.1.1";
 
 // Helper: make an API call to the Apex PSI backend
 async function apexApiCall(
@@ -94,7 +96,7 @@ server.registerTool(
   {
     title: "Seal content",
     description:
-      "Stamp a cryptographic receipt on content. Writes to the APEX PSI append-only ledger with SHA-256 hash, Ed25519 signature, and post-quantum LMS-W4-SHA256 signature. Proves existence and integrity at a point in time — not the truth of the contents.",
+      "Record content in the APEX PSI append-only ledger and return a receipt: SHA-256 hash, an Ed25519 signature over the Merkle leaf, and post-quantum ML-DSA-65 (plus LMS-W4-SHA256 when a slot is available — the receipt's own algorithm field states which). Proves that this content existed and has not changed since the timestamp. It never proves the contents are true. Free tier: 20 operations/minute, 100/day, no account needed.",
     inputSchema: {
       content: z.string().max(10000).describe("The content to seal (text, up to 10000 characters)"),
       context: z.string().optional().describe("Optional context label (e.g. document name, case ID)"),
