@@ -2,30 +2,30 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kawal393/apex-psi-mcp",
   "title": "APEX PSI",
-  "description": "Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, verify_chain.",
+  "description": "Append-only evidence receipts for AI decisions and documents. Five tools: seal a record into a public ledger, verify any hash against it, check a chain of receipts, generate a citation, and read Bitcoin anchoring status. Anyone can verify, free, with no account. A receipt proves a record existed and was not altered after its timestamp - never that its contents are true.",
   "repository": {
     "url": "https://github.com/kawal393/apex-psi-mcp-server",
     "source": "github"
   },
-  "version": "1.0.2",
+  "version": "1.1.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "apex-psi-mcp",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "transport": {
         "type": "stdio"
       },
       "environmentVariables": [
         {
-          "description": "Optional API base URL override (default: APEX PSI production notary)",
+          "description": "Optional API base URL override. Default: https://qhtntebpcribjiwrdtdd.supabase.co/functions/v1 (the public APEX PSI notary). Free allowance with no key: 20 operations/minute, 100/day.",
           "isRequired": false,
           "format": "string",
           "isSecret": false,
           "name": "APEX_API_BASE"
         },
         {
-          "description": "Optional API key for authenticated institutional access",
+          "description": "Optional API key. It raises the daily ceiling for a workload; it is never required to seal or to verify, and it cannot change what a receipt is allowed to claim.",
           "isRequired": false,
           "format": "string",
           "isSecret": true,

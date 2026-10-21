@@ -1,0 +1,109 @@
+name: Publish apex-psi-mcp to npm
+
+# Same rail that publishes apex-psi-verifier 1.3.0: npm authenticates this workflow by its
+# OpenID Connect identity, so no token lives on a laptop, in a secret, or in this repository.
+#
+# It replaces the old publish job, which has never once worked: runs #1 (24 Sep) and #2
+# (21 Oct) both failed on "Publish if version is new" because secrets.NPM_TOKEN is not
+# resolvable in this repository. 1.1.0 reached npm by a human typing npm publish, which is
+# the path npm is closing for bypass-2FA tokens in January 2027.
+#
+# npm trusted publishing needs npm CLI >= 11.5.1 and Node >= 22.14.0 — hence node 24 here,
+# while the build guard above stays on 20.
+#
+# Fire it with:  git tag apex-psi-mcp-v1.1.1 && git push origin apex-psi-mcp-v1.1.1
+# It can also be started by hand from the Actions tab.
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "apex-psi-mcp-v*"
+
+permissions:
+  contents: read
+  id-token: write # required for npm trusted publishing
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # Must match the "Environment name" field on the npm trusted-publisher form.
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Set the version for later steps
+        run: echo "PKG=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+
+      - name: Tag and package.json version must agree
+        if: github.event_name == 'push'
+        run: |
+          TAG="${GITHUB_REF_NAME#apex-psi-mcp-v}"
+          PKG=$(node -p "require('./package.json').version")
+          echo "tag says $TAG, package.json says $PKG"
+          test "$TAG" = "$PKG" || { echo "STOP: tag and package.json disagree"; exit 1; }
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: The built server must load
+        run: node -e "require('./dist/index.js'); console.log('dist loadable')"
+
+      # A guard that cannot fail is not a guard: prove the tarball a stranger receives
+      # contains the built server, not just the manifest.
+      - name: Prove dist is inside the tarball
+        run: |
+          npm pack --dry-run --access public 2>&1 | tee pack.log
+          grep -q "package/dist/index.js" pack.log || { echo "STOP: dist/index.js is missing from the tarball"; exit 1; }
+          grep -q "package/README.md" pack.log || { echo "STOP: the README is missing from the tarball"; exit 1; }
+
+      - name: Does the registry already serve this version?
+        run: |
+          HAVE=$(npm view "apex-psi-mcp@$PKG" version 2>/dev/null || true)
+          echo "registry has: ${HAVE:-nothing} for $PKG"
+          echo "ALREADY_PUBLISHED=$([ "$HAVE" = "$PKG" ] && echo 1 || echo 0)" >> "$GITHUB_ENV"
+
+      - name: Publish to npm
+        if: env.ALREADY_PUBLISHED != '1'
+        run: npm publish --access public
+
+      - name: Skip the publish
+        if: env.ALREADY_PUBLISHED == '1'
+        run: echo "apex-psi-mcp@$PKG is already on the registry; nothing to publish"
+
+      # Copied from the verifier rail, including the lesson: npm's metadata cache can lag a
+      # publish by more than ten seconds, so this waits for the fact, not for a fixed sleep.
+      - name: The registry must now serve this version
+        run: |
+          ok=0
+          for i in $(seq 1 18); do
+            SERVED=$(npm view apex-psi-mcp version --prefer-online 2>/dev/null || echo unknown)
+            if [ "$SERVED" = "$PKG" ]; then echo "attempt $i: registry serves $SERVED"; ok=1; break; fi
+            echo "attempt $i: registry still serves $SERVED, waiting"
+            sleep 10
+          done
+          if [ "$ok" != "1" ]; then
+            echo "STOP: npm's dist-tag never moved to $PKG"
+            exit 1
+          fi
+          node -e "fetch('https://registry.npmjs.org/apex-psi-mcp/'+process.env.PKG).then(r=>r.json()).then(d=>{console.log('probed:',d.version,'| provenance:',!!d.dist.attestations);if(!d.version||d.version!==process.env.PKG)process.exit(1)})"
+
+      # The directory card is served from GitHub raw, and an agent installs what it names.
+      - name: server.json must now name the version that shipped
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            if (card.version !== process.env.PKG || card.packages[0].version !== process.env.PKG) {
+              console.error("STOP: server.json still names " + card.version + " but " + process.env.PKG + " shipped");
+              process.exit(1);
+            }
+            console.log("ok: server.json names " + process.env.PKG);
+          '

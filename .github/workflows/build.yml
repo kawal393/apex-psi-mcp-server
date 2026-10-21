@@ -1,0 +1,63 @@
+name: Build — apex-psi-mcp
+
+# The guard rail. Runs on every push to main that touches the server, its manifest or
+# the directory card: it proves the TypeScript compiles and that the compiled MCP server
+# actually loads. It cannot publish and cannot reach any credential, which is the point —
+# publishing is a separate rail (publish-npm.yml) that only a version tag opens.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "server.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - run: node -e "require('./dist/index.js'); console.log('dist loadable')"
+
+  # server.json is published on GitHub raw, so a stranger can read it. If it names a
+  # package version the registry does not serve, the card is a broken promise, and the
+  # failure appears only when someone tries to install. So the manifest is checked here,
+  # against the live registry, on every push.
+  card-matches-registry:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: server.json must name a version npm serves
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            const pkg = card.packages[0];
+            if (card.version !== pkg.version) {
+              console.error("STOP: card version " + card.version + " and package version " + pkg.version + " disagree");
+              process.exit(1);
+            }
+            fetch("https://registry.npmjs.org/" + pkg.identifier)
+              .then((r) => r.json())
+              .then((d) => {
+                if (!d.versions || !d.versions[pkg.version]) {
+                  console.error("STOP: npm does not serve " + pkg.identifier + "@" + pkg.version + " — the card promises an install that cannot happen");
+                  process.exit(1);
+                }
+                console.log("ok: npm serves " + pkg.identifier + "@" + pkg.version);
+              });
+          '
