@@ -58,11 +58,20 @@ jobs:
 
       # A guard that cannot fail is not a guard: prove the tarball a stranger receives
       # contains the built server, not just the manifest.
+      # This step failed on 22 Oct for the wrong reason: it grepped `npm pack --dry-run`
+      # output, and that npm version prints "dist/index.js" without the "package/" prefix,
+      # so the assertion could never match. Read the real archive instead of its notice text.
       - name: Prove dist is inside the tarball
         run: |
-          npm pack --dry-run --access public 2>&1 | tee pack.log
-          grep -q "package/dist/index.js" pack.log || { echo "STOP: dist/index.js is missing from the tarball"; exit 1; }
-          grep -q "package/README.md" pack.log || { echo "STOP: the README is missing from the tarball"; exit 1; }
+          npm pack --silent >/dev/null 2>&1
+          TGZ=$(ls -1 apex-psi-mcp-*.tgz | tail -1)
+          echo "packing: $TGZ"
+          tar -tzf "$TGZ" | tee pack.list
+          grep -q "^package/dist/index.js$" pack.list || { echo "STOP: dist/index.js is missing from the tarball"; exit 1; }
+          grep -q "^package/README.md$" pack.list || { echo "STOP: the README is missing from the tarball"; exit 1; }
+          grep -q "^package/package.json$" pack.list || { echo "STOP: package.json is missing from the tarball"; exit 1; }
+          rm -f "$TGZ"
+          echo "ok: the archive a stranger downloads carries the built server and the README"
 
       - name: Does the registry already serve this version?
         run: |
