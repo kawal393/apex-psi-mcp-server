@@ -7,12 +7,12 @@
     "url": "https://github.com/kawal393/apex-psi-mcp-server",
     "source": "github"
   },
-  "version": "1.1.1",
+  "version": "1.1.2",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "apex-psi-mcp",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "transport": {
         "type": "stdio"
       },

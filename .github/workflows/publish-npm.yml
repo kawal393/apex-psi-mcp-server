@@ -73,6 +73,22 @@ jobs:
           rm -f "$TGZ"
           echo "ok: the archive a stranger downloads carries the built server and the README"
 
+      # seal -> verify -> cite -> verify_chain, driven over stdio against the live ledger,
+      # exactly as an agent would use it. This is the rail that was missing on 22 Oct: the
+      # public 1.1.1 passed every compile-and-load check while its own seal result was
+      # refused by its own verify, cite and verify_chain, so a real seal read as
+      # "chain broken" and a citation's url= came back empty.
+      #
+      # It lives here rather than in build.yml on purpose: every run writes one genuine
+      # record into the append-only ledger, and the ledger is the product. One seal per
+      # release is the price of never shipping that defect again; one per push would be
+      # noise in a public record.
+      #
+      # Failure case, proved locally on 22 Oct: this guard exits 1 against the shipped
+      # 1.1.1 build (4 problems) and exits 0 against the 1.1.2 fix.
+      - name: The seal to verify to cite round trip must actually work
+        run: node scripts/roundtrip-check.mjs
+
       - name: Does the registry already serve this version?
         run: |
           HAVE=$(npm view "apex-psi-mcp@$PKG" version 2>/dev/null || true)

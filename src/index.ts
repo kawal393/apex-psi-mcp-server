@@ -25,7 +25,13 @@ const APEX_API_BASE = (
 ).replace(/\/$/, "");
 const APEX_API_KEY = process.env.APEX_API_KEY || "";
 
-const VERSION = "1.1.1";
+// Human-facing site. The API host is a Supabase function and is not a page a
+// person can open, so every link handed back to a user points here instead.
+const APEX_SITE_BASE = (
+  process.env.APEX_SITE_BASE || "https://www.ai-governance-standard.com"
+).replace(/\/$/, "");
+
+const VERSION = "1.1.2";
 
 // Helper: make an API call to the Apex PSI backend
 async function apexApiCall(
@@ -58,6 +64,40 @@ async function apexApiCall(
 // Helper: strip a "sha256:" prefix from a hash value
 function stripHashPrefix(value: unknown): string {
   return typeof value === "string" ? value.replace(/^sha256:/i, "") : "";
+}
+
+/**
+ * Accept either a bare receipt or the whole envelope `seal` returns
+ * (`{ success, receipt, verify_hash, ... }`). The readers below once assumed a
+ * flat receipt, which meant a genuine seal piped straight back into verify,
+ * cite or verify_chain reported "chain broken" with an empty hash.
+ */
+function asReceipt(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== "object") return {};
+  const obj = value as Record<string, unknown>;
+  const nested = obj.receipt;
+  if (obj.decision_hash === undefined && nested && typeof nested === "object" && !Array.isArray(nested)) {
+    return nested as Record<string, unknown>;
+  }
+  return obj;
+}
+
+// Helper: the hash a receipt stands for, from any of the fields the ledger uses
+function receiptHash(value: unknown): string {
+  const r = asReceipt(value);
+  const raw = r.decision_hash ?? r.merkle_leaf ?? r.merkle_root ?? r.verify_hash ?? r.hash;
+  const hash = stripHashPrefix(raw);
+  if (!hash) {
+    throw new Error(
+      "This receipt carries no hash (looked for decision_hash, merkle_leaf, merkle_root) — pass the object exactly as the seal tool returned it",
+    );
+  }
+  return hash;
+}
+
+// Helper: a link a person can open in a browser
+function verifyPageUrl(hash: string): string {
+  return `${APEX_SITE_BASE}/verify?hash=${encodeURIComponent(hash)}`;
 }
 
 // Helper: wrap a result (or error) into an MCP text response
@@ -118,7 +158,8 @@ server.registerTool(
         receipt,
         receipt_id: receipt.receipt_id,
         verify_hash: decisionHash,
-        verify_url: `${APEX_API_BASE}/verify-hash?hash=${decisionHash}`,
+        verify_url: verifyPageUrl(decisionHash),
+        verify_api_url: `${APEX_API_BASE}/verify-hash?hash=${decisionHash}`,
         message: "Content sealed in the APEX PSI append-only ledger",
       });
     } catch (error) {
@@ -144,17 +185,19 @@ server.registerTool(
   },
   async ({ hash, receipt }) => {
     try {
-      let lookup = hash || "";
-      if (!lookup && receipt) {
-        lookup = stripHashPrefix(receipt.decision_hash ?? receipt.merkle_leaf ?? receipt.merkle_root);
+      let lookup = stripHashPrefix(hash);
+      if (!lookup && receipt !== undefined) {
+        lookup = receiptHash(receipt);
       }
       if (!lookup) {
         throw new Error("Provide either a hash or a receipt object");
       }
-      const result = await apexApiCall(`/verify-hash?hash=${encodeURIComponent(stripHashPrefix(lookup))}`);
+      const result = await apexApiCall(`/verify-hash?hash=${encodeURIComponent(lookup)}`);
       return mcpResult({
         success: true,
+        hash: lookup,
         verification: result,
+        verify_url: verifyPageUrl(lookup),
         message: result.verified
           ? "Seal verified — hash is present in the APEX PSI append-only ledger"
           : "Hash not found in the ledger",
@@ -225,13 +268,18 @@ server.registerTool(
   async ({ receipt, format }) => {
     try {
       const fmt = format || "apa";
-      const receiptId = String(receipt.receipt_id || "APEX-PSI-RECEIPT");
-      const timestamp = String(receipt.timestamp || new Date().toISOString());
+      const r = asReceipt(receipt);
+      const receiptId = String(r.receipt_id || "APEX-PSI-RECEIPT");
+      const timestamp = String(r.timestamp || new Date().toISOString());
       const year = timestamp.slice(0, 4);
       const date = timestamp.slice(0, 10);
-      const decisionHash = stripHashPrefix(receipt.decision_hash);
-      const verifyUrl = `${APEX_API_BASE}/verify-hash?hash=${decisionHash}`;
-      const algorithm = String(receipt.algorithm || "SHA-256 + Ed25519 + LMS-W4-SHA256");
+      const decisionHash = receiptHash(receipt);
+      const verifyUrl = verifyPageUrl(decisionHash);
+      // Only name algorithms the receipt itself names. The ledger attaches
+      // LMS-W4-SHA256 only when a slot is available, so a hard-coded default
+      // would cite signatures this particular receipt does not carry.
+      const stated = typeof r.algorithm === "string" ? r.algorithm.trim() : "";
+      const algorithm = stated || "algorithms not stated in this receipt";
 
       let citation: string;
       if (fmt === "bibtex") {
@@ -282,9 +330,11 @@ server.registerTool(
       let chainIntact = true;
 
       for (let i = 0; i < receipts.length; i++) {
-        const r = receipts[i];
-        const hash = stripHashPrefix(r.decision_hash ?? r.merkle_leaf ?? r.merkle_root);
-        if (!hash) {
+        const r = asReceipt(receipts[i]);
+        let hash = "";
+        try {
+          hash = receiptHash(r);
+        } catch {
           results.push({ index: i, receipt_id: String(r.receipt_id || "?"), verified: false, found: false, hash: "" });
           chainIntact = false;
           continue;
