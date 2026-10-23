@@ -114,10 +114,37 @@ jobs:
       - name: Log in as this repository (GitHub OIDC, no token stored anywhere)
         run: ./bin/mcp-publisher login github-oidc
 
-      - name: Publish the card
-        run: ./bin/mcp-publisher publish
+      # Idempotent on purpose: re-running this rail must not fail just because the card is already
+      # correct, or a guard that only passes once becomes something nobody dares re-run. It also
+      # lets a dispatch-only run reach the deprecation steps below.
+      - name: Publish the card, unless the registry already carries it as its latest record
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            (async () => {
+              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const j = await r.json();
+              const hit = (j.servers || []).find((s) => s.server && s.server.name === card.name && s.server.version === card.version);
+              const m = hit && (hit._meta || {})["io.modelcontextprotocol.registry/official"];
+              const same = hit && (hit.server.description || "") === card.description;
+              console.log("ALREADY_PUBLISHED=" + (hit && m && m.isLatest && same ? 1 : 0));
+              console.log(hit ? ("registry has " + card.version + " (latest=" + (m && m.isLatest) + ", same wording=" + same + ")") : "registry does not have " + card.version + " yet");
+            })();
+          ' | tee pre.list
+          if grep -q "ALREADY_PUBLISHED=1" pre.list; then
+            echo "the card is already the registry's latest record; skipping publish and going straight to the checks"
+          else
+            ./bin/mcp-publisher publish
+          fi
 
       # The point of the rail: read the channel from the channel, not from our notes.
+      # Written wrong on its first run (24 Oct) and it failed a publish that had actually
+      # succeeded: the registry keeps a record per version, so a search returns the stale 1.0.1
+      # row as well, and `find(name matches)` grabbed that one and called the rail broken. The
+      # assertion now selects the record by version AND requires the registry's own isLatest flag,
+      # and it reports how many older records are still resolving — which is the fact that matters
+      # to an agent crawling this directory.
       - name: The registry must now serve what we shipped, and must not name a tool we lack
         run: |
           node -e '
@@ -128,21 +155,68 @@ jobs:
               for (let i = 1; i <= 12; i++) {
                 const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
                 const j = await r.json();
-                const hit = (j.servers || []).find((s) => s.server && s.server.name === card.name);
-                last = hit ? JSON.stringify(hit.server).slice(0, 400) : "no record for " + card.name;
-                if (hit && hit.server.version === card.version) {
+                const hits = (j.servers || []).filter((s) => s.server && s.server.name === card.name);
+                const hit = hits.find((s) => s.server.version === card.version);
+                const meta = hit && hit._meta && hit._meta["io.modelcontextprotocol.registry/official"];
+                last = "records named ours: " + hits.map((s) => s.server.version + "(" + (s._meta["io.modelcontextprotocol.registry/official"] || {}).status + (s._meta["io.modelcontextprotocol.registry/official"].isLatest ? ",latest" : "") + ")").join(" ");
+                if (hit && meta && meta.isLatest === true) {
                   const d = hit.server.description || "";
                   const pkgv = (hit.server.packages || [{}])[0].version;
                   if (d.length > 100) { console.error("STOP: registry serves a description of " + d.length + " characters"); process.exit(1); }
-                  if (/truth|audit\b/i.test(d)) { console.error("STOP: registry copy still claims truth or an audit tool: " + d); process.exit(1); }
+                  if (/truth|audit\b|cryptographic/i.test(d)) { console.error("STOP: registry copy still claims truth or an audit tool: " + d); process.exit(1); }
                   if (pkgv !== card.packages[0].version) { console.error("STOP: registry installs " + pkgv + " while we shipped " + card.packages[0].version); process.exit(1); }
-                  console.log("ok: the registry now serves " + hit.server.version + " and says: " + d);
+                  console.log("ok: the registry serves " + hit.server.version + " as its latest record and says: " + d);
+                  console.log("note for the next step: " + last);
                   return;
                 }
-                console.log("attempt " + i + ": registry still says " + last);
+                console.log("attempt " + i + ": registry not showing our version as latest yet — " + last);
                 await new Promise((s) => setTimeout(s, 10000));
               }
-              console.error("STOP: the registry never moved to " + card.version + " — last read: " + last);
+              console.error("STOP: the registry never made " + card.version + " its latest record — last read: " + last);
               process.exit(1);
+            })();
+          '
+
+      # Every older record that stays "active" is a card an agent can still crawl, and the 1.0.1 one
+      # is the copy this rail exists to kill: "Cryptographic truth infrastructure ... audit".
+      # Deprecating it is a statement about OUR records in OUR namespace, and it is reversible.
+      - name: Older records of ours must stop presenting as live
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            (async () => {
+              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const j = await r.json();
+              const old = (j.servers || [])
+                .filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version)
+                .map((s) => s.server.version);
+              require("fs").writeFileSync("older-versions.txt", old.join("\n"));
+              console.log(old.length ? "deprecating: " + old.join(", ") : "no older record is still resolving; nothing to deprecate");
+            })();
+          '
+          while read -r V; do
+            [ -z "$V" ] && continue
+            echo "deprecating $V"
+            ./bin/mcp-publisher status --status deprecated --message "Superseded by $(node -p "require('./package.json').version"); the earlier card described a tool this server never exposed." "io.github.kawal393/apex-psi-mcp" "$V"
+          done < older-versions.txt
+
+      - name: No record of ours may still claim truth, an audit tool, or a version npm dropped
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            (async () => {
+              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const j = await r.json();
+              const mine = (j.servers || []).filter((s) => s.server && s.server.name === card.name);
+              const bad = mine.filter((s) => {
+                const m = (s._meta || {})["io.modelcontextprotocol.registry/official"] || {};
+                const live = m.status === "active";
+                return live && (/truth|audit\b|cryptographic/i.test(s.server.description || "") || (s.server.packages || [{}])[0].version !== card.packages[0].version);
+              });
+              console.log(mine.map((s) => s.server.version + " " + ((s._meta || {})["io.modelcontextprotocol.registry/official"] || {}).status).join(" | "));
+              if (bad.length) { console.error("STOP: " + bad.length + " active record(s) of ours still over-promise or install a version we no longer ship"); process.exit(1); }
+              console.log("ok: every active record of ours says what the shipped server does");
             })();
           '
