@@ -1,0 +1,148 @@
+name: Sync the official MCP registry card
+
+# Why this rail exists, measured rather than remembered.
+#
+# The official registry (registry.modelcontextprotocol.io) has carried our record
+# `io.github.kawal393/apex-psi-mcp` since 11 Aug 2026 and has never been refreshed. As read from
+# the registry's own API on 24 Oct it still says: version 1.0.1 (npm serves 1.1.2), description
+# "Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, audit" — a phrase
+# this repository cut on 19 Oct, and an `audit` tool the server has never exposed. Machine
+# directories crawl that record, so the stale card is the root of the stale-copy tree, and no
+# guard in this repository could see it: card-copy-check.mjs only reads files that exist here.
+#
+# This rail closes that gap without a browser, a password, or a token on a laptop. The registry
+# accepts GitHub OIDC: a workflow running on kawal393's repository IS the proof of the
+# `io.github.kawal393/` namespace (verified against the publisher's own source, which derives the
+# audience from the registry URL and reads ACTIONS_ID_TOKEN_REQUEST_URL / _TOKEN).
+#
+# The publisher binary is pinned by release tag and by sha256, both measured on 24 Oct from the
+# project's own checksums file, and the digest is re-verified on the runner before it executes.
+#
+# Fire it with:  git tag apex-psi-registry-v1.1.2 && git push origin apex-psi-registry-v1.1.2
+# (a registry tag never publishes to npm: it only re-states the card for the version npm already
+# serves, so the two channels can be corrected independently and no phantom release is invented
+# to move a directory.) An npm release tag opens this rail too, so a new version can never again
+# be published without the card following it.
+# It can also be started by hand from the Actions tab.
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "apex-psi-mcp-v*"
+      - "apex-psi-registry-v*"
+
+permissions:
+  contents: read
+  id-token: write # required for the registry's GitHub OIDC login
+
+env:
+  PUBLISHER_VERSION: v1.8.4
+  PUBLISHER_SHA256_LINUX: 5dc2fd415369c73551259f31cd33e2aacc9e0d1021e7f08fef1492d93b781628
+  REGISTRY: https://registry.modelcontextprotocol.io
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Set the version for later steps
+        run: echo "PKG=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
+
+      - name: Tag and package.json version must agree
+        if: github.event_name == 'push'
+        run: |
+          TAG="${GITHUB_REF_NAME#apex-psi-mcp-v}"
+          TAG="${TAG#apex-psi-registry-v}"
+          PKG=$(node -p "require('./package.json').version")
+          echo "tag says $TAG, package.json says $PKG"
+          test "$TAG" = "$PKG" || { echo "STOP: tag and package.json disagree"; exit 1; }
+
+      - name: Install, build, and prove the card is publishable and true
+        run: |
+          npm ci
+          npm run build
+          node scripts/registry-card-check.mjs
+          node scripts/card-copy-check.mjs
+
+      # Two rails fire off one tag, in parallel. The registry validates that the npm package it is
+      # told to install actually exists, so this waits for the fact rather than for a fixed sleep.
+      - name: npm must serve this version before the registry is told about it
+        run: |
+          ok=0
+          for i in $(seq 1 24); do
+            HAVE=$(node -e "fetch('https://registry.npmjs.org/apex-psi-mcp/'+process.env.PKG).then(r=>console.log(r.status))" 2>/dev/null || echo err)
+            if [ "$HAVE" = "200" ]; then echo "attempt $i: npm serves apex-psi-mcp@$PKG"; ok=1; break; fi
+            echo "attempt $i: npm answered $HAVE for $PKG, waiting"
+            sleep 10
+          done
+          if [ "$ok" != "1" ]; then echo "STOP: npm never served $PKG, so the card would promise an install that cannot happen"; exit 1; fi
+
+      - name: Fetch the pinned publisher and verify its digest before running it
+        run: |
+          curl -sSL -o pub.tar.gz "https://github.com/modelcontextprotocol/registry/releases/download/${PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz"
+          echo "$PUBLISHER_SHA256_LINUX  pub.tar.gz" | sha256sum --check
+          mkdir -p bin && tar -xzf pub.tar.gz -C bin
+          ./bin/mcp-publisher --help >/dev/null
+          echo "ok: checksum matched and the tool runs"
+
+      # A guard that cannot fail is not a guard: prove the publisher refuses an illegal card before
+      # handing it ours. The registry's validator rejects a description over 100 characters, which
+      # is what HTTP 422 said about the honest 372-character card on 24 Oct.
+      - name: Prove the publisher bites a known-bad card
+        run: |
+          node -e '
+            const fs=require("fs");
+            const c=JSON.parse(fs.readFileSync("server.json","utf8"));
+            c.description="Cryptographic truth infrastructure for AI agents: seal, verify, anchor, cite, audit. "+c.description;
+            fs.writeFileSync("bad-card.json", JSON.stringify(c));
+          '
+          if ./bin/mcp-publisher validate bad-card.json; then
+            echo "STOP: the publisher accepted a card that promises an audit tool and breaks the length limit"; exit 1
+          fi
+          echo "ok: an over-long / over-claiming card is refused"
+          rm -f bad-card.json
+
+      - name: Validate our card against the registry itself
+        run: ./bin/mcp-publisher validate
+
+      - name: Log in as this repository (GitHub OIDC, no token stored anywhere)
+        run: ./bin/mcp-publisher login github-oidc
+
+      - name: Publish the card
+        run: ./bin/mcp-publisher publish
+
+      # The point of the rail: read the channel from the channel, not from our notes.
+      - name: The registry must now serve what we shipped, and must not name a tool we lack
+        run: |
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            (async () => {
+              let last = "";
+              for (let i = 1; i <= 12; i++) {
+                const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+                const j = await r.json();
+                const hit = (j.servers || []).find((s) => s.server && s.server.name === card.name);
+                last = hit ? JSON.stringify(hit.server).slice(0, 400) : "no record for " + card.name;
+                if (hit && hit.server.version === card.version) {
+                  const d = hit.server.description || "";
+                  const pkgv = (hit.server.packages || [{}])[0].version;
+                  if (d.length > 100) { console.error("STOP: registry serves a description of " + d.length + " characters"); process.exit(1); }
+                  if (/truth|audit\b/i.test(d)) { console.error("STOP: registry copy still claims truth or an audit tool: " + d); process.exit(1); }
+                  if (pkgv !== card.packages[0].version) { console.error("STOP: registry installs " + pkgv + " while we shipped " + card.packages[0].version); process.exit(1); }
+                  console.log("ok: the registry now serves " + hit.server.version + " and says: " + d);
+                  return;
+                }
+                console.log("attempt " + i + ": registry still says " + last);
+                await new Promise((s) => setTimeout(s, 10000));
+              }
+              console.error("STOP: the registry never moved to " + card.version + " — last read: " + last);
+              process.exit(1);
+            })();
+          '

@@ -17,7 +17,8 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
-    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs"
+    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs",
+    "check:registry-card": "node scripts/registry-card-check.mjs"
   },
   "keywords": [
     "mcp",

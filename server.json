@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.kawal393/apex-psi-mcp",
   "title": "APEX PSI",
-  "description": "Append-only evidence receipts for AI decisions and documents. Five tools: seal a record into a public ledger, verify any hash against it, check a chain of receipts, generate a citation, and read Bitcoin anchoring status. Anyone can verify, free, with no account. A receipt proves a record existed and was not altered after its timestamp - never that its contents are true.",
+  "description": "Append-only evidence receipts for AI records: seal, verify, cite, chain-check, anchor status.",
   "repository": {
     "url": "https://github.com/kawal393/apex-psi-mcp-server",
     "source": "github"

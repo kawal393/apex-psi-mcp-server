@@ -33,6 +33,13 @@ jobs:
         run: node scripts/anchor-tool-check.mjs
       - name: No card file may carry a phrase the repository has cut
         run: node scripts/card-copy-check.mjs
+      # Cut 24 Oct: the official registry's copy of us was two months stale and promised an
+      # `audit` tool this server has never had, and no guard here could see it because every
+      # guard read only this repository. This one reads the card against the built server.
+      - name: The directory card must be publishable and must name only real tools
+        run: node scripts/registry-card-check.mjs
+      - name: Prove the card guard bites, using its own self-test
+        run: node scripts/registry-card-check.mjs --self-test
 
   # server.json is published on GitHub raw, so a stranger can read it. If it names a
   # package version the registry does not serve, the card is a broken promise, and the
