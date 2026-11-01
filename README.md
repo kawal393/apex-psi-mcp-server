@@ -1,6 +1,10 @@
+<p align="center"><img src="https://raw.githubusercontent.com/kawal393/apex-psi-mcp-server/main/assets/apex-psi-icon.png" alt="APEX PSI mark: a check inside a hexagonal seal" width="96" height="96"></p>
+
 # APEX PSI MCP server
 
 > **Apex PSI is not a tool and not a product. It is the verification substrate — the layer beneath proof. It does not judge. It does not certify. It only remembers.** This server is one application built on that layer.
+
+Machine-readable setup for agents and directory scrapers: [llms-install.md](https://github.com/kawal393/apex-psi-mcp-server/blob/main/llms-install.md).
 
 One config line gives any MCP-capable agent (Claude, Cursor, Qoder, Cline, Windsurf, and the rest) five evidence tools: `seal`, `verify`, `anchor`, `cite`, `verify_chain`.
 
