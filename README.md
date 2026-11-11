@@ -2,6 +2,8 @@
 
 # APEX PSI MCP server
 
+[![APEX PSI MCP server](https://mcprush.com/badge/apex-psi-mcp/card.svg)](https://mcprush.com/to/apex-psi-mcp?ref=badge)
+
 > **Apex PSI is not a tool and not a product. It is the verification substrate — the layer beneath proof. It does not judge. It does not certify. It only remembers.** This server is one application built on that layer.
 
 Machine-readable setup for agents and directory scrapers: [llms-install.md](https://github.com/kawal393/apex-psi-mcp-server/blob/main/llms-install.md).
