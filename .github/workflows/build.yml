@@ -50,6 +50,13 @@ jobs:
       # against dist/gate.js — the file a stranger installs — with no network.
       - name: The execution gate must refuse an action whose seal failed
         run: node scripts/gate-check.mjs
+      # On 16 Nov the published 1.2.0 still announced itself as 1.1.2, because the version was
+      # a literal in the source and the literal was not bumped. This asks the built server over
+      # stdio, the way a client does, and compares the answer with the package it ships.
+      - name: The server must announce the version the package ships
+        run: node scripts/server-version-check.mjs
+      - name: Prove the version guard bites, using its own self-test
+        run: node scripts/server-version-check.mjs --self-test
 
   # server.json is published on GitHub raw, so a stranger can read it. If it names a
   # package version the registry does not serve, the card is a broken promise, and the

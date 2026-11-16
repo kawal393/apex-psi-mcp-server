@@ -15,6 +15,7 @@
  */
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { readFileSync } from "node:fs";
 import { z } from "zod";
 // Configuration
 const APEX_API_BASE = (process.env.APEX_API_BASE || "https://qhtntebpcribjiwrdtdd.supabase.co/functions/v1").replace(/\/$/, "");
@@ -22,7 +23,26 @@ const APEX_API_KEY = process.env.APEX_API_KEY || "";
 // Human-facing site. The API host is a Supabase function and is not a page a
 // person can open, so every link handed back to a user points here instead.
 const APEX_SITE_BASE = (process.env.APEX_SITE_BASE || "https://www.ai-governance-standard.com").replace(/\/$/, "");
-const VERSION = "1.1.2";
+// The version this server announces is the version it ships, read from the same
+// package.json npm published. It was a literal here until 16 Nov, and the literal was
+// still "1.1.2" when 1.2.0 went out — so every MCP client was told the server was
+// 1.1.2 while the registry said 1.2.0. scripts/server-version-check.mjs now fails the
+// build if these two ever disagree again.
+const VERSION = readPackageVersion();
+function readPackageVersion() {
+    try {
+        const pkgUrl = new URL("../package.json", import.meta.url);
+        const pkg = JSON.parse(readFileSync(pkgUrl, "utf8"));
+        if (typeof pkg.version === "string" && pkg.version.length > 0)
+            return pkg.version;
+        console.error("apex-psi-mcp: package.json carries no version; announcing 0.0.0-unknown");
+        return "0.0.0-unknown";
+    }
+    catch {
+        console.error("apex-psi-mcp: package.json could not be read; announcing 0.0.0-unknown");
+        return "0.0.0-unknown";
+    }
+}
 // Helper: make an API call to the Apex PSI backend
 async function apexApiCall(endpoint, method = "GET", body) {
     const url = `${APEX_API_BASE}${endpoint}`;
