@@ -1,10 +1,14 @@
 {
   "name": "apex-psi-mcp",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "mcpName": "io.github.kawal393/apex-psi-mcp",
   "description": "APEX PSI MCP server - append-only evidence receipts for AI decisions and documents: seal a record, verify a hash against the public ledger, check a chain, cite a receipt, read Bitcoin anchoring status. Verification is free and needs no account.",
   "type": "module",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./gate": "./dist/gate.js"
+  },
   "files": [
     "dist",
     "README.md"
@@ -17,8 +21,9 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
-    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs",
-    "check:registry-card": "node scripts/registry-card-check.mjs"
+    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs",
+    "check:registry-card": "node scripts/registry-card-check.mjs",
+    "check:gate": "node scripts/gate-check.mjs"
   },
   "keywords": [
     "mcp",

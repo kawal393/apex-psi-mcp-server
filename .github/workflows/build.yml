@@ -40,6 +40,11 @@ jobs:
         run: node scripts/registry-card-check.mjs
       - name: Prove the card guard bites, using its own self-test
         run: node scripts/registry-card-check.mjs --self-test
+      # The gate is the answer to "an agent may simply never call seal". It counts
+      # only if the built module refuses an action whose seal failed, so this runs
+      # against dist/gate.js — the file a stranger installs — with no network.
+      - name: The execution gate must refuse an action whose seal failed
+        run: node scripts/gate-check.mjs
 
   # server.json is published on GitHub raw, so a stranger can read it. If it names a
   # package version the registry does not serve, the card is a broken promise, and the

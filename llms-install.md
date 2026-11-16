@@ -1,6 +1,6 @@
 # APEX PSI MCP — install instructions for AI agents and MCP clients
 
-Package: `apex-psi-mcp` on npm (current: 1.1.2) — stdio, no account, no key.
+Package: `apex-psi-mcp` on npm (current: 1.2.0) — stdio, no account, no key.
 Source: https://github.com/kawal393/apex-psi-mcp-server
 Registry name: `io.github.kawal393/apex-psi-mcp`
 Site: https://www.ai-governance-standard.com
@@ -65,6 +65,29 @@ For clients that connect to a remote MCP server instead of spawning one:
 This door is OAuth-protected and exposes a different, read-oriented tool set: `seal`, `verify_hash`,
 `anchor_status`, `list_attestations`, `ledger_stats`, `protocol_info`. An anonymous request returns
 `401` with a `WWW-Authenticate` challenge — that is the server asking you to sign in, not a failure.
+
+## Make the seal unavoidable — the execution gate
+
+The five tools are available to an agent, but nothing in MCP makes an agent call them. An agent
+that never calls `seal` leaves no gap in the ledger. If your agent can move money, send a request
+or write to a system, this package also ships a gate that seals first and acts second, inside the
+process that performs the side effect:
+
+```js
+import { createGate, createNotarySealer } from "apex-psi-mcp/gate";
+
+const gate = createGate({ sealer: createNotarySealer(), label: "payments-bot" });
+const { value, receipt } = await gate.run(
+  () => payments.transfer({ amount: 500, to: "acct-42" }),
+  { tool: "transfer", amount: 500, to: "acct-42" },
+);
+```
+
+If the seal fails the transfer is never called. A gate with no sealer refuses every action. The
+Python runtime has the same gate: `apex_psi.ExecutionGate`.
+
+The gate enforces the order. It cannot reach a process that never routes its side effect through
+it, and it cannot attest what a model did inside a GPU.
 
 ## Accept it works in two minutes
 

@@ -68,6 +68,7 @@ jobs:
           echo "packing: $TGZ"
           tar -tzf "$TGZ" | tee pack.list
           grep -q "^package/dist/index.js$" pack.list || { echo "STOP: dist/index.js is missing from the tarball"; exit 1; }
+          grep -q "^package/dist/gate.js$" pack.list || { echo "STOP: dist/gate.js is missing from the tarball"; exit 1; }
           grep -q "^package/README.md$" pack.list || { echo "STOP: the README is missing from the tarball"; exit 1; }
           grep -q "^package/package.json$" pack.list || { echo "STOP: package.json is missing from the tarball"; exit 1; }
           rm -f "$TGZ"

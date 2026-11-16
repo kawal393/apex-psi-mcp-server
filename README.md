@@ -60,6 +60,45 @@ running the verifier locally costs nothing at all —
 [`apex-psi-verifier`](https://www.npmjs.com/package/apex-psi-verifier) on npm,
 [`psi-verifier`](https://pypi.org/project/psi-verifier/) on PyPI.
 
+## Make the seal unavoidable: the execution gate
+
+The five tools above are available to an agent, but nothing in MCP makes an agent call them. An
+agent that never calls `seal` leaves no gap in the ledger — the ledger stays complete and says
+nothing about that action. If your agent can move money, send a request or write to a system, that
+gap is the whole problem.
+
+So this package also ships a **gate**: a small module that seals first and acts second, inside the
+process that performs the side effect.
+
+```js
+import { createGate, createNotarySealer } from "apex-psi-mcp/gate";
+
+const gate = createGate({ sealer: createNotarySealer(), label: "payments-bot" });
+
+const { value, receipt } = await gate.run(
+  () => payments.transfer({ amount: 500, to: "acct-42" }),
+  { tool: "transfer", amount: 500, to: "acct-42" },
+);
+```
+
+If the seal fails, `payments.transfer` is never called — the gate throws `GateClosedError`. A gate
+with no sealer configured refuses every action, because a gate nobody configured must not look like
+a gate that is working.
+
+What the gate does and does not do, stated plainly:
+
+- It enforces the **order**: the receipt exists before the action runs.
+- It cannot reach a process that never routes its side effect through it.
+- It cannot attest what a model did inside a GPU; the receipt covers the action as you declared it
+  and the order in which the two happened.
+- `createLocalSealer()` seals into an in-process hash chain with no network and no account — a local
+  permit, not a ledger receipt. `createNotarySealer()` returns a ledger receipt.
+
+The same gate exists in the Python runtime as `apex_psi.ExecutionGate`. The two implementations
+fingerprint the same bytes: `fingerprint({"b":1,"a":[1,2],"c":"x"})` is
+`95c12ab4ca0e8f3c485ea1b1b1a2b24976d07180baf5ecad0d81b5bbaf07532b` in both, and a CI check on each
+side pins that number.
+
 ## Configuration
 
 Environment variables (both optional):
