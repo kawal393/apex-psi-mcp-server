@@ -23,6 +23,8 @@
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
     "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs",
     "check:registry-card": "node scripts/registry-card-check.mjs",
+    "check:card-copy": "node scripts/card-copy-check.mjs",
+    "check:card-copy:selftest": "node scripts/card-copy-check.mjs --self-test",
     "check:gate": "node scripts/gate-check.mjs"
   },
   "keywords": [

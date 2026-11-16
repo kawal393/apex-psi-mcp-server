@@ -191,15 +191,37 @@ jobs:
               const old = (j.servers || [])
                 .filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version)
                 .map((s) => s.server.version);
-              require("fs").writeFileSync("older-versions.txt", old.join("\n"));
+              require("fs").writeFileSync("older-versions.txt", old.map((v) => v + "\n").join(""));
               console.log(old.length ? "deprecating: " + old.join(", ") : "no older record is still resolving; nothing to deprecate");
             })();
           '
-          while read -r V; do
+          # `read` returns non-zero on a last line that has no trailing newline, so the plain
+          # loop silently drops it: on 16 Nov this deprecated 1.0.1 and left 1.1.2 live, and
+          # the step still passed. Both halves are fixed here — the file ends with a newline,
+          # and the loop reads a final line that has none.
+          while read -r V || [ -n "$V" ]; do
             [ -z "$V" ] && continue
             echo "deprecating $V"
             ./bin/mcp-publisher status --status deprecated --message "Superseded by $(node -p "require('./package.json').version"); the earlier card described a tool this server never exposed." "io.github.kawal393/apex-psi-mcp" "$V"
           done < older-versions.txt
+
+          # A deprecation that did not take must fail HERE, where the cause is, instead of
+          # surfacing two steps later as a mystery.
+          node -e '
+            const fs = require("fs");
+            const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            (async () => {
+              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const j = await r.json();
+              const older = (j.servers || []).filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version);
+              const stillLive = older.filter((s) => {
+                const m = (s._meta || {})["io.modelcontextprotocol.registry/official"] || {};
+                return m.status !== "deprecated";
+              }).map((s) => s.server.version);
+              if (stillLive.length) { console.error("STOP: these older records of ours are still live: " + stillLive.join(", ")); process.exit(1); }
+              console.log("ok: every older record of ours is deprecated");
+            })();
+          '
 
       - name: No record of ours may still claim truth, an audit tool, or a version npm dropped
         run: |
