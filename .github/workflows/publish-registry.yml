@@ -180,6 +180,19 @@ jobs:
       # Every older record that stays "active" is a card an agent can still crawl, and the 1.0.1 one
       # is the copy this rail exists to kill: "Cryptographic truth infrastructure ... audit".
       # Deprecating it is a statement about OUR records in OUR namespace, and it is reversible.
+      #
+      # Written wrong twice. First version read the search index, which lags the write, and called a
+      # finished rail broken. Second version asked the registry for older records and then issued a
+      # deprecation for every one of them — including the ones the registry already reports as
+      # deprecated. `mcp-publisher status` answers non-zero when there is nothing left to change, and
+      # this step runs under `bash -e`, so the rail died here on 16 Nov (1.2.1), 17 Nov (1.2.2) and
+      # again on the 17 Nov re-run, three seconds short of a passing assertion. Measured: the live
+      # registry answers 1.2.2/active and 1.2.1, 1.2.0, 1.1.2, 1.0.1 all deprecated, so the list of
+      # records still needing work is empty and the loop must not fire at all.
+      #
+      # The rule now: ask the registry which of our older records are NOT yet deprecated, touch only
+      # those, and let the assertion at the bottom decide whether the state is right. A publisher
+      # failure on a record that genuinely needed changing still stops the rail.
       - name: Older records of ours must stop presenting as live
         run: |
           node -e '
@@ -188,11 +201,17 @@ jobs:
             (async () => {
               const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
               const j = await r.json();
-              const old = (j.servers || [])
-                .filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version)
+              const mine = (j.servers || []).filter((s) => s.server && s.server.name === card.name);
+              const state = (s) => ((s._meta || {})["io.modelcontextprotocol.registry/official"] || {});
+              const todo = mine
+                .filter((s) => s.server.version !== card.version && state(s).status !== "deprecated")
                 .map((s) => s.server.version);
-              require("fs").writeFileSync("older-versions.txt", old.map((v) => v + "\n").join(""));
-              console.log(old.length ? "deprecating: " + old.join(", ") : "no older record is still resolving; nothing to deprecate");
+              const already = mine
+                .filter((s) => s.server.version !== card.version && state(s).status === "deprecated")
+                .map((s) => s.server.version);
+              fs.writeFileSync("needs-deprecating.txt", todo.map((v) => v + "\n").join(""));
+              console.log("already deprecated, left alone: " + (already.join(", ") || "none"));
+              console.log(todo.length ? "deprecating now: " + todo.join(", ") : "nothing needs deprecating");
             })();
           '
           # `read` returns non-zero on a last line that has no trailing newline, so the plain
@@ -203,7 +222,7 @@ jobs:
             [ -z "$V" ] && continue
             echo "deprecating $V"
             ./bin/mcp-publisher status --status deprecated --message "Superseded by $(node -p "require('./package.json').version"); the earlier card described a tool this server never exposed." "io.github.kawal393/apex-psi-mcp" "$V"
-          done < older-versions.txt
+          done < needs-deprecating.txt
 
           # A deprecation that did not take must fail HERE, where the cause is, instead of
           # surfacing two steps later as a mystery.

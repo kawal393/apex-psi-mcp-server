@@ -80,13 +80,23 @@ jobs:
               console.error("STOP: card version " + card.version + " and package version " + pkg.version + " disagree");
               process.exit(1);
             }
-            fetch("https://registry.npmjs.org/" + pkg.identifier)
-              .then((r) => r.json())
-              .then((d) => {
-                if (!d.versions || !d.versions[pkg.version]) {
-                  console.error("STOP: npm does not serve " + pkg.identifier + "@" + pkg.version + " — the card promises an install that cannot happen");
-                  process.exit(1);
+            (async () => {
+              // A release commit lands on main seconds before the tag that publishes it, and the npm
+              // rail takes about three minutes. One read therefore calls every honest release red: it
+              // measured 1.2.2 against an npm that still only had 1.2.1, failed, and left main red for
+              // the next four hours. Wait for the fact, the same way the registry rail does, then
+              // report the card as broken only if npm never caught up.
+              for (let i = 1; i <= 24; i++) {
+                const r = await fetch("https://registry.npmjs.org/" + pkg.identifier).then((x) => x.json());
+                if (r.versions && r.versions[pkg.version]) {
+                  console.log("ok: npm serves " + pkg.identifier + "@" + pkg.version + " (attempt " + i + ")");
+                  return;
                 }
-                console.log("ok: npm serves " + pkg.identifier + "@" + pkg.version);
-              });
+                const served = r["dist-tags"] && r["dist-tags"].latest;
+                console.log("attempt " + i + ": npm serves " + (served || "nothing") + ", not " + pkg.version + " yet");
+                await new Promise((s) => setTimeout(s, 15000));
+              }
+              console.error("STOP: npm never served " + pkg.identifier + "@" + pkg.version + " — the card promises an install that cannot happen");
+              process.exit(1);
+            })();
           '
