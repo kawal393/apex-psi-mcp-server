@@ -123,7 +123,7 @@ jobs:
             const fs = require("fs");
             const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
             (async () => {
-              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
               const j = await r.json();
               const hit = (j.servers || []).find((s) => s.server && s.server.name === card.name && s.server.version === card.version);
               const m = hit && (hit._meta || {})["io.modelcontextprotocol.registry/official"];
@@ -153,7 +153,7 @@ jobs:
             (async () => {
               let last = "";
               for (let i = 1; i <= 12; i++) {
-                const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+                const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
                 const j = await r.json();
                 const hits = (j.servers || []).filter((s) => s.server && s.server.name === card.name);
                 const hit = hits.find((s) => s.server.version === card.version);
@@ -186,7 +186,7 @@ jobs:
             const fs = require("fs");
             const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
             (async () => {
-              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
               const j = await r.json();
               const old = (j.servers || [])
                 .filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version)
@@ -211,7 +211,7 @@ jobs:
             const fs = require("fs");
             const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
             (async () => {
-              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
               const j = await r.json();
               const older = (j.servers || []).filter((s) => s.server && s.server.name === card.name && s.server.version !== card.version);
               const stillLive = older.filter((s) => {
@@ -229,7 +229,7 @@ jobs:
             const fs = require("fs");
             const card = JSON.parse(fs.readFileSync("server.json", "utf8"));
             (async () => {
-              const r = await fetch(process.env.REGISTRY + "/v0/servers?search=apex-psi");
+              const r = await fetch(process.env.REGISTRY + "/v0/servers/" + encodeURIComponent(card.name) + "/versions");
               const j = await r.json();
               const mine = (j.servers || []).filter((s) => s.server && s.server.name === card.name);
               const bad = mine.filter((s) => {
