@@ -1,6 +1,6 @@
 # APEX PSI MCP — install instructions for AI agents and MCP clients
 
-Package: `apex-psi-mcp` on npm (current: 1.2.1) — stdio, no account, no key.
+Package: `apex-psi-mcp` on npm (current: 1.2.2) — stdio, no account, no key.
 Source: https://github.com/kawal393/apex-psi-mcp-server
 Registry name: `io.github.kawal393/apex-psi-mcp`
 Site: https://www.ai-governance-standard.com

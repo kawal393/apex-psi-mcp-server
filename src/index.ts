@@ -155,7 +155,13 @@ server.registerTool(
   {
     title: "Seal content",
     description:
-      "Record content in the APEX PSI append-only ledger and return a receipt: SHA-256 hash, an Ed25519 signature over the Merkle leaf, and post-quantum ML-DSA-65 (plus LMS-W4-SHA256 when a slot is available — the receipt's own algorithm field states which). Proves that this content existed and has not changed since the timestamp. It never proves the contents are true. Free tier: 20 operations/minute, 100/day, no account needed.",
+      "Record content in the APEX PSI append-only ledger and return a receipt: SHA-256 hash, an Ed25519 signature over the Merkle leaf, and post-quantum ML-DSA-65 (plus LMS-W4-SHA256 when a slot is available — the receipt's own algorithm field states which). Proves that this content existed and has not changed since the timestamp. It never proves the contents are true. Free tier: 20 operations/minute, 100/day, no account needed. Side effect: it appends one record to the public ledger; nothing is edited or deleted. Output: a receipt in JSON, with the hash, the signature algorithms that receipt carries, and a URL anyone can check. A failure returns a tool error whose text is JSON: { success: false, error }.",
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       content: z.string().max(10000).describe("The content to seal (text, up to 10000 characters)"),
       context: z.string().optional().describe("Optional context label (e.g. document name, case ID)"),
@@ -193,7 +199,13 @@ server.registerTool(
   {
     title: "Verify a receipt",
     description:
-      "Confirm a seal's integrity against the APEX PSI append-only ledger. Accepts a receipt object (from the seal tool) or a raw SHA-256 hash. Reports whether the hash is present and anchored — integrity, not the truth of the original content.",
+      "Confirm a seal's integrity against the APEX PSI append-only ledger. Accepts a receipt object (from the seal tool) or a raw SHA-256 hash. Reports whether the hash is present and anchored — integrity, not the truth of the original content. Read-only: nothing is written and no record changes. Output: a JSON report stating whether the hash was found and whether it is anchored. A failure returns a tool error whose text is JSON: { success: false, error }.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     inputSchema: {
       hash: z
         .string()
@@ -233,7 +245,13 @@ server.registerTool(
   {
     title: "Bitcoin anchoring history",
     description:
-      "Read the Bitcoin (OpenTimestamps) anchoring record for the ledger's Merkle roots. Defaults to action:'history', which is read-only and returns each anchor transaction with its txid, block height, confirmation state and how many ledger entries it covers. Pass action:'verify' with a txid to check one transaction, or action:'anchor' to explicitly request that pending roots be aggregated and submitted to the OTS calendars. Defaults to 'history' so a routine call never triggers a batch write. An anchor counts as confirmed only when a real Bitcoin block contains it.",
+      "Read the Bitcoin (OpenTimestamps) anchoring record for the ledger's Merkle roots. Defaults to action:'history', which is read-only and returns each anchor transaction with its txid, block height, confirmation state and how many ledger entries it covers. Pass action:'verify' with a txid to check one transaction, or action:'anchor' to explicitly request that pending roots be aggregated and submitted to the OTS calendars. Defaults to 'history' so a routine call never triggers a batch write. An anchor counts as confirmed only when a real Bitcoin block contains it. Read-only for action 'history' and 'verify'; only action 'anchor' writes, by submitting pending roots to the OTS calendars. Output: a JSON list of anchor transactions with txid, block height and confirmation state. A failure returns a tool error whose text is JSON: { success: false, error }.",
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       action: z
         .enum(["history", "verify", "anchor"])
@@ -278,7 +296,13 @@ server.registerTool(
   {
     title: "Generate citation",
     description:
-      "Generate a citation for a sealed receipt in APA, BibTeX, or MLA format, citing the APEX PSI ledger entry.",
+      "Generate a citation for a sealed receipt in APA, BibTeX, or MLA format, citing the APEX PSI ledger entry. Read-only and entirely local: it formats a citation from the receipt you pass in and makes no network call. Output: the citation string in the format you asked for.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
     inputSchema: {
       receipt: receiptSchema.describe("A receipt object as returned by the seal tool"),
       format: z.enum(["apa", "bibtex", "mla"]).optional().describe("Citation format (default: apa)"),
@@ -337,7 +361,13 @@ server.registerTool(
   {
     title: "Verify a receipt chain",
     description:
-      "Independently verify a chain of receipts against the APEX PSI ledger. Recomputes each hash's presence and integrity and reports Merkle chain continuity. Returns a verification report — a recomputation result, not an opinion or a certification.",
+      "Independently verify a chain of receipts against the APEX PSI ledger. Recomputes each hash's presence and integrity and reports Merkle chain continuity. Returns a verification report — a recomputation result, not an opinion or a certification. Read-only: it only looks receipts up and recomputes the chain; nothing is written. Output: a JSON report per receipt (found, verified) and an overall chain-intact verdict. A failure returns a tool error whose text is JSON: { success: false, error }.",
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     inputSchema: {
       receipts: z.array(receiptSchema).min(1).describe("Array of receipt objects to verify (in order)"),
     },
