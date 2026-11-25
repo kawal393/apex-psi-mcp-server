@@ -187,6 +187,26 @@ same proposal runs the action once. `bindSettlement` refuses a settlement whose
 decision does not match, whose currency the mandate does not permit, or whose
 amount exceeds the mandate's limit.
 
+## The money rules of a payment door
+
+The receiver gate checks a spend limit only against a settlement, and a
+payment request carries no settlement. A limit belongs to the mandate, so
+applying it to the amount about to be charged is a separate rule, and it
+lives in its own module so the door and its tests run the same code:
+
+```ts
+import { evaluatePayment } from "apex-psi-mcp/payment";
+
+const verdict = evaluatePayment({ tool, args, mandate }, tiers, {
+  expectedTool: "checkout",
+});
+```
+
+It refuses a request that names another tool, a tier the server does not sell,
+an amount that is not minor units, an amount above the tier's ceiling or above
+the mandate's `max_spend`, and a currency the mandate does not permit. The
+comparison is exact decimal: `1101` is over `11.00` and `1099` is under it.
+
 ## Prove the gate in two commands
 
 ```
@@ -204,6 +224,12 @@ Those reasons were measured against the built gate, and
 `npm run check:example` fails if the gate ever answers differently. The keys in
 that file are test keys, made for the file and discarded when it was written;
 they sign nothing outside the file.
+
+It also carries a `payment` section: one permitted payment, with the tier and
+the amount in it, and seven refusals a payment door must make. Each one names
+whether the gate refuses it or the door's own money rules do, so a reader can
+tell the two halves apart. `npm run check:payment` proves both halves against
+the built modules.
 
 ## Configuration
 
