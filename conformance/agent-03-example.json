@@ -2,18 +2,18 @@
   "profile": "PSI-ACT/1",
   "source": "draft-singh-psi-agent-03",
   "generated_by": "scripts/make-signed-example.mjs",
-  "generated_at": "2026-11-25T05:20:07.699Z",
+  "generated_at": "2026-11-25T05:29:43.369Z",
   "note": "A signed test run for the receiver gate. The keys below are test keys, made for this file and discarded when it was written: they sign nothing outside this file. The refusal reasons are measured, not asserted — scripts/agent-example-check.mjs re-runs the gate over every case and fails if the answer changes.",
-  "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+  "run": "a8bf3c2f1f4cad31f52617db1a19e8819c74fa1627b28129dba165589084252c",
   "keyring": {
-    "mandate-key": "MCowBQYDK2VwAyEAju/qmxjCOgI81wHfdKwCEe06NzYiAXcE1p7F61utI60=",
-    "proposer-key": "MCowBQYDK2VwAyEA03qxcDFrW1neM4Aoslj7ckzTBe7uU1YMSKcfJpGTAqo=",
-    "decision-key": "MCowBQYDK2VwAyEAfE6xeW2fCDqreWYTMYcfytJjOTTrnda881K8IztujH0=",
-    "actor-key": "MCowBQYDK2VwAyEA/lOtv70fplJalvzvQ2+BUoXO29g6RmzinX9APWmjDFw=",
-    "provider-key": "MCowBQYDK2VwAyEAHaDEsrD0OME1+CyGq2ps0fjreV2o3W0QHal+oVHANV4=",
-    "assembler-key": "MCowBQYDK2VwAyEAKK7l1OvVSbuo3FTPQAxfliV78rH0WC18yIUxilFHw78="
+    "mandate-key": "MCowBQYDK2VwAyEACujvt1g9yAqvFpPGIwZ6UFjMBGU3RgwSZSmfmuTDv/U=",
+    "proposer-key": "MCowBQYDK2VwAyEAKNuxFUsThlxq0lB4ZIbgoHGRdXy1P7uFF1wWqRQn3RI=",
+    "decision-key": "MCowBQYDK2VwAyEAJLjGdhHEJectOxfmZbaA89dP4DTqkxTj0tLXPNUjMxI=",
+    "actor-key": "MCowBQYDK2VwAyEA3P0cAuQqHKQBrJ3OBm3ZBlpTOA+JzAQzYjMjfGAhKa4=",
+    "provider-key": "MCowBQYDK2VwAyEAYintRRbvSNlJO5ci3TLv71V6T1KVBJnlF2XtF+6dDuA=",
+    "assembler-key": "MCowBQYDK2VwAyEAOGiEGtINb3GtK6fZjU7Q/jS4/gOkgr2+X4HggfejRUM="
   },
-  "keyring_fingerprint": "sha256:c999aa1df5fef4fa75df0393a8de4ffc82ceed9787ee09350eec7edf7ed539a4",
+  "keyring_fingerprint": "sha256:fba457db015ff24d4990bf81db1ee565275644c8ff4234072e335200748e3e63",
   "keyring_note": "kid -> Ed25519 public key, base64 SPKI. A receiver builds its keyring from the server environment, never from the browser. The fingerprint is the SHA-256 of this object with its keys in sorted order; a receiver prints it so an operator can confirm the keyring it trusts is the keyring of the file a stranger downloaded.",
   "allow": {
     "case": "a valid run",
@@ -23,21 +23,21 @@
     "request": {
       "envelope": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-        "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-        "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e801",
+        "mandate": "sha256:e32ecd8fccc6889a2f589d3016d5b8bbddae698607b06df61adacf6ed4467da9",
+        "proposal": "sha256:3f3c34d7dfe9ea94b0b2142712f36ad854ad7d9ab39f8120df3cf011914cb21e",
+        "decision": "sha256:a3748b89a93b8229418be2f381b7dbc166c312c5e6ed46ff5beefeba327613cd",
         "action_root": "absent",
         "settlement": "absent",
         "issued": "2026-11-20T00:00:00Z",
         "alg": "ed25519",
         "kid": "assembler-key",
-        "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-        "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+        "eid": "sha256:de38fb2c505394b9d185fa08215ffa65546024f9fbd335e1ddedceea81517385",
+        "sig": "kCj8XOb2WweL9d9gE2nnIiaMKaNJOisIz5uMBYqDff8Uvlyq7PbNPG9UHApLqeOLtGtMzmjbt-eMTiA3T1KaDw"
       },
       "mandate": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e801",
         "principal": "principal-1",
         "purpose": "settle one transfer",
         "scope": [
@@ -54,33 +54,33 @@
         "not_after": "2027-12-31T00:00:00Z",
         "alg": "ed25519",
         "kid": "mandate-key",
-        "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-        "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+        "mid": "sha256:e32ecd8fccc6889a2f589d3016d5b8bbddae698607b06df61adacf6ed4467da9",
+        "sig": "xEM07aeFFLEbhkthGqrPMV158I1_OdcxR2O5L9M0tKE4ujgAibr_1R2QO-JNyaRD-F0uu9L1watFOxfeknImAA"
       },
       "proposal": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e801",
+        "mid": "sha256:e32ecd8fccc6889a2f589d3016d5b8bbddae698607b06df61adacf6ed4467da9",
         "proposer": "planner-1",
         "intent": "transfer 10.00 AUD",
         "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
         "alg": "ed25519",
         "kid": "proposer-key",
-        "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-        "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+        "pid": "sha256:3f3c34d7dfe9ea94b0b2142712f36ad854ad7d9ab39f8120df3cf011914cb21e",
+        "sig": "2FyPX23uRymNLhET35wyN7c2pIcvcwyXCHsEhIgMVgTzCyN7Y2EUUAEz-2f8ctLf7b2Xi_h85XqLmlUYS59CCQ"
       },
       "decision": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e801",
+        "pid": "sha256:3f3c34d7dfe9ea94b0b2142712f36ad854ad7d9ab39f8120df3cf011914cb21e",
         "verdict": "allow",
         "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
         "decided_by": "policy-engine-1",
         "reason": "within limits",
         "alg": "ed25519",
         "kid": "decision-key",
-        "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-        "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+        "did": "sha256:a3748b89a93b8229418be2f381b7dbc166c312c5e6ed46ff5beefeba327613cd",
+        "sig": "xeAHGEvFpFRfnOKcE1okhn8W6W3gGPSknQIu30PamrQ17YrwnAPzWNdlDSwbb7DUQaxEcrqNCURp8MGlVoEVBA"
       },
       "actions": [],
       "tool": "transfer",
@@ -100,42 +100,42 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e803",
+          "mandate": "sha256:2ddfd239436535e58536e17702163c591ec3bb84201be3e1789a379cee8b150a",
+          "proposal": "sha256:4f9dbaca2486e2100b380965b21a5c356b64844d4170906b7f8cb7c882e95de8",
+          "decision": "sha256:019416228dd306ad769db9182fa4dde4e33ac8ea93b0c50819ec92f265a7e4d8",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-          "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+          "eid": "sha256:b511939fb61db5e49a8c853abf9018a66d7d70f18dac9e9a2b5fb8ed9215d9bc",
+          "sig": "ItBEvfZgeWcx_NjewIYhhv-Drrk-gXhUgePHlQPnv81uNidznVGdKSccof20J_pPBPonyLzH02X11e8MwCBmAg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e803",
+          "mid": "sha256:2ddfd239436535e58536e17702163c591ec3bb84201be3e1789a379cee8b150a",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:4f9dbaca2486e2100b380965b21a5c356b64844d4170906b7f8cb7c882e95de8",
+          "sig": "xJ6WvDRFoI_-RdZjAOfGd4_S_bPHzlQ6tW5CA4SvcbpQVe145Tn4d_WmgzzoxH1wv09KY-tPdqt0g8AhzKR_Bg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e803",
+          "pid": "sha256:4f9dbaca2486e2100b380965b21a5c356b64844d4170906b7f8cb7c882e95de8",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:019416228dd306ad769db9182fa4dde4e33ac8ea93b0c50819ec92f265a7e4d8",
+          "sig": "jIg-VB2SGvlOyeOHFOvrv8wCa0zyDfCZPMhGp2i5zJu9Uwr-3ZQp_hCeTv-r5UASG9ioxcwEQhFNt-RQrrQ4CQ"
         },
         "actions": [],
         "tool": "transfer",
@@ -154,21 +154,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:cabbe82a78075eca3a4b7ae40619475fdbbd833c064ab871ed222dbec9660c56",
-          "proposal": "sha256:3d314dc6dbfde41cf33ca70a1024caed839d0f4658ac0a7eb74d161686b0822d",
-          "decision": "sha256:b0b22247b7be48153d04f53435b7133a4bca9b6b8fa760bfc5715b30ae605188",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e804",
+          "mandate": "sha256:6e1fc408be00e0e4a42f1015219dbdb90e271b2cd52451b039cc70e9fca7fa17",
+          "proposal": "sha256:ca6cb4162d6eaedfa15ea6ca3b3e8bf061394baa04b9b8777f10b4e0017a9653",
+          "decision": "sha256:cc36c547c01d11c0c88190afbc87cc07c3fac84aada6f8b2171f8aae8e4ec296",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:c3bfba336b5a08e18a68a256c75850972099fc8908f8f24cdb9e9275c69155ec",
-          "sig": "Uuq26npF9vlx-T7KLTtljzx6dLjOZx5n-81E7aIySLI5yKtpudASO4Rg2OnCraq7Bw1bPGVIyndgU-KnI4XKDg"
+          "eid": "sha256:b82ef6793da35102d4eeb4366485379eb815d2d52ad4186af961198765baa521",
+          "sig": "-haE2ASfMCeyNgmUc6z391AnU-zUjCi3iSQ7WNQluN1jFa4RWdiuQajZrujBCh5WZkXbF8k4eHnCxVj_wPRiDA"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e804",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -185,33 +185,33 @@
           "not_after": "2026-06-01T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:cabbe82a78075eca3a4b7ae40619475fdbbd833c064ab871ed222dbec9660c56",
-          "sig": "iomhynUuw-WcZw4j6TB11I4llxFrpRKmNdirR50n2yVOGXD1pHdSHwGoghm0HtjzNHCFtbDJT3pMURUTURYiBQ"
+          "mid": "sha256:6e1fc408be00e0e4a42f1015219dbdb90e271b2cd52451b039cc70e9fca7fa17",
+          "sig": "QnLsC68fQC_7IoIg0MD5fn0klcePfQwY4c0woBrXz-EQVVVD82zoOFwrgcN0hF6hteFmrkg_RwCs1V4IZcthCQ"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:cabbe82a78075eca3a4b7ae40619475fdbbd833c064ab871ed222dbec9660c56",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e804",
+          "mid": "sha256:6e1fc408be00e0e4a42f1015219dbdb90e271b2cd52451b039cc70e9fca7fa17",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:3d314dc6dbfde41cf33ca70a1024caed839d0f4658ac0a7eb74d161686b0822d",
-          "sig": "r6sVIOvwywine7hiMpR7eAwmUSBSbACIjxGGlXwzM_E7XHVNgXudTflZ1NeIvYMzSBthZs8OuXKKwVUSJPTCAg"
+          "pid": "sha256:ca6cb4162d6eaedfa15ea6ca3b3e8bf061394baa04b9b8777f10b4e0017a9653",
+          "sig": "IhyXluwIfODzAiIwBvkvrpwAKkNcfMXbM8SJsDPgtbFYCohapIgWc4Cdx8HsdhU6-tVv31q3SniV_ytfGNnPCw"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:3d314dc6dbfde41cf33ca70a1024caed839d0f4658ac0a7eb74d161686b0822d",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e804",
+          "pid": "sha256:ca6cb4162d6eaedfa15ea6ca3b3e8bf061394baa04b9b8777f10b4e0017a9653",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:b0b22247b7be48153d04f53435b7133a4bca9b6b8fa760bfc5715b30ae605188",
-          "sig": "i7iS0jQbBslTQQF_N5wKc6vhV91xOO5ei_Uti1cPuqWvNzK46j0x2HfwfBwk4Kqhx9Lah8T5Ul6dRWHPf5irAw"
+          "did": "sha256:cc36c547c01d11c0c88190afbc87cc07c3fac84aada6f8b2171f8aae8e4ec296",
+          "sig": "KfHZxsXWb5kA2GSoTTZwfKDAnkCREsatANQcaeg_bentcMltqN7_K9Jz8JUrJDLO3mqSEqjNn3Ce2etI8v8DBw"
         },
         "actions": [],
         "tool": "transfer",
@@ -230,21 +230,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:85be4037fe4988f20782f060135c4cec8fc88787c647649f19058d9c41910fa2",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e805",
+          "mandate": "sha256:9e79afd461f987345348ac75cdb70e492b79e100f43acd0422bf51b320bef4d2",
+          "proposal": "sha256:31458c89737ce5de0c7155a047176e2a2da38410d0f60d291781b5c2bb83079e",
+          "decision": "sha256:14eec0aa6a63f0e4af57840077f5ccc5d06a8f35d86c3801c1843654e0042083",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:6a7d001af4e9087901b206d62482dc867520a6d9ac2f867fc5e6af3adeefec6f",
-          "sig": "3_Xjb3PoS0ut5PqPvDfvkgV6xA1Eb9FEboTiUGUyXda-_7-emBoPO4T5rQtQHO4K6tc3G5AIYdzvSXrLjqj1DA"
+          "eid": "sha256:f23228a97b4fbb1efbdfff0ab4a19039c42088df27042f2b0d4bf3636969923a",
+          "sig": "xILq5-GYXBvusWedYZaZwMHlgwgys9KE80a9M0vFgFfIm8W5d6bQbFT52exlNMklo7DnJRCTTZfPtYVk0eODBQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e805",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -261,33 +261,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:9e79afd461f987345348ac75cdb70e492b79e100f43acd0422bf51b320bef4d2",
+          "sig": "9nnFSpngjiIsRafkmptG0FaPh5KtoisliNLhyI-r2b_bpzAiLaX_zoREfuA2aIsaig1w2tgZ-hkE-thD5xv-Bg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e805",
+          "mid": "sha256:9e79afd461f987345348ac75cdb70e492b79e100f43acd0422bf51b320bef4d2",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:31458c89737ce5de0c7155a047176e2a2da38410d0f60d291781b5c2bb83079e",
+          "sig": "YV392JhChFNtvr-C6toecvpQZ8smO9Nl1W7rGC57yjcFXS8d_3Eovk3g7hmqBHZ3BZ7H4_pyd6SeEoYAu5EOAA"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e805",
+          "pid": "sha256:31458c89737ce5de0c7155a047176e2a2da38410d0f60d291781b5c2bb83079e",
           "verdict": "deny",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:85be4037fe4988f20782f060135c4cec8fc88787c647649f19058d9c41910fa2",
-          "sig": "aYFuEPaLwOyVwtBu9VJ27nSj95-yMl5PMASZj3b8T3n9OzEAS1dQRMVFm0PySvUQCny_p5f3mXluC_FuXXaJCA"
+          "did": "sha256:14eec0aa6a63f0e4af57840077f5ccc5d06a8f35d86c3801c1843654e0042083",
+          "sig": "tK0Rduw6GviY46eslJYZtIHO1E6pFRt_JUhWjKdSz549RJaTzI19iZaPYb8Doe8jILQ8JSHbS5zl325oQI2FAQ"
         },
         "actions": [],
         "tool": "transfer",
@@ -306,21 +306,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e806",
+          "mandate": "sha256:8c77a5f6fbd4d0708edbaeb78aa589a9828fe2aae0b8d9bbc22f813fea20b5e5",
+          "proposal": "sha256:4526324f9ea86e5e666b3087c8059cd3b50194e9c3d67b7967f4c1408b2ead5c",
+          "decision": "sha256:0d8df289d95b48e0a94bcba5dcebec78707a026e4f2e0f19f4d337c983eb7443",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-          "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+          "eid": "sha256:43fb82a28edc515904669450457cffe6e09f49197f47781456fd84329def5ea5",
+          "sig": "mAxmsQFjmJS2vUGG94zMv0LMjVdqY-_E44VAx2f4k1CIip_MibPMbDiGVbg6zFcnA9SuzH3hGZBYr03_vyKvAQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e806",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -337,33 +337,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:8c77a5f6fbd4d0708edbaeb78aa589a9828fe2aae0b8d9bbc22f813fea20b5e5",
+          "sig": "xbJ9vCERYAlATRhT3qXhSPYFB4Pr8oF9s_POYEKnRMINnIaKA4ZTYc4FM1OeidJgYTFtMtVGzSXZ94HGV1qdDg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e806",
+          "mid": "sha256:8c77a5f6fbd4d0708edbaeb78aa589a9828fe2aae0b8d9bbc22f813fea20b5e5",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:4526324f9ea86e5e666b3087c8059cd3b50194e9c3d67b7967f4c1408b2ead5c",
+          "sig": "CeR2Mp0cUWY41lJdaHYy2pOQ6slRe3Cpi7M0p4GOVqHQAIzKBYzg_ZWD9_ggLkck_svUSqXJFxvfP1IFIr8kBQ"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e806",
+          "pid": "sha256:4526324f9ea86e5e666b3087c8059cd3b50194e9c3d67b7967f4c1408b2ead5c",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:0d8df289d95b48e0a94bcba5dcebec78707a026e4f2e0f19f4d337c983eb7443",
+          "sig": "_nFzIhPZlZqKcJ1tvM9Md_bPWWQgakxFAXrlgsnRCnCKPsJTRe3Y57Lp1RRXKbGGB-Y5_hvDipnUa524Grj_DQ"
         },
         "actions": [],
         "tool": "transfer",
@@ -382,21 +382,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e807",
+          "mandate": "sha256:198bd0ce0d787241e960b3afbbb90ac1b76e04b46f18ab1ef583206a493c222d",
+          "proposal": "sha256:3585fe0349a718226e51184d92fbbe006d59d4314a3d3e72913fdc4a2fd458d4",
+          "decision": "sha256:0afc9b78bac7e5fc8894376e589bfbc13d71cd2f9da9b03a4dc17ba81a6f4ea3",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-          "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+          "eid": "sha256:76569082d73993326069aed71b03397985fe3df415e21f34d62017ec1a51667e",
+          "sig": "2Y1Y5Uaxqgnc4dolhd1QOEGeVO29Jg1SgLbUXx5U_PBUGa3dnpuaNC-fmc0wFeA8Vwr7ax9sZxZmQfWkAHBKBg"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e807",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -413,33 +413,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:198bd0ce0d787241e960b3afbbb90ac1b76e04b46f18ab1ef583206a493c222d",
+          "sig": "IWsMxiF67VoZUheae-zNJtk5mGPt5sdS2GoHOfn1DnhGdZTiqBx6qzI_MspsOTSFKg9N4KqXafN_71tha2qFAA"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e807",
+          "mid": "sha256:198bd0ce0d787241e960b3afbbb90ac1b76e04b46f18ab1ef583206a493c222d",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:3585fe0349a718226e51184d92fbbe006d59d4314a3d3e72913fdc4a2fd458d4",
+          "sig": "vZ8Bcf98_nch6LDh0e1pBL9q3DhqS1KrjMztEZJVOM7qXnW6_YFiquSTLAHTj3B5-Z37atam4lCSFUZQNtmJCg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e807",
+          "pid": "sha256:3585fe0349a718226e51184d92fbbe006d59d4314a3d3e72913fdc4a2fd458d4",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:0afc9b78bac7e5fc8894376e589bfbc13d71cd2f9da9b03a4dc17ba81a6f4ea3",
+          "sig": "apk3F4ufW2hMoPoJQJFc6DTn_0YuQzp4AuzxwmELKCbZEhMn_omxKMXQriCw7fyByHFmOdwKgDU4wAy4jhI2Cg"
         },
         "actions": [],
         "tool": "withdraw",
@@ -458,21 +458,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:606edd55c3af6fb8376eefd2454932f1217297d2e8d4bc07b147b3aa6ead6408",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e808",
+          "mandate": "sha256:7c1544b79f0325ff3193b6641b45a9324e04888778b262ef6ff6b14ae8a5c173",
+          "proposal": "sha256:a0a506d2d85645d954ea9a87f89633411ffdcc474ad353bbd2191be0b3e518f7",
+          "decision": "sha256:6601f8b3f94401640d5368ce9e186e1b527ae639c69932bc08a5830168b46172",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:fe089d565b9f123c1522a2a00217fbcdd74fe74190369cb0ba3cf29ad17d3003",
-          "sig": "UeJn5VPJ50f-UtA4qfZfOHT1L1Ve5Z1Q-x3b5VGXen__sQqyukhAmOeE_hTuh08SiasPQI_ds8VcrdcsqIVMDA"
+          "eid": "sha256:8c2e34ea71b2fe20b5794cfe38ea88937f8c85fab10cba20c95728fd1e19ce11",
+          "sig": "sncXBgTjFrnoHuFKthzB7_mIAovby4H8xFaCN22VLIbeU3BVcnLwTZVj0EIBcrt5xKeL6EOTOj5GVdGArznZCg"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e808",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -489,33 +489,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:7c1544b79f0325ff3193b6641b45a9324e04888778b262ef6ff6b14ae8a5c173",
+          "sig": "6llAepB0E3GN6_0KRIG6HXRCn1xIvqUDHdzXaFIccCzW-84ow4SIYwtAT0P2C_ME1RZXuOMk_l4H_MadHk5aBQ"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e808",
+          "mid": "sha256:7c1544b79f0325ff3193b6641b45a9324e04888778b262ef6ff6b14ae8a5c173",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:a0a506d2d85645d954ea9a87f89633411ffdcc474ad353bbd2191be0b3e518f7",
+          "sig": "-aH5RTws8YRKlr5NKt804w_a3VRXbZGoVbiEkM2F5gjA8yRtO7jltvtCcjO7qN85S4m_JMhxvZvLFnJRzGYIDA"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e808",
+          "pid": "sha256:a0a506d2d85645d954ea9a87f89633411ffdcc474ad353bbd2191be0b3e518f7",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "actor-key",
-          "did": "sha256:606edd55c3af6fb8376eefd2454932f1217297d2e8d4bc07b147b3aa6ead6408",
-          "sig": "8bia-ZPltKIVDFC7h4PjJhN1fyyez-AxgA7gfvZEZ7z5num-vW62AKe9p1aBjafIJC2MXXXmWxtcuYbeAKZdCQ"
+          "did": "sha256:6601f8b3f94401640d5368ce9e186e1b527ae639c69932bc08a5830168b46172",
+          "sig": "baZMPgtQc50UbfB1MEowY2fglqcDVYUMQFE0EE9vX1UFsvtQ3tonx9onScRTuI1S9uNbqqrS2oi42p5yOLVxBA"
         },
         "actions": [],
         "tool": "transfer",
@@ -534,21 +534,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:092c0894559333ce02d9b747108b750e41aa1f8de41c8502b455fe9f9bf0c563",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e809",
+          "mandate": "sha256:f1cb36fcaf287e6e3ceae03d9dc937bcef31595a9c2fd44f6b31e8a45f12e507",
+          "proposal": "sha256:712f3c6d7785f8bd5a7e2df91ff7c0fa51133091416a4646c23199cd3f7088f6",
+          "decision": "sha256:5b3987d28d7928801ed8f33abc901c3eb985e58e724c18874fa1992b25fb1f6d",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:327afbfc3236f6bf0a16c8f06a7b0fb63f9e27251f72101e3b6f3ff27bc5a461",
-          "sig": "PEdgrEwwf9MjsyPvJZg1oTh9SbkkPZjNFyrUMzJIMk7oa5Qmtd9z_vpB9ueMR4gIz8MhEbVuR74Hb04B1Y-sAg"
+          "eid": "sha256:c4e82e268b5ebf8f018540f148b5774d930d8322a7ff6eef0586fe51b4d216b0",
+          "sig": "cnMzaSKSuHlkQkUP7yCXlNsCggbH75RsUEDWkJ5RDiPnSeVtRpp3iWgmBykDM030qnwtopNza0yqylHJpm66AA"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e809",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -565,33 +565,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:f1cb36fcaf287e6e3ceae03d9dc937bcef31595a9c2fd44f6b31e8a45f12e507",
+          "sig": "T4HNf8JnPr2sLxQ3-EJXl7iHE_AhBeVtkF85DEUARnOMGSxTe4A1rGqR_AdnhuR04Q8IdbY9wNkdRcVX77ipBg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e809",
+          "mid": "sha256:f1cb36fcaf287e6e3ceae03d9dc937bcef31595a9c2fd44f6b31e8a45f12e507",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:712f3c6d7785f8bd5a7e2df91ff7c0fa51133091416a4646c23199cd3f7088f6",
+          "sig": "-NqRlMLk38VCO3cjR2x7c81UX8c8rzl-_4E7taEQuk5DlK-SWYaEvg_-qr5Lqpac3ehs4oxMZEkpv2VPISYvDg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e809",
+          "pid": "sha256:712f3c6d7785f8bd5a7e2df91ff7c0fa51133091416a4646c23199cd3f7088f6",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "did": "sha256:092c0894559333ce02d9b747108b750e41aa1f8de41c8502b455fe9f9bf0c563",
-          "sig": "Yq3Gra7NnDvggflF8EMo9RaYFznTNVTidtDKjSL5fFNlr4BlgrIYDGKEATtJma09YYeRRcM9SnscWv6v-X_YAQ"
+          "did": "sha256:5b3987d28d7928801ed8f33abc901c3eb985e58e724c18874fa1992b25fb1f6d",
+          "sig": "GvZ6rh6gXxYEUwY3CIrHVwWtDzWZffvoeQt9S7wI8T-vGcr2HQ2PJtmKGWMjULis5erHDXjc-nZicsy7ryISCw"
         },
         "actions": [],
         "tool": "transfer",
@@ -610,21 +610,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:043267a6e5416fe25267e3de5adbee607c98e07b94765a74274b4c26b93791ef",
-          "decision": "sha256:f5de417ee575c94a98c132b63788f248de9d1ed16102b0e187aa9280617f6eb4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80b",
+          "mandate": "sha256:b34ab5a372b43a07c6b6f07744c18d18674bbeef5ba600335f34bf1109c9211f",
+          "proposal": "sha256:be59e0fc510ee6d07670945e3a3244754926623047273c100e7e0d7cfad4ee14",
+          "decision": "sha256:81cb869509a78d885a70e99fb82f116ec60f876bd744e54ff8e555399eeb110f",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:55995da4ecb708856d176a4a03031c49e8fff7354725515acf7e76d78109ae3c",
-          "sig": "tPDRoU3n5gDcAwoYdFvykBnkpnzXSmh3StCU2Nqe6ArodZlZNuJxpsGIapTH4wsS5spII87ZCGM-p6an3uuYDw"
+          "eid": "sha256:59a56d96646d261b24c8d7bf3d023798fe981893aacb181af9000e34a7fd414d",
+          "sig": "BvMM8S5DQ9ArLsuYgqEJ115AYzl_CHeEj311s7tq1hJuDVS77y3S1NDuEz8UtCtjvpDBWyqo60TnZt34t619DA"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80b",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -641,33 +641,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:b34ab5a372b43a07c6b6f07744c18d18674bbeef5ba600335f34bf1109c9211f",
+          "sig": "MOJGUYHVj_Pn1300DJvgpv4z_h3fokhELt5pqLyQO62N2TtOg8iOgv3dlRpuvCCKP-3hu7j5AdEM13kLcPvADw"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:86aa1360c5c375518ebf1e087e40c67db75b2ed1498175dce47e2d2962298a23",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80b",
+          "mid": "sha256:3814d4e80e995ba04aca2dae672e74a194cbdf5295973d7893ef758a1de711d7",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:043267a6e5416fe25267e3de5adbee607c98e07b94765a74274b4c26b93791ef",
-          "sig": "fyH9zuw6kPFyPbTleAr6RYJq741wqHNL8ICG2AQgJAbkwHh6i4b-pFJ-jDZSiUhyQZIzUmphP8_aIUNv0W9OCA"
+          "pid": "sha256:be59e0fc510ee6d07670945e3a3244754926623047273c100e7e0d7cfad4ee14",
+          "sig": "zDFgA1rWARGFf4WudVBXgWP_qnt0EeqTjvwtkXIytU02x7kEmlIwEqJwSd57aEY8UAYtoix_mVNtUXpp4-fOAA"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:043267a6e5416fe25267e3de5adbee607c98e07b94765a74274b4c26b93791ef",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80b",
+          "pid": "sha256:be59e0fc510ee6d07670945e3a3244754926623047273c100e7e0d7cfad4ee14",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:f5de417ee575c94a98c132b63788f248de9d1ed16102b0e187aa9280617f6eb4",
-          "sig": "4jUu6E3GF0NY9YNpBR50IpkGvj6D6LEpriZ_advU9bBmXyVF8FVG6mUabxTLRZqWSNUOFgkDfKsST4QHCtKBBQ"
+          "did": "sha256:81cb869509a78d885a70e99fb82f116ec60f876bd744e54ff8e555399eeb110f",
+          "sig": "bGh5sKnS9akzkkqyuUUSltk6G9MYaPVjsf1g0dgudwRtXfyWWnoGmJveJpiYcHloKfCDda1pqOxiI7Eq7OOMDQ"
         },
         "actions": [],
         "tool": "transfer",
@@ -686,21 +686,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:f5de417ee575c94a98c132b63788f248de9d1ed16102b0e187aa9280617f6eb4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80d",
+          "mandate": "sha256:8e42b4498ce46dffa081200e6b4dbb0fd0c722123817b933477b230456693072",
+          "proposal": "sha256:f46c4988e58361de70eb9eb547b0c2716cbb1f389d1a700b0f2be4db955effbc",
+          "decision": "sha256:6364957b8f70f3857d2747e5a3a28610ed9655b61d33b6ae718148d58166165f",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:a7c95bcd668f83d0089d5eb015319203e9833464da42919e78c633a4fc643a60",
-          "sig": "8b2O6u8rjZICeGV5CEcO_uULXTFozWGwKD6zd3hu1kEOjFdPAcfZ-Tqmj0YhMZWYtI5BYq6OUIxX2wtcy4J6Dg"
+          "eid": "sha256:14d43ecd1626d96abe388ca9fada3015a81ee2b3831668516830ac051a752a2e",
+          "sig": "o4ZOusNcFIJ3parVct8oP7kETAghlcqItxCoKgD-JqOe3K2Mm_fohBTThJnv7jy6vxpPqn3Tbxn4fS2rt-MPBQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80d",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -717,33 +717,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:8e42b4498ce46dffa081200e6b4dbb0fd0c722123817b933477b230456693072",
+          "sig": "0jSPyHz7PioGj_KQGvGZuebT4Ioe28LcRqhiowj5qxyT4ZSccYF5vLJMe38epsD3EiYzfnS-UZjCpA5tbcA9BQ"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80d",
+          "mid": "sha256:8e42b4498ce46dffa081200e6b4dbb0fd0c722123817b933477b230456693072",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:f46c4988e58361de70eb9eb547b0c2716cbb1f389d1a700b0f2be4db955effbc",
+          "sig": "28k_KN5lOG4D4WOiRi0EFcHgZ-QCWERWlhSzOb_3jeC_vMrRq5k3zjRSR2rARofQDVxQkJlyl-TpLItmyhkHCg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:043267a6e5416fe25267e3de5adbee607c98e07b94765a74274b4c26b93791ef",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80d",
+          "pid": "sha256:e42736a92518e2f6a282db1ecb64614ebd6d41d30679664bde1e867a464d4c80",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:f5de417ee575c94a98c132b63788f248de9d1ed16102b0e187aa9280617f6eb4",
-          "sig": "4jUu6E3GF0NY9YNpBR50IpkGvj6D6LEpriZ_advU9bBmXyVF8FVG6mUabxTLRZqWSNUOFgkDfKsST4QHCtKBBQ"
+          "did": "sha256:6364957b8f70f3857d2747e5a3a28610ed9655b61d33b6ae718148d58166165f",
+          "sig": "6-OGRY6tcy8lIeLeMNYgUPXtgFk1UFus8I-0KPmalJWpIPchOMXFOJkPeawjmsdY4vyds9rL5mRZxbBFNSw9DA"
         },
         "actions": [],
         "tool": "transfer",
@@ -762,21 +762,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80e",
+          "mandate": "sha256:051a17a804ba4e4846503073c6743100057b09ca3d8b94ceb967c519d972c8b2",
+          "proposal": "sha256:1c0f206cc8b2ac34a8b26813e3234d482b80dee3b2fbdb87324cc390b17a88b5",
+          "decision": "sha256:eb64880778542dd3d5d6e87fe936f1683d6310a106029afe24ae18f7e27da2ff",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-          "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+          "eid": "sha256:7b07cf35ecf79f26bdb81e0bfb6b6db964ef37b7ca1fe4385f114b98589c2949",
+          "sig": "7DF_5u9ORBsyVrhc9bjAFy-OD_YuJQm7whu9YMPPiNJ1iZHub_VYXSMDbcE_vNNtQOsl_rygL_2Mm__3d96tDg"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80e",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -793,33 +793,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:051a17a804ba4e4846503073c6743100057b09ca3d8b94ceb967c519d972c8b2",
+          "sig": "2uq9sOxiF9G2UDq6QQniEpDwLd0qyauVi7h4RiiHwYn850SubjWWNSyPzsFNntJcFCLVET_HkEjHlR4WtiFPDg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80e",
+          "mid": "sha256:051a17a804ba4e4846503073c6743100057b09ca3d8b94ceb967c519d972c8b2",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:1c0f206cc8b2ac34a8b26813e3234d482b80dee3b2fbdb87324cc390b17a88b5",
+          "sig": "AMg8iF0aAroA6Xc6GqhAF5dndRbRp_Tqa90q3YvIBsl3lW0MgYpb2DppfiA8Z7Vw5xg5I4uAQQnaOie-bpmBCw"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80e",
+          "pid": "sha256:1c0f206cc8b2ac34a8b26813e3234d482b80dee3b2fbdb87324cc390b17a88b5",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YAAAA"
+          "did": "sha256:eb64880778542dd3d5d6e87fe936f1683d6310a106029afe24ae18f7e27da2ff",
+          "sig": "ORnvAXZjXp4Q8UMvNGFG-GUGF1SodkQ-CvyxTLLkqQvibtQ3hYW9Cv2dXwNPWV2c8pHNZepCP0ZVJbMKWVAAAA"
         },
         "actions": [],
         "tool": "transfer",
@@ -838,21 +838,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:f045e767da7f4910696b3e179e580fc0db8c9f6950d063427fbda9ff737f2c6d",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80f",
+          "mandate": "sha256:aad9e80809cf339942b9c777a1a5dd66fa83579e198f615305bb55982c51b748",
+          "proposal": "sha256:8985edb79a733338660d3ab80001fbfb879f16666363c71437077563ec7be33a",
+          "decision": "sha256:158be4ed6cecd3d1a87fec366437d405dcf17d8e817496ae87afc177aed5157b",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:63870aedf1d6b8838875115791c66a6239c0a7c355305f5ec608473f667bf934",
-          "sig": "7NgpIwrHHzCAykY0kB3je8cx7u5fTcdgapjvv1gJk3wKO0nkXkpFU0FcUENvh_Gug381wZp2SWcLE_I-7LU3DA"
+          "eid": "sha256:5c6ddbc7d69fb60a7f8543a11711f7dd7dca4690a69ac59408c5547053cdda4d",
+          "sig": "dQ2lk4L-Hi8dCzQq8wY3Da5DNdd4JIMQ_EY6uf8U_kAbLgdziccTMkTMqUEXcV2qVNCHBzB6YL_WYZHyke_3CA"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80f",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -869,33 +869,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:aad9e80809cf339942b9c777a1a5dd66fa83579e198f615305bb55982c51b748",
+          "sig": "AhzS90gxuBjz4HBknDELSz24zAXWaSrqQjihLTriXiAC5h0iLY7lnu4GQtYA5FMy1jq3FoamrxGGZqlw8WotBg"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80f",
+          "mid": "sha256:aad9e80809cf339942b9c777a1a5dd66fa83579e198f615305bb55982c51b748",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:8985edb79a733338660d3ab80001fbfb879f16666363c71437077563ec7be33a",
+          "sig": "57NHXy1QXgXfD92qZREA4COrz6jzb2RVy81r1G7hkHN_YJwNHf5r0fMP84kYy3CFW7XWn9zQWvFLYZ6fl2p9Aw"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e80f",
+          "pid": "sha256:8985edb79a733338660d3ab80001fbfb879f16666363c71437077563ec7be33a",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "unknown-key",
-          "did": "sha256:f045e767da7f4910696b3e179e580fc0db8c9f6950d063427fbda9ff737f2c6d",
-          "sig": "7Ccu-bHnGsT8dMAemCHGyVh5hydCp3qhkXr8kgL23L_w0GXlVw8E_lgE0yqAVDRRhj7ROT1hvK6XOmqBcht8CA"
+          "did": "sha256:158be4ed6cecd3d1a87fec366437d405dcf17d8e817496ae87afc177aed5157b",
+          "sig": "HD9n6qrfdXqXEJ2SP9VaGZxrxY50geE4_CabNKjnPFB4RuNIenk02-AP89v5QmKVXzxoNaZGbJhBLI5lSAIwDw"
         },
         "actions": [],
         "tool": "transfer",
@@ -914,21 +914,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:b3c155d62a9d53bdc493359486a6167454981d45f46aa955c846829d19a5ee82",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e810",
+          "mandate": "sha256:ccffba123229907cc71e56737c6488ab546c144cc658137046e638605e6325fa",
+          "proposal": "sha256:9e43764d99314a23b5f4311ce5a2f5180d11993b102c055e515d5e4d3101fc6b",
+          "decision": "sha256:a1833f7b43fae197e6941f3003ef99eecc8e7703adc94450550ede785a031a2c",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:2c78faa4015e5ef0467c917de1eb147edef9f70824a634965473bfdc18d050d1",
-          "sig": "zJmW5EnWPPWLeAhGs-gH85hFNZXKpXWSrpai9eAbjyEpW5NHURQXTw56CzknGsoHjJqvmYCumpk3nmk7aBe9DA"
+          "eid": "sha256:f1c866339b8cf9a0b28ddd746772f4c05b281ac28fe2326a96befabdc7107caa",
+          "sig": "Z5ETN-RyHnejRCyZtnGKIwktnBVA5hZkB61kfyoJRX8AiZcMH7vXiBk-cmRMV6BNQNL3lnbYBzQ9J06J2zkiDQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e810",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -945,33 +945,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:ccffba123229907cc71e56737c6488ab546c144cc658137046e638605e6325fa",
+          "sig": "Ahi2oAXVYufIV-7D1laeUuFz0Qgy95xDskCJNfhNhTrcOuDWDpHuG3pH_c_ycXmPdnffM4MAPtO351WEB-2SBA"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e810",
+          "mid": "sha256:ccffba123229907cc71e56737c6488ab546c144cc658137046e638605e6325fa",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:9e43764d99314a23b5f4311ce5a2f5180d11993b102c055e515d5e4d3101fc6b",
+          "sig": "BD3710VqCHIl3wc8ZxFg6okGzNpgt80ccq6FdtmUF0hS_lz4kXb45MfTmwisUTa_P3L9ZLAfqKuedWDeRrlzCQ"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e810",
+          "pid": "sha256:9e43764d99314a23b5f4311ce5a2f5180d11993b102c055e515d5e4d3101fc6b",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed448",
           "kid": "decision-key",
-          "did": "sha256:b3c155d62a9d53bdc493359486a6167454981d45f46aa955c846829d19a5ee82",
-          "sig": "olqIAxOWoVBc7y1Zdr2oCuHanCwVYyzQZQgYMIGAA4ezR-P_AfqwOByZvE2BZBrSsLE7FYMxfLLvUXa25sA8CA"
+          "did": "sha256:a1833f7b43fae197e6941f3003ef99eecc8e7703adc94450550ede785a031a2c",
+          "sig": "Uaf7UrT6B6wQ4Gmpi1ftuLHq-VPz1x5zkAh6UZMaR2L5FjemmKn1ncy6rNtxRDJl5UBxLofjJ-6t-_Yxi3_SBQ"
         },
         "actions": [],
         "tool": "transfer",
@@ -990,21 +990,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e811",
+          "mandate": "sha256:c11cab645ee10ef76933d862ec026db5162e21d4dbedadc9900726a06c66463a",
+          "proposal": "sha256:a508a23e7b8a0aa5b30b2f7631ee81440b658389f5f91a713d8f579d4b9f9b92",
+          "decision": "sha256:f73ed4097a063df5aeeb7ecbc08ef14c72f12cfba7b496aa33068e9ca8f20de8",
           "action_root": "absent",
-          "settlement": "sha256:991616ddf4e0fa159921d746cdeda99a6422ae57f7555bb965344899a23099d4",
+          "settlement": "sha256:b9a25f537426b3bc7039a7dc73173e456b1e252a4b489125b5d3fbdcfd16f2bf",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:2eafce940370630a5aa24f89d9be940dfe91558ce2b19c79e4a3af2bd60aa4d2",
-          "sig": "46JMih3_hXm5E4c1HqRzXhQ8B5aWPfy7zOboTA9c2Es8n5pH5a3kUD3Tj_HHUkxkKuEPMboe5dGhA1rJ-erQCg"
+          "eid": "sha256:fdd4050b39a9a00d62d395b1562734d721fa83b8d7b540d9f672e5d5bbfe03b1",
+          "sig": "ECv9hSq6oMEuc7_PJObCU5XlQIbuNsxDtdO1p4OoMwOYIFOQ-5AVb6yManIjF-SDqi_5oJNzPzmLL0aTPnObAQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e811",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1021,38 +1021,38 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:c11cab645ee10ef76933d862ec026db5162e21d4dbedadc9900726a06c66463a",
+          "sig": "JzEO3RfP-f-yRQJUlqTV0sSxT85wqNgT6JBgllxW0tB_XNydJdflbQKer2a0sGlAlEHAIINbPrSmimTY2AbSBA"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e811",
+          "mid": "sha256:c11cab645ee10ef76933d862ec026db5162e21d4dbedadc9900726a06c66463a",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:a508a23e7b8a0aa5b30b2f7631ee81440b658389f5f91a713d8f579d4b9f9b92",
+          "sig": "rNe7sEpJ9ff_iTfGHo41M8Sk8xLaf7mIe9jpD8S1v_BQKNRXm9IQuiuRPrk2Lmy9mqZq8zmsFq3Pfnlcu1vHCg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e811",
+          "pid": "sha256:a508a23e7b8a0aa5b30b2f7631ee81440b658389f5f91a713d8f579d4b9f9b92",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:f73ed4097a063df5aeeb7ecbc08ef14c72f12cfba7b496aa33068e9ca8f20de8",
+          "sig": "vnaIzXeR_o30_5bWX3MWA7T7pEbeAcSa9hVD4nAyfH0zABVg7q-oSxIFnpidLzdsWnpiAaoYFfy-EJpAjVY1AQ"
         },
         "settlement": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e811",
+          "did": "sha256:f73ed4097a063df5aeeb7ecbc08ef14c72f12cfba7b496aa33068e9ca8f20de8",
           "payer": "payer-1",
           "payee": "payee-1",
           "amount": "250.00",
@@ -1063,8 +1063,8 @@
           "observed_at": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "provider-key",
-          "sid": "sha256:991616ddf4e0fa159921d746cdeda99a6422ae57f7555bb965344899a23099d4",
-          "sig": "nxnEJRswwqvGoc-haV1aco5PQh1dqAOMAcL5iV4MYzPse-UbBjO8jax-gB9YF9ooIpicVXZeHTbvCNZBqnrIBw"
+          "sid": "sha256:b9a25f537426b3bc7039a7dc73173e456b1e252a4b489125b5d3fbdcfd16f2bf",
+          "sig": "oK_UJ_N4T4o2KIVTmX3tVrJbmF_hxVawerTdxcrhCFZ3byqGZ0ie08xSCS9ELeZ9JrC1SyVaWbEQfN7ACS9VCg"
         },
         "actions": [],
         "tool": "transfer",
@@ -1083,21 +1083,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e812",
+          "mandate": "sha256:e9975d9ac79e6c7d4672fcddfc5c805bd1cbd339891042768bf5e42386aeb771",
+          "proposal": "sha256:2ba775ea3c0382370a1c2c487ca8616a3990dcfb8ce38ca111c859c7c0254b1a",
+          "decision": "sha256:31c2891ff75c2fd483d64fe12cf352df516dc0cb7f8bbe3a643b5065d6da64b2",
           "action_root": "absent",
-          "settlement": "sha256:ce9069076a734d0404fa591408b009f90382a8225f26df25223f55409785f03f",
+          "settlement": "sha256:e6cfcd82802f6ee1c157bfa48559be81f2b7f8c1cd8b1009d8039fe54e614a42",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:0c8dfbf632ed1c9f6f8980fcc77dfdfdb0ee68da75e31c2228f1f0240654a62f",
-          "sig": "Rr9VALWpKulfVwj9WckWjqxMRShxFwNYqqBVHCm_Lslds9iaFqjcekFVEd6vexZhTFu39erX6EIrBY7RUSJKCg"
+          "eid": "sha256:8a9509fd6becfdea64dedff7023ae1324b0d1f54e5e5b45de2efaada8ddb15c1",
+          "sig": "FII-8bRayKVgXg0y54mxuHmchVGu4yDvOY_T_NIgJa77XYTzsaSqM2OR-I5dFdcirgYqitrWcWYPdGJ7I9wSAw"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e812",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1114,38 +1114,38 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:e9975d9ac79e6c7d4672fcddfc5c805bd1cbd339891042768bf5e42386aeb771",
+          "sig": "MDiUBB7c5Te7gt0PtBwiKl_i5_r6EnABk4tic-B7jK_2Hyx5a6rDaAbXv-aL5-stm81cue75h2GGHKZUav2BDQ"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e812",
+          "mid": "sha256:e9975d9ac79e6c7d4672fcddfc5c805bd1cbd339891042768bf5e42386aeb771",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:2ba775ea3c0382370a1c2c487ca8616a3990dcfb8ce38ca111c859c7c0254b1a",
+          "sig": "uUM0Yk96AhPqKQPWmouoq9st677UqAAqWt1EgFACAeH20inpdI2QM5MyIE4X24C0ggsjcMI24cqYyJUasXUQDg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e812",
+          "pid": "sha256:2ba775ea3c0382370a1c2c487ca8616a3990dcfb8ce38ca111c859c7c0254b1a",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:31c2891ff75c2fd483d64fe12cf352df516dc0cb7f8bbe3a643b5065d6da64b2",
+          "sig": "cy0milfJzgI5cHIFZIdxCQjYyKCHWKLr6Fr9sYMW5T1woovl59_wwKRtznfG2RYm9-JJriaGRmc14-V6h2TRDg"
         },
         "settlement": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e812",
+          "did": "sha256:31c2891ff75c2fd483d64fe12cf352df516dc0cb7f8bbe3a643b5065d6da64b2",
           "payer": "payer-1",
           "payee": "payee-1",
           "amount": "10.00",
@@ -1156,8 +1156,8 @@
           "observed_at": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "provider-key",
-          "sid": "sha256:ce9069076a734d0404fa591408b009f90382a8225f26df25223f55409785f03f",
-          "sig": "sntxKpW0R_T6XwVImm74EovzWbpJ_fMkxjd6fubiXS3j2I4h9ybOJGe6JKJ251TWvbUfXnsSFubaBi595Nb7Cw"
+          "sid": "sha256:e6cfcd82802f6ee1c157bfa48559be81f2b7f8c1cd8b1009d8039fe54e614a42",
+          "sig": "zxsqRZ0J3noBnAyrNOrmEtBigwd5Pfty99BJJVda8cZ3T4TgmcqPIq3Q-jNWTiUJg30_hvzGQFkm9tAFtuJFDg"
         },
         "actions": [],
         "tool": "transfer",
@@ -1176,21 +1176,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:85be4037fe4988f20782f060135c4cec8fc88787c647649f19058d9c41910fa2",
-          "action_root": "sha256:d38bb080635e49a1581b892f83bbec1eccfacbb9279d27d3ee6bde8ef33f22e5",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e813",
+          "mandate": "sha256:7f51987ade5617a2faccca12b3b14b65d4066c0023dcd99fb95c3e4a8afc23fd",
+          "proposal": "sha256:48ee5d6d82e838f00096de4130a6b449595a3cfd7abd11b26ef4319c08969633",
+          "decision": "sha256:6faacff8c16dc7e5711d5fa8d592ea7858dbe3373991c8728429f9f9c171faa8",
+          "action_root": "sha256:67bc7e226e9f6b1e9c55f7f534553934f2906ebb180856d841f1fbc1a003d730",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:81c8920d06fceef2da75a8135860b9aa054731537706e5e9e925ebf6426ba1f4",
-          "sig": "avmvWxeFwF8-Yth6Z3DpUj9q7Jd_vojJKwlQT4oQmaaOJ20WKcfSbXDBJXLOe0qZq4E-KJfjAi5Xc2IPki0YCA"
+          "eid": "sha256:170e80b3caf60f4960d34540b7763d14882fc931d8ce7be5e9e7642777fcdfdb",
+          "sig": "3bOgDOP4zmCTc0W1FbYJqK2GniIZ3gBvaEDYN3482tnEPwlXN3hga0wrFAs0dwOkMBF1DeLyJPfoyZato9kMAQ"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e813",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1207,33 +1207,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:7f51987ade5617a2faccca12b3b14b65d4066c0023dcd99fb95c3e4a8afc23fd",
+          "sig": "eep10V7Pk75AFIgPh1oGUjurQ574VvpFSBr8gV5AIbIusbhwniwFjepCkgy0SHIJq1Rjj-sZj116nS_KAJJKAw"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e813",
+          "mid": "sha256:7f51987ade5617a2faccca12b3b14b65d4066c0023dcd99fb95c3e4a8afc23fd",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:48ee5d6d82e838f00096de4130a6b449595a3cfd7abd11b26ef4319c08969633",
+          "sig": "X2i--iDLCidVTxYhI03kt8Xa6KSCUDGvAELv9Vusu6vr71lCRjZ7v4BnqPzgQ0uDAP6BTDlVtbTaAZAps8bFBQ"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e813",
+          "pid": "sha256:48ee5d6d82e838f00096de4130a6b449595a3cfd7abd11b26ef4319c08969633",
           "verdict": "deny",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:85be4037fe4988f20782f060135c4cec8fc88787c647649f19058d9c41910fa2",
-          "sig": "aYFuEPaLwOyVwtBu9VJ27nSj95-yMl5PMASZj3b8T3n9OzEAS1dQRMVFm0PySvUQCny_p5f3mXluC_FuXXaJCA"
+          "did": "sha256:6faacff8c16dc7e5711d5fa8d592ea7858dbe3373991c8728429f9f9c171faa8",
+          "sig": "Rm4TnEkBe_WSxDOs0AG4RWgTcqmtiZN7TaGWaU3mzVB0DhwicWO6rK1t77jvYBjonnLDjt-KtfgcCTkDE4LPDA"
         },
         "actions": [
           {
@@ -1245,7 +1245,7 @@
             },
             "result": "ok",
             "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-            "did": "sha256:85be4037fe4988f20782f060135c4cec8fc88787c647649f19058d9c41910fa2",
+            "did": "sha256:6faacff8c16dc7e5711d5fa8d592ea7858dbe3373991c8728429f9f9c171faa8",
             "kid": "actor-key",
             "at": "2026-11-20T00:00:00Z"
           }
@@ -1266,21 +1266,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:e8b96ae8be7fa4c49cfb9beb8d88f3685b65b4a406ddeeca8d8d48d6a68d0fbb",
-          "proposal": "sha256:ff8209a297aa18c35271ea51c6066522eec66fef56c2ba68260719abef96f098",
-          "decision": "sha256:42db9dd3bdc404e57df792f54c0f4ed43d864e4c97460865f5503ce00a4b5c44",
-          "action_root": "sha256:3f7de411be5f65da341195a574122781e897caa50f9784112de5a94439315dee",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e814",
+          "mandate": "sha256:f47b96fc80e21313106a2f1f25a121ae443532321120693d196e460c95dcef13",
+          "proposal": "sha256:8c18acdbcea17e852537264458821d420ddcd4511ab9bee31310516c1481d524",
+          "decision": "sha256:ea655797ec98cc882a9aea916ddbecb9243dea56abe2470f7bbbddc6e2fc17c6",
+          "action_root": "sha256:fc62a0efc3cd2cada5dce79ee4ce657e07e284c86d93c31270b77e234a064fcd",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:a75088784222cf258ae10873b38ede3581c9aff3bc27854e32d077fcf414a599",
-          "sig": "iE4rFHxuiWwPgJjcPw854miRqKJL9hs8YydKdQY7LGdUMzpKtc4cevJcj6iITgNUPfg26ynX2QZ2tlm95W50Cw"
+          "eid": "sha256:c4c808ccaff56f5c113fedc4b0f628b49bfb16c93a0a8fbeb23eea425b3e2482",
+          "sig": "OJ2Rh-tlNnOEiHC1pxUUVwGCvjWsZTFAdeqWdIX61p9ymwnLEd9is0doWFEKrXwgiV7R-x1FVz0wHDJh5ts1Cw"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e814",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1297,33 +1297,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:e8b96ae8be7fa4c49cfb9beb8d88f3685b65b4a406ddeeca8d8d48d6a68d0fbb",
-          "sig": "vWLDX7X0G6qnYk_OpUC6Wdf_h9uLaj4_fjWuzrcIQDaIkkhp15emzUB374yHrb_766WJB72eS5FqfhHqtxvFDA"
+          "mid": "sha256:f47b96fc80e21313106a2f1f25a121ae443532321120693d196e460c95dcef13",
+          "sig": "TEVPMx5soe0EF0lWOTI7RTnm_GDu-HqHzoNPVNG3I-N2jQaje2cTrdpgW1dDgQRO-GbQAxmf_A5ZNqClE3ZOAQ"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:e8b96ae8be7fa4c49cfb9beb8d88f3685b65b4a406ddeeca8d8d48d6a68d0fbb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e814",
+          "mid": "sha256:f47b96fc80e21313106a2f1f25a121ae443532321120693d196e460c95dcef13",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:ff8209a297aa18c35271ea51c6066522eec66fef56c2ba68260719abef96f098",
-          "sig": "VTdePJWuWZk-JsWgOdauAOZGtCFlfXf40W4JTL7hCBXS0E8_6EWXSbIMbmooho9EPw_ShdRNi0yIqG8xuOu5Bg"
+          "pid": "sha256:8c18acdbcea17e852537264458821d420ddcd4511ab9bee31310516c1481d524",
+          "sig": "53tDlNcI0rRrCAH_68Z5n69mhC4n94IIhFhdWMU7u4qqZd9QfEdyYp168rqhetN7miQNGzPIoi_p_q-pTKQTDw"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:ff8209a297aa18c35271ea51c6066522eec66fef56c2ba68260719abef96f098",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e814",
+          "pid": "sha256:8c18acdbcea17e852537264458821d420ddcd4511ab9bee31310516c1481d524",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:42db9dd3bdc404e57df792f54c0f4ed43d864e4c97460865f5503ce00a4b5c44",
-          "sig": "Hf75w9bo0FjvmEro7Tehi8JhB8hlMzJckFCivKMguwBRnjiTzjzuHDMra1Iho1DYgxw5vRIK3L2meRddMmAeBQ"
+          "did": "sha256:ea655797ec98cc882a9aea916ddbecb9243dea56abe2470f7bbbddc6e2fc17c6",
+          "sig": "7mGLF0Rc_XYvjCU_PIkBZ-FVbBw6F9Lwscy3ot2a-reOTlOJeWXDsU965fuSfLk9f-q8mM34jHDwI2TNIs1nDQ"
         },
         "actions": [
           {
@@ -1335,7 +1335,7 @@
             },
             "result": "ok",
             "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-            "did": "sha256:42db9dd3bdc404e57df792f54c0f4ed43d864e4c97460865f5503ce00a4b5c44",
+            "did": "sha256:ea655797ec98cc882a9aea916ddbecb9243dea56abe2470f7bbbddc6e2fc17c6",
             "kid": "actor-key",
             "at": "2026-11-20T00:00:00Z"
           }
@@ -1356,21 +1356,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e815",
+          "mandate": "sha256:c6c6267ec34c9a931db3c7c4f82c9a8da4dcd7e609eb49f4883662574bc248b0",
+          "proposal": "sha256:66b6a97b1b153441abcfd9e323486b66967ddf4248dad2c76ad72cf6ec029de6",
+          "decision": "sha256:d5c1c27071f6c463b2813efcc51885b373540f5205eaabb9b68a2a88f0e7a60e",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:323963205d4b9f458d91c11bf0205db8ca2ef06d01cab334a129eb20f9742bc4",
-          "sig": "st0GQe-LzQUUzxnDyo2thmQPtX9AzKGSLOVEZpQJvgRl-JS8aI4lkzTqeNfDNkRwzNDgz6V7i74-C5cPXdm0BA"
+          "eid": "sha256:d095e7db2cc11ceef00cd287e6e324904b348ba257017b2bb9a6b2b480bb9f9b",
+          "sig": "pQlapUnbJmXGsXtIyUiBigjBqGmRWLoJEOp6MpeTjkTEUbdMqIfn7aS3TgyGqkcJg_WPP6Jad5MPMDSF-0UFAg"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e815",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1387,33 +1387,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-          "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+          "mid": "sha256:c6c6267ec34c9a931db3c7c4f82c9a8da4dcd7e609eb49f4883662574bc248b0",
+          "sig": "VzZW6zmnmABprCPb9xPAITvDbQrCruS1s883xKsgFbmiK16oL2fPoOJNUv3O8jSgCPZZRnlG9yMv71s9vl0OAA"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e815",
+          "mid": "sha256:c6c6267ec34c9a931db3c7c4f82c9a8da4dcd7e609eb49f4883662574bc248b0",
           "proposer": "planner-1",
           "intent": "transfer 10.00 AUD",
           "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-          "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+          "pid": "sha256:66b6a97b1b153441abcfd9e323486b66967ddf4248dad2c76ad72cf6ec029de6",
+          "sig": "eE11y8-bUs2EZkivpiyuRxPpvM6tUBIlJYV989kQQ_Fr3JqzQfZaS7hxoGJkMVZu0e1AntzI6RJyHNJ9RbjRBg"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e815",
+          "pid": "sha256:66b6a97b1b153441abcfd9e323486b66967ddf4248dad2c76ad72cf6ec029de6",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-          "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+          "did": "sha256:d5c1c27071f6c463b2813efcc51885b373540f5205eaabb9b68a2a88f0e7a60e",
+          "sig": "f_KVVxBSuciZhSVpwIXsuUjA9bP0pu9BLk8dxqa2fFZCP8_Q_vID0adaYxIja22GAnaolBZEPRVb-VvY7ZZnBw"
         },
         "actions": [],
         "tool": "transfer",
@@ -1451,21 +1451,21 @@
       "request": {
         "envelope": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-          "proposal": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-          "decision": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e816",
+          "mandate": "sha256:c7be2a94c8dcdd3900b55d533a77b35bce87a394f67bdbb04cd89fce3a075f2e",
+          "proposal": "sha256:630454782db29c691616a7b07da032d9309c4dccd240b29c59d143f5fef17e43",
+          "decision": "sha256:14cd9737c6aa570a1bec9fbdcb4e028ec0d3f9e54d84befd774abcbab5ad3394",
           "action_root": "absent",
           "settlement": "absent",
           "issued": "2026-11-20T00:00:00Z",
           "alg": "ed25519",
           "kid": "assembler-key",
-          "eid": "sha256:7a28fb5f67b6a7a4d64040375fd56594e05b2731e39df5c3721594a95c5aea1c",
-          "sig": "wdRE45Q_R3A0FvNt-jrjO3NSmYymXlLRhUkUvlKUwRAI9zdK8FkMAJ1eoiRo39YNUJytfzNlIt9wdbDctSPrAQ"
+          "eid": "sha256:637ffc907bd5fc99fbf7c6548e826f01760d00499886b50e00588ea06ec34f21",
+          "sig": "A_XNBVUnOmszO8o7FBbfe0FUJpvSGybGh7JzUGqZDPva_NbEYDiprk2ggWfuDsY3ET4xMsDIjWrGQwf6V7mwDA"
         },
         "mandate": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e816",
           "principal": "principal-1",
           "purpose": "settle one transfer",
           "scope": [
@@ -1482,33 +1482,33 @@
           "not_after": "2027-12-31T00:00:00Z",
           "alg": "ed25519",
           "kid": "mandate-key",
-          "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-          "sig": "zNRBnkVy4NLzcBDyXpY20Q2Hwe22VlLtQx8KVKTXA7-qjPsdojrJLczs1kHEj5WVfOvTMv1_lLndXk9olTJKDg"
+          "mid": "sha256:c7be2a94c8dcdd3900b55d533a77b35bce87a394f67bdbb04cd89fce3a075f2e",
+          "sig": "WJDz1Uha3DWTFHl2HBpZVWW9ej03Q2IFJbdqiiQcZhev-N3md6hKmp__rz3cy-YK7qnbGGJVXFlas7S17jeZCA"
         },
         "proposal": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e816",
+          "mid": "sha256:c7be2a94c8dcdd3900b55d533a77b35bce87a394f67bdbb04cd89fce3a075f2e",
           "proposer": "planner-1",
           "intent": "start the Pro subscription",
           "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
           "alg": "ed25519",
           "kid": "proposer-key",
-          "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-          "sig": "TUdAVHDTWD4K5Ta7NRxwgwZn3dGq1QvdS5vNg4LbnvS6o9GAfNFO4kOo94BxoKZCpIfcjXrNjf7ArzvE96j-BQ"
+          "pid": "sha256:630454782db29c691616a7b07da032d9309c4dccd240b29c59d143f5fef17e43",
+          "sig": "GyE5OxY7nnb1Vy6qEi3CfvvSJR0yHQBY94Jt0c13mMkXaR_mtg9eqRCCtgKn3yYEbY-TmDdi4nAVdfRxs20QBQ"
         },
         "decision": {
           "ver": "1",
-          "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-          "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
+          "run": "a8bf3c2f1f4cad31f52617db1a19e816",
+          "pid": "sha256:630454782db29c691616a7b07da032d9309c4dccd240b29c59d143f5fef17e43",
           "verdict": "allow",
           "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
           "decided_by": "policy-engine-1",
           "reason": "within limits",
           "alg": "ed25519",
           "kid": "decision-key",
-          "did": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
-          "sig": "5gkR77GYExXP-bmlWXykl0y5hkdps39CYJtK4UpC6fJajt3tjYjSR2XGCOnXvxYF1nR22PApDkCpH3IaewI0Cw"
+          "did": "sha256:14cd9737c6aa570a1bec9fbdcb4e028ec0d3f9e54d84befd774abcbab5ad3394",
+          "sig": "cb9Ke4ZfNLvj8eVINlmgkDrBDYuBjbjUU_pRreE0Rl3ZmDA4Uov0W46DNznsYr7N8fvugLkVjUr2L1l029cyAA"
         },
         "actions": [],
         "tool": "checkout",
@@ -1528,42 +1528,42 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "proposal": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "decision": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e817",
+            "mandate": "sha256:e64e0f0519380cdf79fa619fe9389ac7caa8d4183b126c7b17386f92ba7a257b",
+            "proposal": "sha256:b8eb446a2a3f8630623413ab3f25fdb2d056935e58b602b6a3bf124e4e1d35d4",
+            "decision": "sha256:b81d007bb6695a6c274fe2a7edfee11b89d144df7641c8dc87c1f65ae1ed95b8",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:7a28fb5f67b6a7a4d64040375fd56594e05b2731e39df5c3721594a95c5aea1c",
-            "sig": "wdRE45Q_R3A0FvNt-jrjO3NSmYymXlLRhUkUvlKUwRAI9zdK8FkMAJ1eoiRo39YNUJytfzNlIt9wdbDctSPrAQ"
+            "eid": "sha256:4a389d27a79c0747e86ebbd0750200e24a4ef89ba1d18d16a4aa66798eb7bf30",
+            "sig": "-hYlZLgHOz4oaxfnPsWDuV6sD_ku-jHok0a2YhQAevf2C2OIdHQAPTq_45WxoNGUjFF0VQvhR2A39osr8RqJAw"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e817",
+            "mid": "sha256:e64e0f0519380cdf79fa619fe9389ac7caa8d4183b126c7b17386f92ba7a257b",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "sig": "TUdAVHDTWD4K5Ta7NRxwgwZn3dGq1QvdS5vNg4LbnvS6o9GAfNFO4kOo94BxoKZCpIfcjXrNjf7ArzvE96j-BQ"
+            "pid": "sha256:b8eb446a2a3f8630623413ab3f25fdb2d056935e58b602b6a3bf124e4e1d35d4",
+            "sig": "HeYl5r1V-FELM3PX13KrzLT__Sl7Ro8ONUhbgXLcWOOmRLlHwSItJqvN_s3VzSBjDPpo86nMMIkOijev4EhbBQ"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e817",
+            "pid": "sha256:b8eb446a2a3f8630623413ab3f25fdb2d056935e58b602b6a3bf124e4e1d35d4",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
-            "sig": "5gkR77GYExXP-bmlWXykl0y5hkdps39CYJtK4UpC6fJajt3tjYjSR2XGCOnXvxYF1nR22PApDkCpH3IaewI0Cw"
+            "did": "sha256:b81d007bb6695a6c274fe2a7edfee11b89d144df7641c8dc87c1f65ae1ed95b8",
+            "sig": "yTAmJrS0oSK07xPEejPcZ_NNZefectLq-wl3jM8fl4O8taPRj2S8pFwZI5ATFCT7k14x1a_uCXIHNUz6eqnbAg"
           },
           "actions": [],
           "tool": "checkout",
@@ -1583,21 +1583,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "proposal": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "decision": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e818",
+            "mandate": "sha256:25c285fa21ec9977375734afde68a09fb803b9be2f1f3f3412322a13eefedfa0",
+            "proposal": "sha256:db5e3608c68b1bc3f3b0d9bee380034e11758d9d2d1786b9395ab4aedbbf229d",
+            "decision": "sha256:255280006179ac40250358330b279c6487ce8b5101ed40c67a49d303f4f01f2d",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:7a28fb5f67b6a7a4d64040375fd56594e05b2731e39df5c3721594a95c5aea1c",
-            "sig": "wdRE45Q_R3A0FvNt-jrjO3NSmYymXlLRhUkUvlKUwRAI9zdK8FkMAJ1eoiRo39YNUJytfzNlIt9wdbDctSPrAQ"
+            "eid": "sha256:d9597e8762f79bdb7b87f7c0569a03197d3f8e88402152c79737f000a77339bb",
+            "sig": "UyGLq43wYGd_eyPCcFYYEj5uiYEda-HMokny8d9hcwXmhGW5alNM8_vEShqoY2An5qrpECQdu4zhEacADKUBBQ"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e818",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1614,33 +1614,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "sig": "zNRBnkVy4NLzcBDyXpY20Q2Hwe22VlLtQx8KVKTXA7-qjPsdojrJLczs1kHEj5WVfOvTMv1_lLndXk9olTJKDg"
+            "mid": "sha256:25c285fa21ec9977375734afde68a09fb803b9be2f1f3f3412322a13eefedfa0",
+            "sig": "YxImZsTp6AB1eNjETSmKgxIsn7fLgDqE4-p3rbFZrqhLLCu2RfB6yDxpXqqJ9YlTP48T-uomB6MgcYQ9dKdaBA"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e818",
+            "mid": "sha256:25c285fa21ec9977375734afde68a09fb803b9be2f1f3f3412322a13eefedfa0",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "sig": "TUdAVHDTWD4K5Ta7NRxwgwZn3dGq1QvdS5vNg4LbnvS6o9GAfNFO4kOo94BxoKZCpIfcjXrNjf7ArzvE96j-BQ"
+            "pid": "sha256:db5e3608c68b1bc3f3b0d9bee380034e11758d9d2d1786b9395ab4aedbbf229d",
+            "sig": "uVqOTn7zp7-2bVfwkqalep_5XY5Nfc-LKQ-70M_CCI6HzN0A3Pw0A8gWRRS_szVVuKiBrlCOVOfksSvDa3TpCg"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e818",
+            "pid": "sha256:db5e3608c68b1bc3f3b0d9bee380034e11758d9d2d1786b9395ab4aedbbf229d",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
-            "sig": "5gkR77GYExXP-bmlWXykl0y5hkdps39CYJtK4UpC6fJajt3tjYjSR2XGCOnXvxYF1nR22PApDkCpH3IaewI0Cw"
+            "did": "sha256:255280006179ac40250358330b279c6487ce8b5101ed40c67a49d303f4f01f2d",
+            "sig": "BVOLLmvz_anfzY1axEibVJSio4ACkVXEB31Jtr7MfoDw4_Y1lmOkQfo_yNEXkiMUzJXhc0oktozwMgRT7mViCA"
           },
           "actions": [],
           "tool": "checkout",
@@ -1659,21 +1659,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "proposal": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "decision": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e819",
+            "mandate": "sha256:6b2b4e779373bf997ca854ca9fb0baf7895427bc1f20ce95dba1e988338f5cf8",
+            "proposal": "sha256:c10e7b0c81e2f8b98b73a41dce138bc24e59be80613564e72182de2b6b1e10d5",
+            "decision": "sha256:87ce2626a28acbf6394d8e10347b57aa63c4663519814465a81f92fbbc012314",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:7a28fb5f67b6a7a4d64040375fd56594e05b2731e39df5c3721594a95c5aea1c",
-            "sig": "wdRE45Q_R3A0FvNt-jrjO3NSmYymXlLRhUkUvlKUwRAI9zdK8FkMAJ1eoiRo39YNUJytfzNlIt9wdbDctSPrAQ"
+            "eid": "sha256:ff0bf02794df1cd244f5483071f7323863a80b93aa9f2d6b2dfc2c320fdb1978",
+            "sig": "ywd6Mi8-dIzS2f-7ZtDfKOfW3gF07nv6SWfTsAbDP_iL_KgGEoA9UilMY3gM3hPP6pLeyIjTV48Q38dnfH-ZBA"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e819",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1690,33 +1690,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "sig": "zNRBnkVy4NLzcBDyXpY20Q2Hwe22VlLtQx8KVKTXA7-qjPsdojrJLczs1kHEj5WVfOvTMv1_lLndXk9olTJKDg"
+            "mid": "sha256:6b2b4e779373bf997ca854ca9fb0baf7895427bc1f20ce95dba1e988338f5cf8",
+            "sig": "1H-N099WiJKKBnO3zVv31VB2To40jcJme63c_seGdW6lrdcIjs5E0LKBgtKXuxKvzsmT5sgHacn8EPHEL4KaAw"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e819",
+            "mid": "sha256:6b2b4e779373bf997ca854ca9fb0baf7895427bc1f20ce95dba1e988338f5cf8",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
-            "sig": "TUdAVHDTWD4K5Ta7NRxwgwZn3dGq1QvdS5vNg4LbnvS6o9GAfNFO4kOo94BxoKZCpIfcjXrNjf7ArzvE96j-BQ"
+            "pid": "sha256:c10e7b0c81e2f8b98b73a41dce138bc24e59be80613564e72182de2b6b1e10d5",
+            "sig": "Nzp8hhnFYDT0A13RdJ0Qd3mWbHbAX_YQT-q7tcVwLVQ0wEcKOf2uL2D1DLndCZAgOoC8rrCrp68e8RH3XTI7Dw"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:46c0a41036af4a9b801771d6e9642e2f80a56243709aff33654ef1f53bf86438",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e819",
+            "pid": "sha256:c10e7b0c81e2f8b98b73a41dce138bc24e59be80613564e72182de2b6b1e10d5",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:4a2ae88c12ab050791b95866903d183a5f31a1cb4885cc115ffdd8757f4e1f4d",
-            "sig": "5gkR77GYExXP-bmlWXykl0y5hkdps39CYJtK4UpC6fJajt3tjYjSR2XGCOnXvxYF1nR22PApDkCpH3IaewAAAA"
+            "did": "sha256:87ce2626a28acbf6394d8e10347b57aa63c4663519814465a81f92fbbc012314",
+            "sig": "IDW8eilQH_SwfLJjAbCWeNlAV_5q2t8DJK7vtmE67GBOyP4YOk832oUIDPHCDLP6wmQx079pUQdT_zhDeQAAAA"
           },
           "actions": [],
           "tool": "checkout",
@@ -1735,21 +1735,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "proposal": "sha256:c823f0bcb1e4a373f96d05d1d7b89b9d20d73925246364e341a7c3437c33c6ab",
-            "decision": "sha256:f83a9e76cbb5728a903a6290703f098a9d3e5324ef069f78a0ef82b6605fe303",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81a",
+            "mandate": "sha256:89250e148b5d61349863ad423daa5297cb56945141b14afca836b9376b4594dc",
+            "proposal": "sha256:afbcab32d9b472ceb4ad9550cb52c14325e541269157e908d9bd6ab750442898",
+            "decision": "sha256:bd8a6093b460d69d642cb9d9be30e2d6732371a94b725c5ddf77520f1009c485",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:904916b2f03231250172cc17b57dc90ef25861e626040bf62eac617a47879f21",
-            "sig": "AsyL_6DhvHOrBm6MLEOV9w4LjX4-eq1XLIlgBvprl7p9rwpbV27JuRiPAeWkauERazXfRwARUnUqRtDK4LeHCw"
+            "eid": "sha256:ef902440c5fd625d2d3ddf2338bd89fbadd6712d7072b27fee508e83241d8467",
+            "sig": "eAypP5ncC5de4utfLLoJBvga-JCS3rUXptpPFRmU1Ei1K58GbthmwTIYgKTO0IIWTfbB9BD3PFyCQJlnlEnWCg"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81a",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1766,33 +1766,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "sig": "zNRBnkVy4NLzcBDyXpY20Q2Hwe22VlLtQx8KVKTXA7-qjPsdojrJLczs1kHEj5WVfOvTMv1_lLndXk9olTJKDg"
+            "mid": "sha256:89250e148b5d61349863ad423daa5297cb56945141b14afca836b9376b4594dc",
+            "sig": "SpIgRmoBY43B4NG8FrOhsmiDjg2aiadFu6X0x502JT3TQk6udjG52hsctWyrm2xZ5riZbh7ybobqEc0FGeypCQ"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81a",
+            "mid": "sha256:89250e148b5d61349863ad423daa5297cb56945141b14afca836b9376b4594dc",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:5afb8213c15a013759ad65dfc5d410c5fa97743534f8212e516b5f59aeb0a240",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:c823f0bcb1e4a373f96d05d1d7b89b9d20d73925246364e341a7c3437c33c6ab",
-            "sig": "QMqJeT7iOWwj9YQ_AXMxQ-khLFbL_kkkf7IqXtf3yHPBKrmdWD3jq5KqZ_uYFp_gnGvpfve-JoqncPIRKqNLCg"
+            "pid": "sha256:afbcab32d9b472ceb4ad9550cb52c14325e541269157e908d9bd6ab750442898",
+            "sig": "dltctb866TZwWgFZ7W9k45o_n8-J_wDINWpVq65xtzyLksW4fyeis98TW7PLwi0WwLljywCqG85fM8pIlyh5AQ"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:c823f0bcb1e4a373f96d05d1d7b89b9d20d73925246364e341a7c3437c33c6ab",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81a",
+            "pid": "sha256:afbcab32d9b472ceb4ad9550cb52c14325e541269157e908d9bd6ab750442898",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:f83a9e76cbb5728a903a6290703f098a9d3e5324ef069f78a0ef82b6605fe303",
-            "sig": "_-eFL1ODJFYVRS1X0rsxia71ve9zd83qS7hHQDPYqnMNyrAoZT5XlnqPWB4ZP4jpdBfkhxrixDA7qr4rkUlFAg"
+            "did": "sha256:bd8a6093b460d69d642cb9d9be30e2d6732371a94b725c5ddf77520f1009c485",
+            "sig": "mkSrEZeUZE8Hoe1Y-bdPfOvjk-XNc7NetY8w5w4WU4moktoOS69v8RoQAyA8rdsRAjdAgsgKOD17z0mZvoEuDQ"
           },
           "actions": [],
           "tool": "checkout",
@@ -1811,21 +1811,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "proposal": "sha256:6837fbe2f2431cf7ba7e33c69c1a784a8dc00c45df1743374b632591acfa0b78",
-            "decision": "sha256:af79a88e4658d617870175d1515ad7621dd7cb7fc43603a4f27d70fa7e1fd2b1",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81b",
+            "mandate": "sha256:6e6cc5898bd48e263b38554f4c320fc52b13be5022f6cc6305a4ec9889fbfca3",
+            "proposal": "sha256:7c681ee427b4bcf9d70be73d86aed3b9d2f9de0a0d24d947c55e94361779e678",
+            "decision": "sha256:9eda09abcb65b7e59a574845ffa24e778dbcf61ddc48a4144b1daaf51fe64a0d",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:c48931d645784468e9f170f6e75cf6e70c6ab1132f386a9344500b513d01a948",
-            "sig": "zvdCzhracLH-EGMDTWFVEH-M2gaWLmncfdVuuKzdx6uLYYU2IYkaOZZbIDpkkhyMFAdM6CAx31USzTrREQPJCw"
+            "eid": "sha256:1951ffc03129ccf44fd9c0b60aad009ce4f692149e4a42ef01edf9d467b132df",
+            "sig": "8TnRV_YSx2XWazQd28Q8nPzJnbwBEXoLeWlcqRMvt_aBxC5c_DQsmP6y33fXLK2tJnauzScDOlVhAMkCNUoLDg"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81b",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1842,33 +1842,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
-            "sig": "zNRBnkVy4NLzcBDyXpY20Q2Hwe22VlLtQx8KVKTXA7-qjPsdojrJLczs1kHEj5WVfOvTMv1_lLndXk9olTJKDg"
+            "mid": "sha256:6e6cc5898bd48e263b38554f4c320fc52b13be5022f6cc6305a4ec9889fbfca3",
+            "sig": "sqKG2q2S3lUt5Sdu1FUZH0gQBBKdMPK1aby6a8HzOILqE3BJl_QAb7_xReMzEtthqtYNsqHF4BZf9uC7wWlECQ"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:30dcea70a49decc494688265bafc9e132d7a23d2c3bb65de5e85743ecd6f18eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81b",
+            "mid": "sha256:6e6cc5898bd48e263b38554f4c320fc52b13be5022f6cc6305a4ec9889fbfca3",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:47758b1ca110352b8de63f9b8752ccb28575452b16430b5c37c2e708fc370506",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:6837fbe2f2431cf7ba7e33c69c1a784a8dc00c45df1743374b632591acfa0b78",
-            "sig": "ucRWQA3FN_8XswOoNj0-MtAAmvioeFPTJycpCBt2a9AVhmMVH22JTs7LXtt2XwmhQqfDueGelnh2cpkNsPXoDg"
+            "pid": "sha256:7c681ee427b4bcf9d70be73d86aed3b9d2f9de0a0d24d947c55e94361779e678",
+            "sig": "2ZpHmCxJNFxsGveK-seAaFxAXuNKPLsgkQiMYTKO2Fr2Q3sEQmEVZvXJvZVcmJo9dWydby9Jmt3z2UshnFJkCQ"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:6837fbe2f2431cf7ba7e33c69c1a784a8dc00c45df1743374b632591acfa0b78",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81b",
+            "pid": "sha256:7c681ee427b4bcf9d70be73d86aed3b9d2f9de0a0d24d947c55e94361779e678",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:af79a88e4658d617870175d1515ad7621dd7cb7fc43603a4f27d70fa7e1fd2b1",
-            "sig": "aICPlKZFMiPe8IgtheDz8Qz0z2DBzAmTVpbfDcTivSkWtHxSZa3CIGpysc2CLeWUmOOIoVP26OWlVI5_AtsUBg"
+            "did": "sha256:9eda09abcb65b7e59a574845ffa24e778dbcf61ddc48a4144b1daaf51fe64a0d",
+            "sig": "GE-uxkZK9Hu0TfhKeUGDA_U3eEmuSp09HHwrXJZJGHJzNX_JI8ZKJ5A1rbwZRKfIOYrQLjsrqnlfRi7ZGky0CA"
           },
           "actions": [],
           "tool": "checkout",
@@ -1887,21 +1887,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:c27507ddfa1564045c949b9f7f565358b29481f6865cc51bd927441f765f5871",
-            "proposal": "sha256:48153a86ccac3fa8a7c79198ebaac08894db4cdf73d2812e9b9f46163ad48729",
-            "decision": "sha256:a67c4693b03372233dc89c9cf22a673695599e0b36b35b3ea4ecf33f77077601",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81c",
+            "mandate": "sha256:0c0d991831b739deccf44345a7aba4a4343d43f1ec693b6faf8230eecae91cb5",
+            "proposal": "sha256:569cec7aa4cb26578ea6dfc1802f2135c4e965ea969e523f6e4e236abab82b08",
+            "decision": "sha256:9b1c643bd511bd7c54aa67cdfcc46877e91d6b5cd296e582fab1e458d942e7c7",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:927583ce945d7fc5c41a3fb8c4a8d9f7c28daac34be12044ace8338c47e6b47d",
-            "sig": "65EayTYLiOudRHxcwbf6q5yq5HFZh1YXG8_JuQGYHIE3NFMTD-fWPRQGm-NrmJqTRFB_3FbIX5YdYNCj-FrGBg"
+            "eid": "sha256:f464b10c96a56b692646657b0209853e038a7b3a288e9e6183de16274db551c8",
+            "sig": "xEWMKwDgw4LBxcsKNwwe7QP9qr31WbL9xMGlZVq8vCNfM-Ox0uLweBMPptb4HZz2U6F_qTPsXsg0arzJ9pfjDQ"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81c",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1918,33 +1918,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:c27507ddfa1564045c949b9f7f565358b29481f6865cc51bd927441f765f5871",
-            "sig": "b9gkdkptzt3lh5cf9-CgA_ESct8DiPLZ6eTm1H44iu4ne3nlpg95S6rl__Mqfw3CooTVoOhC-wNsZeffsZexBA"
+            "mid": "sha256:0c0d991831b739deccf44345a7aba4a4343d43f1ec693b6faf8230eecae91cb5",
+            "sig": "rZ1KdcNwzs0wv556kpUtDaL4IfROSpRXpFUBtJbBOxn8HvrERfESVSBRuCS35mNH1qwVIqzf3Jaz7-SLALVlCg"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:c27507ddfa1564045c949b9f7f565358b29481f6865cc51bd927441f765f5871",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81c",
+            "mid": "sha256:0c0d991831b739deccf44345a7aba4a4343d43f1ec693b6faf8230eecae91cb5",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:48153a86ccac3fa8a7c79198ebaac08894db4cdf73d2812e9b9f46163ad48729",
-            "sig": "nk_dK9G1xA16xYoUhCo8buy6-2CZJ6f_Pv9IHEh0KtNhaeJmmu_1Nye-DidDlmu6ihjIAUblGwpkZgfVzyRWAg"
+            "pid": "sha256:569cec7aa4cb26578ea6dfc1802f2135c4e965ea969e523f6e4e236abab82b08",
+            "sig": "L2m5EMHjjS45PyElX3K0SB3PB7k0y2AoKngWgZX03wTZEOeshbx41z7FEMUUInJ6YC_ZN6YGwagxTKid2ncbAA"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:48153a86ccac3fa8a7c79198ebaac08894db4cdf73d2812e9b9f46163ad48729",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81c",
+            "pid": "sha256:569cec7aa4cb26578ea6dfc1802f2135c4e965ea969e523f6e4e236abab82b08",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:a67c4693b03372233dc89c9cf22a673695599e0b36b35b3ea4ecf33f77077601",
-            "sig": "4U7KF0ZFEiW1VHl2BPxM2XImK1Vc_JchXB9z049V1yUlqZuzeLek-AlKeG0qknyitGnz_mNkGYw0IyI20_fiCw"
+            "did": "sha256:9b1c643bd511bd7c54aa67cdfcc46877e91d6b5cd296e582fab1e458d942e7c7",
+            "sig": "__f5yTWM_T0vw9elJpOOMNsQIJII3D9rkCEeS0KPBOHYPSlLS0bWk2QKhe-nHSwIGkTDTZo925itN3okpytEDw"
           },
           "actions": [],
           "tool": "checkout",
@@ -1963,21 +1963,21 @@
         "request": {
           "envelope": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mandate": "sha256:76e377fbf43561415bf86038e4a02351c0ec086059ab3cf915881ec96e9c7814",
-            "proposal": "sha256:1d748a202b44c4399c4c1593a3357c088da6729107c05cbdd9f1b94111fc3507",
-            "decision": "sha256:ce3f01ca34517f6232c739febd5fde2d8fa5d8aa8b55c49055f71357067cece1",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81d",
+            "mandate": "sha256:59cdb95a01f6420bc567bf0a7856869b74fbc7d365e22da5e71e8f7412d37e1b",
+            "proposal": "sha256:182563c3969999e044bec9bc3f6370cb8653afb15f68d570829016f84126555c",
+            "decision": "sha256:eeecda1c4ad61075c333b4665fbe8fd299744c9b20afd51d2792004681161f0e",
             "action_root": "absent",
             "settlement": "absent",
             "issued": "2026-11-20T00:00:00Z",
             "alg": "ed25519",
             "kid": "assembler-key",
-            "eid": "sha256:e8260e4a395c3e6aac2d5f726b89c19d920ccd3c47d97142b283ebe33a97c383",
-            "sig": "8tMrgVkfOd6Mq8WJJ6GUjLm0GNNnijLRzr64OE6_UK2MsUE7DDVqQLO-ifPywidpRf0ezfDs_usGlx7DsvZiCw"
+            "eid": "sha256:e489229bda2b33053beca5da72eef82caa2ff27d63c7f21d57fac8961b6c3173",
+            "sig": "yKnVCNFHG9cO8BPupQ1gAYzdaGkuXhaYphDN_icIbWUCPKT8D8oARjh-hko0eais4M6YR1whlfmdfYH9l3UlBw"
           },
           "mandate": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81d",
             "principal": "principal-1",
             "purpose": "settle one transfer",
             "scope": [
@@ -1995,33 +1995,33 @@
             "not_after": "2027-12-31T00:00:00Z",
             "alg": "ed25519",
             "kid": "mandate-key",
-            "mid": "sha256:76e377fbf43561415bf86038e4a02351c0ec086059ab3cf915881ec96e9c7814",
-            "sig": "9t3G5YnmDFw2utDvwJSB63L3ZmHR45TGBaD3VyZSm987hrbtcZ55xOilFegQUiQB6yXeeA26RKC9Yz_Ffw82Cg"
+            "mid": "sha256:59cdb95a01f6420bc567bf0a7856869b74fbc7d365e22da5e71e8f7412d37e1b",
+            "sig": "vukkEQhtCXqINxu_LNgYScB0wCEVhV3iIimS4Xq5F0vBL7y6Nmk6fDdnjLBwM8vnl2izsKy0nvKiSgjTTZZ-DQ"
           },
           "proposal": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "mid": "sha256:76e377fbf43561415bf86038e4a02351c0ec086059ab3cf915881ec96e9c7814",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81d",
+            "mid": "sha256:59cdb95a01f6420bc567bf0a7856869b74fbc7d365e22da5e71e8f7412d37e1b",
             "proposer": "planner-1",
             "intent": "start the Pro subscription",
             "args_digest": "sha256:a1e112e1bebf56aa4ed2721ec07d7b87f566e394fd305da4a4c7c246ae8b29a1",
             "alg": "ed25519",
             "kid": "proposer-key",
-            "pid": "sha256:1d748a202b44c4399c4c1593a3357c088da6729107c05cbdd9f1b94111fc3507",
-            "sig": "O2hosdiaUm02Ctj-bo_nP9P6bpc8LrVGmXM0tTU3D3B9v13jpcm51GEHEf1lTtRl1nmILKbedtiAHb8bhoh6AA"
+            "pid": "sha256:182563c3969999e044bec9bc3f6370cb8653afb15f68d570829016f84126555c",
+            "sig": "e68hfWnm0jawbza1n6UCszzE7_o7C7XzYCXISstaNiZ4JbnAZ4pFGZStAqddnj3Kwa5hlOocoq7PJZfC3oyADw"
           },
           "decision": {
             "ver": "1",
-            "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-            "pid": "sha256:1d748a202b44c4399c4c1593a3357c088da6729107c05cbdd9f1b94111fc3507",
+            "run": "a8bf3c2f1f4cad31f52617db1a19e81d",
+            "pid": "sha256:182563c3969999e044bec9bc3f6370cb8653afb15f68d570829016f84126555c",
             "verdict": "allow",
             "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
             "decided_by": "policy-engine-1",
             "reason": "within limits",
             "alg": "ed25519",
             "kid": "decision-key",
-            "did": "sha256:ce3f01ca34517f6232c739febd5fde2d8fa5d8aa8b55c49055f71357067cece1",
-            "sig": "6hXdjqnZfZNRza_SY3rPu72Xm-i1sHnwaV0Hj4gKqvXFF-kjAF0qVRZWK50mzdoyGi9JQzu94H22ilnG_Uc2Cg"
+            "did": "sha256:eeecda1c4ad61075c333b4665fbe8fd299744c9b20afd51d2792004681161f0e",
+            "sig": "2aJ73IeBXOmJ40ZVuxQOEtJod-q6YL5WupmNNosJNl4Y67zo5GmzJKWmafslEZcBwcQNzq7EjmCSEFNs1x0RBw"
           },
           "actions": [],
           "tool": "transfer",
@@ -2039,21 +2039,21 @@
     "package": {
       "envelope": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "mandate": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-        "proposal": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-        "decision": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-        "action_root": "sha256:5f33b89967c8fea35e401ec1ce1ec406491dc21810d0a2833c638e3ce0353726",
-        "settlement": "sha256:492c0e30d414575d081c4b5b43934980185d6a4d84799de5015a6c752b12fe1b",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e802",
+        "mandate": "sha256:95e3680d849181746b4c3526d3148c815a6ffdefabfeb5ab291832d5b58baf9b",
+        "proposal": "sha256:f815d02747e21827afaa4b444469d42e36850c3540b1af8504ec5da9fd0fdabe",
+        "decision": "sha256:d237ebfc57814038b0d5473a4e1154b2984d10a958718b0e5da9548da847b404",
+        "action_root": "sha256:485c46507be102b61351828f7a3fbdc52fdc329d03afa3807cd75b01c8648ad8",
+        "settlement": "sha256:1ec2b2a8c3c39d42a09cf239075e759994f348e01b1eba8374f439ccd5442a3f",
         "issued": "2026-11-20T00:00:00Z",
         "alg": "ed25519",
         "kid": "assembler-key",
-        "eid": "sha256:804ba24814fc4bdca5da199fb38c28ad8d10de4bcb871377035cf0f4fe288f76",
-        "sig": "L7nYecRUPBNZXvzEg0WTOYyEAoEWb6cmE__cEkIweavo-7NeVGyi8L44m6aeI_JnI64i93DxBv0sYE614tv7Aw"
+        "eid": "sha256:e09bce6f2bbf5d65cef03b893ea14d6674b4bae3f9f390acdfde0b93c1a82ad5",
+        "sig": "82yZmxmgaBgjom7JEplpDtvDG3wmppsVFSYw0JHtHxgQkNHis0COGYhrd2YxiRly9s1QvkO2jr8Q1fRY6E0MAA"
       },
       "mandate": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e802",
         "principal": "principal-1",
         "purpose": "settle one transfer",
         "scope": [
@@ -2070,38 +2070,38 @@
         "not_after": "2027-12-31T00:00:00Z",
         "alg": "ed25519",
         "kid": "mandate-key",
-        "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
-        "sig": "pp64NVkhYf00LtsYTzjnrVq4YSe28WikCvKGmDdawP5yCV0g0FhPRFUehCbV1uMS3tdu8iLPAzYq8YTYjhZFCw"
+        "mid": "sha256:95e3680d849181746b4c3526d3148c815a6ffdefabfeb5ab291832d5b58baf9b",
+        "sig": "61ThUgab__GTbEj-kHr8eGHU5iZlZTvzxUQPY2gtIJPtYQAu0r-rnvQHs6RmgJUiJvjACoIEWtSDcQ8X6sArAA"
       },
       "proposal": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "mid": "sha256:ca26dc39920961da8fe7c25c970a7e8ca65ed2db2baf139ec929ef8c5464e4df",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e802",
+        "mid": "sha256:95e3680d849181746b4c3526d3148c815a6ffdefabfeb5ab291832d5b58baf9b",
         "proposer": "planner-1",
         "intent": "transfer 10.00 AUD",
         "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
         "alg": "ed25519",
         "kid": "proposer-key",
-        "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
-        "sig": "tFvJSETXLyOQ351IL4kOvkNWg3TvtXYsyf51JATsB8Qh426VWY4U8xxo30Sie8Dje9tfJgYoOu7V1LRtPJlUAA"
+        "pid": "sha256:f815d02747e21827afaa4b444469d42e36850c3540b1af8504ec5da9fd0fdabe",
+        "sig": "Zt3r66fL7HQly1M8OM7EuTm9idldecWCJb5v1j1HMSGkMjSC69dYuF-oNICuXMmrm5QFYFHZTYVG4F77p-pSCA"
       },
       "decision": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "pid": "sha256:39b574a6a090b175166d28d517274d66103ad78e7b67930494df238c0f780ff4",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e802",
+        "pid": "sha256:f815d02747e21827afaa4b444469d42e36850c3540b1af8504ec5da9fd0fdabe",
         "verdict": "allow",
         "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
         "decided_by": "policy-engine-1",
         "reason": "within limits",
         "alg": "ed25519",
         "kid": "decision-key",
-        "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
-        "sig": "xMPXMhVQX8938JqOTTPz_jx_pNuoHNnqqIXx0Cq5GFntHXVWSPbHoBC7lLuw76VzK9V7sX65_6u94qh89YYZCw"
+        "did": "sha256:d237ebfc57814038b0d5473a4e1154b2984d10a958718b0e5da9548da847b404",
+        "sig": "dgJgaZzlRPkkGvX1UnSBr_UyeAaW5dDAAfd53KPdx7Tml77GMXPaGFJwIqsdrS3Md5eB9D5xtCYmi_JL4KlaAg"
       },
       "settlement": {
         "ver": "1",
-        "run": "27dd0834bf61417fa89230e16a9ed6db2eb387942ba42803fa39ae2357ca54eb",
-        "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+        "run": "a8bf3c2f1f4cad31f52617db1a19e802",
+        "did": "sha256:d237ebfc57814038b0d5473a4e1154b2984d10a958718b0e5da9548da847b404",
         "payer": "payer-1",
         "payee": "payee-1",
         "amount": "10.00",
@@ -2112,8 +2112,8 @@
         "observed_at": "2026-11-20T00:00:00Z",
         "alg": "ed25519",
         "kid": "provider-key",
-        "sid": "sha256:492c0e30d414575d081c4b5b43934980185d6a4d84799de5015a6c752b12fe1b",
-        "sig": "EWlgGtoV7px5obFvKUQpJM2_f0hnyNCY0Jb4UVl2p7LS_77BZmTdMAGiDD1Oqwd1thn2SKxqZvsErJNCRU3SAw"
+        "sid": "sha256:1ec2b2a8c3c39d42a09cf239075e759994f348e01b1eba8374f439ccd5442a3f",
+        "sig": "iRa2xmHYnpFQrAduuQ41jXdXf7HhMkvjlnutg3xWxHf-VLChKu0_fuqvJpROGUQtqX_NgnqWykSUETQUsacIDw"
       },
       "actions": [
         {
@@ -2125,7 +2125,7 @@
           },
           "result": "ok",
           "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-          "did": "sha256:97b274036558b18f3647867f0fa16c1f17235bb48429a2dc2e3ce60b2f5dd723",
+          "did": "sha256:d237ebfc57814038b0d5473a4e1154b2984d10a958718b0e5da9548da847b404",
           "kid": "actor-key",
           "at": "2026-11-20T00:00:00Z"
         }

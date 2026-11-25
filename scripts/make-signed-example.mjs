@@ -37,6 +37,16 @@ const { evaluatePayment } = await import(
 );
 
 const RUN = randomBytes(32).toString("hex");
+
+// Every case gets its own run, and therefore its own proposal id. A case that
+// shares a proposal id with another case shares its one use: on a door with a
+// durable replay store, the first case to be posted spends the proposal and the
+// second is refused as a replay. Each case must be spendable on its own.
+let runCounter = 0;
+function nextRun() {
+  runCounter += 1;
+  return `${RUN.slice(0, 30)}${runCounter.toString(16).padStart(2, "0")}`;
+}
 const ARGS = { amount: "10.00", to: "acct-42" };
 const ISSUED = "2026-11-20T00:00:00Z";
 
@@ -78,7 +88,7 @@ function build(options = {}) {
   const limits = options.limits ?? { max_actions: "4", max_spend: "100.00", currencies: ["AUD"] };
   const notBefore = options.notBefore ?? "2026-01-01T00:00:00Z";
   const notAfter = options.notAfter ?? "2027-12-31T00:00:00Z";
-  const run = options.run ?? RUN;
+  const run = options.run ?? nextRun();
   const scope = options.scope ?? ["transfer"];
   const args = options.args ?? ARGS;
 
@@ -169,7 +179,7 @@ function build(options = {}) {
     keys.assembler.privateKey,
   );
 
-  return { mandate, proposal, decision, settlement, envelope };
+  return { run, mandate, proposal, decision, settlement, envelope };
 }
 
 function request(pkg, overrides = {}) {
@@ -230,17 +240,21 @@ const settledPkgWithRoot = build({
   settlement: true,
   actionRoot: digestRef(settledRecord),
   settlementDid: settledPkg.decision.did,
+  run: settledPkg.run,
 });
 const settledRecordBound = { ...settledRecord, did: settledPkgWithRoot.decision.did };
 
 const cases = [];
 
 // 1. no mandate at all.
+// Every case gets its own package: a case that borrows another case's proposal
+// spends that proposal's one use, and is then refused as a replay at a door
+// with a durable replay store.
 cases.push({
   case: "no mandate",
   why: "the request carries no authority",
   expected_reason: "missing_authority",
-  request: request(allowPkg, { mandate: undefined }),
+  request: request(build(), { mandate: undefined }),
 });
 
 // 2. the mandate's window closed.
@@ -264,7 +278,7 @@ cases.push({
   case: "arguments the proposal never described",
   why: "the request's args do not match the proposal's args_digest",
   expected_reason: "args_mismatch",
-  request: request(allowPkg, { args: { amount: "999.00", to: "acct-42" } }),
+  request: request(build(), { args: { amount: "999.00", to: "acct-42" } }),
 });
 
 // 5. the tool is outside the mandate's scope.
@@ -272,7 +286,7 @@ cases.push({
   case: "tool outside the mandate scope",
   why: "the mandate permits transfer, the request asks for withdraw",
   expected_reason: "scope_not_permitted",
-  request: request(allowPkg, { tool: "withdraw" }),
+  request: request(build(), { tool: "withdraw" }),
 });
 
 // 6. the decision was signed by the key that would act.
@@ -375,7 +389,7 @@ cases.push({
 {
   const pkg = build({ verdict: "deny" });
   const record = actionRecord(pkg);
-  const withRoot = build({ verdict: "deny", actionRoot: digestRef(record) });
+  const withRoot = build({ verdict: "deny", actionRoot: digestRef(record), run: pkg.run });
   cases.push({
     case: "denied but executed",
     why: "the decision said deny and the envelope still names an action",
@@ -391,6 +405,7 @@ cases.push({
   const withRoot = build({
     limits: { max_actions: "1", max_spend: "100.00", currencies: ["AUD"] },
     actionRoot: digestRef(record),
+    run: limited.run,
   });
   cases.push({
     case: "action count used up",
@@ -441,8 +456,10 @@ for (const entry of cases) {
     process.exit(2);
   }
   if (result.reason !== entry.expected_reason) {
+    const bad = Object.values(result.report?.checks ?? {}).filter((c) => c.status === "invalid");
     console.error(
-      `STOP: the case "${entry.case}" was refused as "${result.reason}", not "${entry.expected_reason}"`,
+      `STOP: the case "${entry.case}" was refused as "${result.reason}", not "${entry.expected_reason}"` +
+        (bad.length ? ` — ${bad.map((c) => `${c.reason} (${c.detail ?? ""})`).join("; ")}` : ""),
     );
     process.exit(2);
   }
@@ -509,7 +526,7 @@ payCases.push({
   why: "the request carries no authority to spend",
   expected_reason: "missing_authority",
   checked_by: "gate",
-  request: payReq(payAllowPkg, PAY_ARGS, { mandate: undefined }),
+  request: payReq(payPackage(), PAY_ARGS, { mandate: undefined }),
 });
 
 // 2. the same proposal posted twice.

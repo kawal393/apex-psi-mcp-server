@@ -82,7 +82,33 @@ for (const entry of doc.refusals ?? []) {
   }
 }
 
-// 3. the settled run must verify clean.
+// 3. no two cases may spend the same proposal. A proposal has one use: on a
+// door with a durable replay store, the first case posted spends it and the
+// second is refused as a replay, so a case that borrows another's proposal
+// cannot be tested on its own.
+{
+  const owners = new Map();
+  const claims = [];
+  const claim = (label, entry) => {
+    const pid = entry?.request?.proposal?.pid;
+    if (typeof pid !== "string") return;
+    claims.push([label, pid]);
+    if (!owners.has(pid)) owners.set(pid, []);
+    owners.get(pid).push(label);
+  };
+  claim("allow.request", doc.allow);
+  (doc.refusals ?? []).forEach((entry, i) => claim(`refusals[${i}] ${entry.case}`, entry));
+  claim("payment.allow", doc.payment?.allow);
+  (doc.payment?.refusals ?? []).forEach((entry, i) => claim(`payment.refusals[${i}] ${entry.case}`, entry));
+  const shared = [...owners.values()].filter((names) => names.length > 1);
+  if (shared.length === 0) {
+    pass("every case owns its own proposal", `${claims.length} cases, ${owners.size} distinct proposal ids`);
+  } else {
+    for (const names of shared) fail("every case owns its own proposal", names.join(" and "));
+  }
+}
+
+// 4. the settled run must verify clean.
 {
   const report = verifyRunPackage(doc.settled_run.package, resolveKey);
   if (report.ok) pass("the settled run verifies clean", `checks ${Object.keys(report.checks).length}`);

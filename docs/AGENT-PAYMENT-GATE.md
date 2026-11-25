@@ -78,6 +78,16 @@ every later visitor is told `replay`. And without a session the door keeps no
 replay memory at all — I posted the same signed request six times with no
 session and all six returned `200 ok=true`.
 
+**Every case in the example must own its proposal.** A proposal has one use:
+on a door with a durable replay store, the first case posted spends it and the
+next is refused as `replay`. The example I published on 25 Nov had four cases
+sharing one proposal id — the valid run, "no mandate", "arguments the proposal
+never described" and "tool outside the mandate scope" — and two payment cases
+sharing another. Measured, then fixed: every case now gets its own run, and
+therefore its own proposal id. `scripts/agent-example-check.mjs` proves it, so
+it cannot come back. The published file now carries 26 cases and 26 distinct
+proposal ids.
+
 Change the conformance store to key on `conformance:${session}:${pid}`, require
 the session, and leave the agent door on the bare proposal id. Do not change
 the npm package: `scripts/agent-gate-check.mjs` case 6b pins the package's key
