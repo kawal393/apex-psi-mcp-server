@@ -7,10 +7,14 @@
   "main": "dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./gate": "./dist/gate.js"
+    "./gate": "./dist/gate.js",
+    "./agent": "./dist/agent.js",
+    "./receiver": "./dist/receiver.js",
+    "./sender": "./dist/sender.js"
   },
   "files": [
     "dist",
+    "conformance",
     "README.md"
   ],
   "bin": {
@@ -21,13 +25,15 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
-    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/server-version-check.mjs",
+    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/agent-gate-check.mjs && node scripts/server-version-check.mjs",
     "check:registry-card": "node scripts/registry-card-check.mjs",
     "check:card-copy": "node scripts/card-copy-check.mjs",
     "check:version": "node scripts/server-version-check.mjs",
     "check:version:selftest": "node scripts/server-version-check.mjs --self-test",
     "check:card-copy:selftest": "node scripts/card-copy-check.mjs --self-test",
-    "check:gate": "node scripts/gate-check.mjs"
+    "check:gate": "node scripts/gate-check.mjs",
+    "check:agent": "node scripts/agent-gate-check.mjs",
+    "check:parity": "node scripts/agent-parity-check.mjs"
   },
   "keywords": [
     "mcp",

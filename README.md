@@ -99,6 +99,104 @@ fingerprint the same bytes: `fingerprint({"b":1,"a":[1,2],"c":"x"})` is
 `95c12ab4ca0e8f3c485ea1b1b1a2b24976d07180baf5ecad0d81b5bbaf07532b` in both, and a CI check on each
 side pins that number.
 
+## The receiver gate: refusing an action that was not permitted
+
+The gate above lives on the sender's side, and it is optional: an agent that
+never calls `seal` leaves no gap in the ledger, and the ledger stays complete
+and says nothing about that action. The receiver gate is the half that is not
+optional, because it sits in the process that performs the side effect.
+
+```js
+import { createReceiverGate } from "apex-psi-mcp/receiver";
+
+const gate = createReceiverGate({
+  resolveKey: (kid) => keyring[kid],   // kid -> Ed25519 public key
+  mode: "enforce",                      // "shadow" observes without blocking
+});
+
+const result = await gate.authorize({
+  envelope,
+  mandate,
+  proposal,
+  decision,
+  tool: "transfer",
+  args: { amount: "10.00", to: "acct-42" },
+  actorKid: "agent-key",
+});
+```
+
+`authorize` returns `{ allowed, enforced, wouldAllow, reason, report, permit }`.
+In `enforce` mode a refused action never runs: `gate.run(request, fn)` throws
+`ReceiverRefusedError` and `fn` is not called. `reason` is a stable code —
+`missing_authority`, `decision_not_allow`, `outside_window`, `over_spend`,
+`over_actions`, `replay`, `args_mismatch`, `scope_not_permitted`,
+`currency_not_permitted`, `settlement_did_mismatch`, `signature_invalid`,
+`key_unresolved`, `algorithm_unavailable`, `decision_key_is_action_key`,
+`mandate_key_is_decision_key`, `mandate_key_is_action_key` — and the report
+carries the reason codes of `draft-singh-psi-agent-03` for the checks the
+contract defines.
+
+`shadow` mode turns the gate on without breaking anything: it reports the same
+reasons and lets the action through, recording what would have been refused.
+It does not refuse.
+
+What the receiver recomputes, from `draft-singh-psi-agent-03`:
+
+- The mandate, proposal, decision and envelope each recompute to the identifier
+  they carry, and each signature verifies under the key it names. An algorithm
+  this server does not implement is reported, never guessed at.
+- Every statement carries the run identifier of the envelope. The proposal
+  names the mandate, and the decision names the proposal.
+- Amounts are decimal strings compared exactly — never as floating point — and
+  the asset is compared as an exact, case-sensitive string.
+- The mandate's window, action count and spend limit hold.
+- A proposal already accepted once is a replay and is refused.
+- The acting key is neither the decision key nor the mandate key.
+
+Settlement statuses stay distinct. `authorised` records that a limit was
+reserved; it does not record that money moved, and nothing here reports it as
+money moved.
+
+## The sender: seal first, act second, bind the settlement
+
+`createMandatedSender` wraps an action in the mandate that permitted it:
+
+```js
+import { createNotarySealer } from "apex-psi-mcp/gate";
+import { createMandatedSender } from "apex-psi-mcp/sender";
+
+const sender = createMandatedSender({
+  mandate,
+  proposal,
+  decision,
+  sealer: createNotarySealer(),
+  actorKid: "agent-key",
+});
+
+const { value, receipt, actionRecord, chainRoot } = await sender.execute(
+  "transfer",
+  { amount: "10.00", to: "acct-42" },
+  () => payments.transfer({ amount: "10.00", to: "acct-42" }),
+);
+```
+
+The sender refuses arguments the proposal never described, a decision that did
+not say `allow`, and a tool outside the mandate's scope. The seal happens
+before the action, so a failed seal leaves the action uncalled. A retry of the
+same proposal runs the action once. `bindSettlement` refuses a settlement whose
+decision does not match, whose currency the mandate does not permit, or whose
+amount exceeds the mandate's limit.
+
+## Prove the gate in two commands
+
+```
+npm run check:agent     # the built receiver refuses every case it must refuse
+npm run check:parity    # Node and Python sign the same bytes
+```
+
+`conformance/agent-03.json` holds the frozen contract: the profile, the signed
+bytes rule, the decimal rule, and the refusal cases the suite proves.
+
 ## Configuration
 
 Environment variables (both optional):

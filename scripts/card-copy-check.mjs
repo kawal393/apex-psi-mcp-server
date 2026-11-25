@@ -21,7 +21,16 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 const self = fileURLToPath(import.meta.url);
 
-const DEFAULT_FILES = ["README.md", "server.json", "package.json", "src/index.ts", "src/gate.ts"];
+const DEFAULT_FILES = [
+  "README.md",
+  "server.json",
+  "package.json",
+  "src/index.ts",
+  "src/gate.ts",
+  "src/agent.ts",
+  "src/receiver.ts",
+  "src/sender.ts",
+];
 
 // Each of these has been public at some point and is no longer true. The pattern is what we said,
 // the note is why it was cut, and the sample is a phrase the guard must refuse to accept.

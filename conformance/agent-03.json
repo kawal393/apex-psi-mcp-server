@@ -1,0 +1,31 @@
+{
+  "profile": "PSI-ACT/1",
+  "source": "draft-singh-psi-agent-03",
+  "run_identifier": "lowercase hex, at least 128 bits of unpredictability",
+  "digest_reference": "sha256:<64 lowercase hex>",
+  "signed_bytes": "RFC8785 canonical JSON minus sig and own identifier; envelope also minus anchor",
+  "amount": "decimal string; exact case-sensitive asset comparison",
+  "settlement_statuses_are_distinct": true,
+  "cases": [
+    { "name": "valid_allow", "expected": "allow" },
+    { "name": "missing_mandate", "expected": "missing_authority" },
+    { "name": "expired_mandate", "expected": "outside_window" },
+    { "name": "over_spend", "expected": "over_spend" },
+    { "name": "over_actions", "expected": "over_actions" },
+    { "name": "replay", "expected": "replay" },
+    { "name": "bad_signature", "expected": "signature_invalid" },
+    { "name": "wrong_run", "expected": "run_mismatch" },
+    { "name": "wrong_proposal_mandate", "expected": "proposal_mid_mismatch" },
+    { "name": "wrong_decision_proposal", "expected": "decision_pid_mismatch" },
+    { "name": "wrong_settlement_decision", "expected": "settlement_did_mismatch" },
+    { "name": "currency_mismatch", "expected": "currency_not_permitted" },
+    { "name": "denied_but_executed", "expected": "denied_but_executed" },
+    { "name": "decision_key_is_action_key", "expected": "decision_key_is_action_key" },
+    { "name": "mandate_key_is_decision_key", "expected": "mandate_key_is_decision_key" },
+    { "name": "mandate_key_is_action_key", "expected": "mandate_key_is_action_key" },
+    { "name": "args_mismatch", "expected": "args_mismatch" },
+    { "name": "unknown_algorithm", "expected": "algorithm_unavailable" },
+    { "name": "unknown_key", "expected": "key_unresolved" },
+    { "name": "shadow_observes_but_allows", "expected": "shadow" }
+  ]
+}
