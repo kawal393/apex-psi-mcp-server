@@ -284,6 +284,57 @@ async function expectRefusal(name, req, reason, options = {}) {
   else fail("refuses a replayed proposal", `first=${first.allowed} second=${second.reason}`);
 }
 
+// 6b. the replay key is the proposal id and nothing else.
+// A store that prefixes the key with a session or a scope lets the same signed
+// proposal through a second time under a different prefix. The key space is the
+// proposal id, so the assertion below is proved against a prefixed key first:
+// a check that cannot fail is not a check.
+{
+  const isProposalId = (key, pid) => key === pid;
+  const pkg = build();
+  const prefixed = `conformance:session-a:${pkg.proposal.pid}`;
+  if (isProposalId(prefixed, pkg.proposal.pid)) {
+    fail("the replay key is the proposal id", "the comparison accepts a scoped key");
+  } else {
+    const keys = [];
+    const spent = new Set();
+    const store = {
+      consume(key) {
+        keys.push(key);
+        if (spent.has(key)) return false;
+        spent.add(key);
+        return true;
+      },
+    };
+    const gate = createReceiverGate({
+      resolveKey,
+      mode: "enforce",
+      now: () => new Date("2026-06-01T12:00:00Z"),
+      replayStore: store,
+    });
+    const first = await gate.authorize(request(pkg));
+    const second = await gate.authorize(request(pkg));
+    const other = build({ run: "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff" });
+    const third = await gate.authorize(request(other));
+    if (
+      keys.length === 3 &&
+      isProposalId(keys[0], pkg.proposal.pid) &&
+      isProposalId(keys[1], pkg.proposal.pid) &&
+      first.allowed &&
+      !second.allowed &&
+      second.reason === "replay" &&
+      third.allowed
+    ) {
+      pass("the replay key is the proposal id", `${keys[0].slice(0, 18)}… spent once`);
+    } else {
+      fail(
+        "the replay key is the proposal id",
+        `keys=${JSON.stringify(keys)} first=${first.allowed} second=${second.reason} third=${third.allowed}`,
+      );
+    }
+  }
+}
+
 // 7. bad signature.
 {
   const pkg = build();

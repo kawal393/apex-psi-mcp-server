@@ -223,7 +223,7 @@ Rules for the bundle:
 | 1 | Post a checkout request with no mandate | `403` and `reason: missing_authority`; no charge, no order row |
 | 2 | Post a request whose mandate expired | `reason: outside_window`; nothing charged |
 | 3 | Post an amount above the mandate limit | `reason: over_spend`; nothing charged |
-| 4 | Post the same valid request twice | first succeeds, second is `reason: replay` |
+| 4 | Post the same valid request twice, once with the same session id and once with a different one | first succeeds, both later ones are `reason: replay` |
 | 5 | Change one character of a signature | `reason: signature_invalid` |
 | 6 | Post a decision signed by the acting key | `reason: decision_key_is_action_key` |
 | 7 | Read the Stripe dashboard after 1–6 | no charge and no order row from any refused request |
@@ -240,3 +240,19 @@ Rules for the bundle:
   happen without it.
 - Do not add a "trust us" badge. The receipt and the refusal code are the
   proof, and they are checkable by a stranger.
+
+## 9. The gate is not yet in the path of anything that spends money
+
+Measured 25 November 2026: ten functions that move money or commit an action
+(`create-checkout`, `stripe-webhook`, `sync-subscription`, `create-api-key`,
+`api-keys`, `authorize`, `commit-action`, `challenge-action`, `prove-action`,
+`notarize`) carry **zero** references to the gate. It answers; nothing calls
+it. Two more defects came out of the same measurement: a replayed proposal is
+accepted again under a new session id, and the `gate_replay` table it writes
+to is not in the repository.
+
+The fix, the function source, the migration and the acceptance checks are in
+**[AGENT-PAYMENT-GATE.md](AGENT-PAYMENT-GATE.md)**. Read that before touching
+the checkout path. The one rule it turns on: the human door stays as it is,
+and the agent door is a new function that asks the gate first.
+

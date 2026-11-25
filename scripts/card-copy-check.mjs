@@ -31,6 +31,7 @@ const DEFAULT_FILES = [
   "src/receiver.ts",
   "src/sender.ts",
   "docs/LOVABLE-BRIEF.md",
+  "docs/AGENT-PAYMENT-GATE.md",
   "conformance/agent-03-example.json",
 ];
 
