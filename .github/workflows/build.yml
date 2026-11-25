@@ -11,6 +11,8 @@ on:
     paths:
       - "src/**"
       - "scripts/**"
+      - "conformance/**"
+      - "docs/**"
       - "package.json"
       - "server.json"
   workflow_dispatch:
@@ -55,6 +57,10 @@ jobs:
       # malformed, expired, over-limit, replayed and mis-signed request. Offline, no network.
       - name: The receiver gate must refuse every action it is supposed to refuse
         run: node scripts/agent-gate-check.mjs
+      # The signed example is what a stranger is handed. It is only worth handing over if it
+      # still says what the gate says, so this re-runs the gate over every case in the file.
+      - name: The signed example must still match the gate
+        run: node scripts/agent-example-check.mjs
       # On 16 Nov the published 1.2.0 still announced itself as 1.1.2, because the version was
       # a literal in the source and the literal was not bumped. This asks the built server over
       # stdio, the way a client does, and compares the answer with the package it ships.

@@ -197,6 +197,14 @@ npm run check:parity    # Node and Python sign the same bytes
 `conformance/agent-03.json` holds the frozen contract: the profile, the signed
 bytes rule, the decimal rule, and the refusal cases the suite proves.
 
+`conformance/agent-03-example.json` holds one signed run you can verify
+yourself: the statements, the public keyring, one request that must be
+permitted, and seventeen requests that must each be refused for a stated reason.
+Those reasons were measured against the built gate, and
+`npm run check:example` fails if the gate ever answers differently. The keys in
+that file are test keys, made for the file and discarded when it was written;
+they sign nothing outside the file.
+
 ## Configuration
 
 Environment variables (both optional):

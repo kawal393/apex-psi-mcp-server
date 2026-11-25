@@ -30,6 +30,8 @@ const DEFAULT_FILES = [
   "src/agent.ts",
   "src/receiver.ts",
   "src/sender.ts",
+  "docs/LOVABLE-BRIEF.md",
+  "conformance/agent-03-example.json",
 ];
 
 // Each of these has been public at some point and is no longer true. The pattern is what we said,

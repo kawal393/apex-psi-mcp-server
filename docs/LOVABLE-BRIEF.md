@@ -3,6 +3,44 @@
 Paste this whole file to the Lovable agent working on the APEX PSI project
 (`kawal393/APEX-PSI`, live at https://www.ai-governance-standard.com).
 
+## 0. The three things you asked for
+
+**The frozen gate rules** — `conformance/agent-03.json` in
+https://github.com/kawal393/apex-psi-mcp-server. Attach that file. It is the
+contract: the statement shapes, the signed-bytes rule, the decimal rule, and the
+20 refusal cases the receiver must refuse.
+
+**The signed test example** — `conformance/agent-03-example.json` in the same
+repository. Attach that file too. It carries:
+
+- one complete signed run (mandate, proposal, decision, envelope) with the
+  public keyring, so a receiver can verify it without any private key;
+- the exact request body for each of 17 refusals, each with the reason the gate
+  must answer — the reasons were measured against the built gate, not written
+  by hand;
+- one settled run (an action record on the chain and a settlement bound to the
+  decision) for the breach-pack path.
+
+Keys in that file are test keys, made for the file and discarded when it was
+written. They sign nothing outside the file.
+
+**The published gate address** — measured on 25 Nov 2026, and it does not exist
+yet:
+
+| Address | Live today? | What it is |
+|---|---|---|
+| `https://www.ai-governance-standard.com/machine-checkout` | **No** | the gate's address. The live site serves no such route today; the 200 a browser gets is the single-page app shell, not a gate |
+| `https://www.ai-governance-standard.com/breach-pack` | **No** | the refusal bundle. Same: not on the live site |
+| `https://www.ai-governance-standard.com/verify?hash=<64 hex>` | Yes | the verification door — a receipt is checked here by anyone |
+| `https://www.ai-governance-standard.com/mcp` | Yes | the MCP endpoint (npm `apex-psi-mcp`, 1.2.2) |
+
+So: the gate is not published anywhere yet, and you are the one who publishes
+it. Build it as a Supabase edge function on the APEX PSI project, and the
+address becomes `/machine-checkout` on the same host the site already uses.
+
+Do not print a gate address anywhere on the site until the function is deployed
+and answering. A dead address in public copy is worse than no address.
+
 ## 1. What already exists, and where it lives
 
 The portable core is the npm package `apex-psi-mcp`
@@ -178,6 +216,8 @@ Rules for the bundle:
 
 | # | Do this | You must see |
 |---|---|---|
+| 0 | POST the `allow.request` object from `conformance/agent-03-example.json` | `200` and a permit naming the decision id |
+| 0b | POST the `request` object of any case in `refusals[]` from the same file | `403` and exactly the `expected_reason` beside it |
 | 1 | Post a checkout request with no mandate | `403` and `reason: missing_authority`; no charge, no order row |
 | 2 | Post a request whose mandate expired | `reason: outside_window`; nothing charged |
 | 3 | Post an amount above the mandate limit | `reason: over_spend`; nothing charged |

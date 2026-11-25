@@ -25,7 +25,7 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
-    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/agent-gate-check.mjs && node scripts/server-version-check.mjs",
+    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/agent-gate-check.mjs && node scripts/agent-example-check.mjs && node scripts/server-version-check.mjs",
     "check:registry-card": "node scripts/registry-card-check.mjs",
     "check:card-copy": "node scripts/card-copy-check.mjs",
     "check:version": "node scripts/server-version-check.mjs",
@@ -33,6 +33,8 @@
     "check:card-copy:selftest": "node scripts/card-copy-check.mjs --self-test",
     "check:gate": "node scripts/gate-check.mjs",
     "check:agent": "node scripts/agent-gate-check.mjs",
+    "check:example": "node scripts/agent-example-check.mjs",
+    "make:example": "node scripts/make-signed-example.mjs",
     "check:parity": "node scripts/agent-parity-check.mjs"
   },
   "keywords": [

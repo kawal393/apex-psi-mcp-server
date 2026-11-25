@@ -1,0 +1,1531 @@
+{
+  "profile": "PSI-ACT/1",
+  "source": "draft-singh-psi-agent-03",
+  "generated_by": "scripts/make-signed-example.mjs",
+  "generated_at": "2026-11-25T04:02:44.259Z",
+  "note": "A signed test run for the receiver gate. The keys below are test keys, made for this file and discarded when it was written: they sign nothing outside this file. The refusal reasons are measured, not asserted — scripts/agent-example-check.mjs re-runs the gate over every case and fails if the answer changes.",
+  "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+  "keyring": {
+    "mandate-key": "MCowBQYDK2VwAyEA720ln79LfqChylQBT8wMJixEeS9T/dcxkwzjVl073fI=",
+    "proposer-key": "MCowBQYDK2VwAyEAY/stbP87yyORlOy4VOLj5C5V0A0fo/sfSTHsr1PkI+w=",
+    "decision-key": "MCowBQYDK2VwAyEAee0fYp39Xx/7qhnpRTuuNma/lvmQ1hjWGmW1ZXJuG6U=",
+    "actor-key": "MCowBQYDK2VwAyEAMrBkqe1buFZFYYkeMzXGiiiFFM3MFXOmteYb7yjRiGI=",
+    "provider-key": "MCowBQYDK2VwAyEAQ9+U+RAITgHdoP4JEq9S2mmJEInmuL2/g4kJmTsTh7g=",
+    "assembler-key": "MCowBQYDK2VwAyEAdj4mrsCRXFOxjq6ezyMU7xFc0dgw1+pFDCJwau9Rm/c="
+  },
+  "keyring_note": "kid -> Ed25519 public key, base64 SPKI. A receiver builds its keyring from the server environment, never from the browser.",
+  "allow": {
+    "case": "a valid run",
+    "expected": {
+      "allowed": true
+    },
+    "request": {
+      "envelope": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+        "action_root": "absent",
+        "settlement": "absent",
+        "issued": "2026-11-20T00:00:00Z",
+        "alg": "ed25519",
+        "kid": "assembler-key",
+        "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+        "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+      },
+      "mandate": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "principal": "principal-1",
+        "purpose": "settle one transfer",
+        "scope": [
+          "transfer"
+        ],
+        "limits": {
+          "max_actions": "4",
+          "max_spend": "100.00",
+          "currencies": [
+            "AUD"
+          ]
+        },
+        "not_before": "2026-01-01T00:00:00Z",
+        "not_after": "2027-12-31T00:00:00Z",
+        "alg": "ed25519",
+        "kid": "mandate-key",
+        "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+      },
+      "proposal": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "proposer": "planner-1",
+        "intent": "transfer 10.00 AUD",
+        "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+        "alg": "ed25519",
+        "kid": "proposer-key",
+        "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+      },
+      "decision": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "verdict": "allow",
+        "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+        "decided_by": "policy-engine-1",
+        "reason": "within limits",
+        "alg": "ed25519",
+        "kid": "decision-key",
+        "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+        "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+      },
+      "actions": [],
+      "tool": "transfer",
+      "args": {
+        "amount": "10.00",
+        "to": "acct-42"
+      },
+      "actorKid": "actor-key"
+    }
+  },
+  "refusals": [
+    {
+      "case": "no mandate",
+      "why": "the request carries no authority",
+      "expected_reason": "missing_authority",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+          "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "expired mandate",
+      "why": "the mandate's not_after is in the past",
+      "expected_reason": "outside_window",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:056a89bda750d721f21aa0dc216a64efb052a8eadfe2c1214800207b03980b8b",
+          "proposal": "sha256:16f7444d01b43f2ea77fa9c9764b0862c02c6990af3040cc12fc01ff11068aef",
+          "decision": "sha256:b98089c5093863a6bf776c1f923557afbbcae94721afa646b3a35bd5ba6c13fa",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:634c63896e8a8238522ac923f321c14abee0c2cbe7efae8b86115bf984f40e42",
+          "sig": "YPt9Qga0AQoBybgNECrKO0E5s6ci2ZSq7WHiDcjjwbN-xkjVnHsJo8rGy2Fyi7eHb_CCiuiGlobiut02d2cnDw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2026-06-01T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:056a89bda750d721f21aa0dc216a64efb052a8eadfe2c1214800207b03980b8b",
+          "sig": "IKsMPJkdNfZJCP9kl9hENCm1P_zNshZs9YwhCm0wkCTO8biDjRAhMvP-htpZwbE_QhP50sZz2wAc0aWTlLm2AQ"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:056a89bda750d721f21aa0dc216a64efb052a8eadfe2c1214800207b03980b8b",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:16f7444d01b43f2ea77fa9c9764b0862c02c6990af3040cc12fc01ff11068aef",
+          "sig": "kYJx3k95f3AJE3CAgrmkGXYmQDLopiqU-Wcs87cEDN4z_zVbVa0MHV5lGLhPSgNPUff764m-a72lp1P7bMaGDA"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:16f7444d01b43f2ea77fa9c9764b0862c02c6990af3040cc12fc01ff11068aef",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:b98089c5093863a6bf776c1f923557afbbcae94721afa646b3a35bd5ba6c13fa",
+          "sig": "ZnxhAV4HPrsl6MKczrKcFpX8bDAvIUVXGeA4NRZrZI8A4LCHaLTeLQ96X228QQgXVObad1zMKiH-Yr1qbux0AA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "denied decision",
+      "why": "the decision verdict is deny",
+      "expected_reason": "decision_not_allow",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:d26dfa37c2d8bced2548c5751ba9c9df545ca405ab30d8690aaf2c390a967e8e",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:3485961c99928d959acae08e55b07f1b217864ad13952b6e99b382304c366990",
+          "sig": "GBG7WDUtMebkAItH4Y4r1uUvpzgkuGffx7GPSL0VgdG8P737URlq9UMxONlx1Nz6j5A6rbktQXTYq8kGc_d3Dw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "deny",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:d26dfa37c2d8bced2548c5751ba9c9df545ca405ab30d8690aaf2c390a967e8e",
+          "sig": "2AWWht3UdAPGntoLY_8YT3Tvr1giqIkOfcZWoF8jHJlHiO15FclvejbzKlDcJEIX0hZ-L_0b-AERR56uL-IcAw"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "arguments the proposal never described",
+      "why": "the request's args do not match the proposal's args_digest",
+      "expected_reason": "args_mismatch",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+          "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "999.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "tool outside the mandate scope",
+      "why": "the mandate permits transfer, the request asks for withdraw",
+      "expected_reason": "scope_not_permitted",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+          "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "actions": [],
+        "tool": "withdraw",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "the decision key is the acting key",
+      "why": "the same key signed the decision and would sign the action",
+      "expected_reason": "decision_key_is_action_key",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:2b741fa471815f6ae8ea62aa4c1b61e2dffb22380c608db7aa679e5fd97104a5",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:16699f4f0e0fa4d5dd04508270ea5ad575f6c09133aec15df91bdcc87a897480",
+          "sig": "f7gm0UCedN-R9aG6M19RgUb3nzMboLJxLeaS6hBuUb9V5lCeQ6Q8B_VsDT3T4wsPS9nD8DLDpzjm1-A-QP2IDw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "actor-key",
+          "did": "sha256:2b741fa471815f6ae8ea62aa4c1b61e2dffb22380c608db7aa679e5fd97104a5",
+          "sig": "rI814OWL8ew8kjEKHyAVRr6y0Uk2MbkUOQ-UnFijQHp3OyMm6ppvIqPlPUUf-DPcYRCLbJgXOlXQNuVaOgAuBA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "the mandate key signed the decision",
+      "why": "the key that granted the authority also granted itself permission",
+      "expected_reason": "mandate_key_is_decision_key",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:e36c6e7c0b534d6a8cf3ec9f91c18ae923741e1b0b2764cb611b4a8fe2215a06",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:8ab671eb4844b229c00d961258ff0bfd1e20d9ae2f9a5dc99232428f97de3553",
+          "sig": "xVm6Che50OqmfncMec9tLlpFmsBGo_9K8MVcE-kwh_EOmZncYobd8YgVJ9vBS26e5YuLo3l3tmNn0yUkIuNJBw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "did": "sha256:e36c6e7c0b534d6a8cf3ec9f91c18ae923741e1b0b2764cb611b4a8fe2215a06",
+          "sig": "Sc7JUfcwp0CwLa904-uQe2U3yyTcgxYqHOFHs5zL7TqXRdO4alWPtOJ1C4RSYmNA7bypk8lRLR00bMYv9zM5Dg"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "proposal bound to another mandate",
+      "why": "the proposal's mid does not match the mandate it travels with",
+      "expected_reason": "proposal_mid_mismatch",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:b09035423bc536b2c4e22b863c588e2ada725e584f2231ef9698f2bc75371eee",
+          "decision": "sha256:365fb3b2730afd70f9bddb4f3d3602742762686075ed28652eabf74e32bfe6c6",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:95c68e8028b34c8605a136c5addf7259449849ac7176ec876e704a601658e96a",
+          "sig": "Q8GxYCgp5tHHznmJZrpoxbGIHot8Ppmfw2etl0K2Ghs0v5x11GoVkBzScTbTOafnmpb1wO-hrLogbvL3pbp3Dw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:a2d2e3cc2cd589e7e3c36d27e016192d77e7076f10f27e51fa7c16a47f957950",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:b09035423bc536b2c4e22b863c588e2ada725e584f2231ef9698f2bc75371eee",
+          "sig": "rKgKG_LQ21sEFK-zxrQ4ZZ-TMZv-AsaX2yhZ8N1H_MhGITst7vy59Hc1otX1yNQptsho_CcdrFR5ylj_4O6VBw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:b09035423bc536b2c4e22b863c588e2ada725e584f2231ef9698f2bc75371eee",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:365fb3b2730afd70f9bddb4f3d3602742762686075ed28652eabf74e32bfe6c6",
+          "sig": "o3GKozJ4s_pMoeBb9_AwvxBmsF1c4LJ0zPFODnQVnxtg-tU3p-tfQRlA24XBauWTsmDqu1EXZquqnmv7nXY1Bg"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "decision bound to another proposal",
+      "why": "the decision's pid does not match the proposal it travels with",
+      "expected_reason": "decision_pid_mismatch",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:365fb3b2730afd70f9bddb4f3d3602742762686075ed28652eabf74e32bfe6c6",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c31403bcd2ca3f565bdaa85d59b2d6612b169f2208f4349db68699257d6f221",
+          "sig": "GPu09Ihd3iAX0p1pTRXlrYHErAH-ItDIkSd6X27XD7GzlXZD9MjcHAqlO3mPP7dVJZcyDhSHGy25ji1u-_sQCQ"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:b09035423bc536b2c4e22b863c588e2ada725e584f2231ef9698f2bc75371eee",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:365fb3b2730afd70f9bddb4f3d3602742762686075ed28652eabf74e32bfe6c6",
+          "sig": "o3GKozJ4s_pMoeBb9_AwvxBmsF1c4LJ0zPFODnQVnxtg-tU3p-tfQRlA24XBauWTsmDqu1EXZquqnmv7nXY1Bg"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "forged signature",
+      "why": "the last characters of the decision signature were changed",
+      "expected_reason": "signature_invalid",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+          "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCAAAA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "unknown key",
+      "why": "the decision names a kid that is not in the keyring",
+      "expected_reason": "key_unresolved",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:cb2c30655ac7d989d9620b877153566f719c05ff8309ba9ce7c22362f5c81404",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:eadbbe321578f99e82d2397e597ad1c521d391b7dd2a00df07d56d214ffdb542",
+          "sig": "LShIQgJfP_IwE7HlX9k5iXmeRwyQwdvB-qVVpNd5sLz_lKBzOnt90oxI-VJdY2CCACbr5fJWUwWayW4VYI5HBw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "unknown-key",
+          "did": "sha256:cb2c30655ac7d989d9620b877153566f719c05ff8309ba9ce7c22362f5c81404",
+          "sig": "5OAxdRc5ZK_uktl_5RjpuuBWO6qxUtaRrCBEn2hgJqX99_90sU7oZbezQ3rCCq_jPhi2KI6h2fFsUA_psp8BCQ"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "unknown algorithm",
+      "why": "the decision names an algorithm this receiver does not check",
+      "expected_reason": "algorithm_unavailable",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:2ca2d0beaf9a6745c45c78376cf5f652f4059c4464f18b59fafb6c75c59b7bb4",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:c97b6d4818a787ee8ff93016ef258836e4efea9e2e51f43146c86caee2ed617b",
+          "sig": "cStKh9a_0QzNqr-Qm2kOPPv1DVqkqU5Nq3mCGTumk9-Jq7smpsuNiKLQHoydxjtfxqHScXgMXc7uJxnTeRIXDw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed448",
+          "kid": "decision-key",
+          "did": "sha256:2ca2d0beaf9a6745c45c78376cf5f652f4059c4464f18b59fafb6c75c59b7bb4",
+          "sig": "7GF1xBYU8d3r1QTZ_GqNh8MMXauvE8tm2UdI0KCX7EIfXqnsQCchK6vRqAfP8Whj0duU8zMWfoR-LpEN9es-Ag"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "amount above the mandate limit",
+      "why": "the settlement is 250.00 and the mandate caps spending at 100.00",
+      "expected_reason": "over_spend",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "sha256:955a759ecf11a46bc6180804bde270398e0d28ebe2b74829f19d8780531a9bf6",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:9742efe8f816e9b47fd77578a5ea4a7640689f88ba77a5c2c84c77a04a8136fe",
+          "sig": "wXNW8eZDi-ZAuIZnBVY06IwKi_dHMwqxUGgGRW9bE2KtZ7B69Q50C4mtIZHlssA3ShxqKnoGvVS_TNQoByzPBA"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "settlement": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "payer": "payer-1",
+          "payee": "payee-1",
+          "amount": "250.00",
+          "asset": "AUD",
+          "status": "settled",
+          "ref": "provider-ref-1",
+          "scheme": "test-scheme",
+          "observed_at": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "provider-key",
+          "sid": "sha256:955a759ecf11a46bc6180804bde270398e0d28ebe2b74829f19d8780531a9bf6",
+          "sig": "RX1yraJ2H5Z-o-B-FR-3OUay65LG8G55Zgo5xqIcOi-t48AfahVOL7ABGZyaa88VOY7l0HGozWJghWNH-IR2Cg"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "currency the mandate does not permit",
+      "why": "the settlement is in USD and the mandate permits AUD only",
+      "expected_reason": "currency_not_permitted",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "sha256:62aa2e8fe8583fbf0ae7d66d01c4a5c92f9147aa7b03346ae59855f792c4af6e",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:b368c35c448a87ae6e21f40e28d708b54927c86cdb1b8a05b22dd8f1750785e8",
+          "sig": "RECfxw5QItZ5NNYchf109ruIr83QSeK2RU021JMILVFSqb9-piHyMiUP0Lv6skDNjYQAmQDIErwVmAmqrV_WCw"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "settlement": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "payer": "payer-1",
+          "payee": "payee-1",
+          "amount": "10.00",
+          "asset": "USD",
+          "status": "settled",
+          "ref": "provider-ref-1",
+          "scheme": "test-scheme",
+          "observed_at": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "provider-key",
+          "sid": "sha256:62aa2e8fe8583fbf0ae7d66d01c4a5c92f9147aa7b03346ae59855f792c4af6e",
+          "sig": "r2b3uUS4O5_XkRdZBhMuRPLx6LBEz1SCwrC8S2ZGCyrr_OeoXWnFi67_Q9fSrJeD6pSJEYsa_8uzpCyd3vxqDA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "denied but executed",
+      "why": "the decision said deny and the envelope still names an action",
+      "expected_reason": "denied_but_executed",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:d26dfa37c2d8bced2548c5751ba9c9df545ca405ab30d8690aaf2c390a967e8e",
+          "action_root": "sha256:94d80db320fd66602498ecc9b1a069ec26cae3c39393671224d126d6f1830426",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:94e84929816d62080e37fca879d6f7b1b9c6c9ee73a6e967ae077de1ce5de02a",
+          "sig": "wJy-9v-ry4gyHA-tm-ZgMa2YeOSx_loBAX-sgZ6IVXBpFeQ0Al-Ijh3TpDkcCrr3c8do2OppHfxnh3svxBtiDQ"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "deny",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:d26dfa37c2d8bced2548c5751ba9c9df545ca405ab30d8690aaf2c390a967e8e",
+          "sig": "2AWWht3UdAPGntoLY_8YT3Tvr1giqIkOfcZWoF8jHJlHiO15FclvejbzKlDcJEIX0hZ-L_0b-AERR56uL-IcAw"
+        },
+        "actions": [
+          {
+            "event": "action",
+            "name": "transfer",
+            "args": {
+              "amount": "10.00",
+              "to": "acct-42"
+            },
+            "result": "ok",
+            "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+            "did": "sha256:d26dfa37c2d8bced2548c5751ba9c9df545ca405ab30d8690aaf2c390a967e8e",
+            "kid": "actor-key",
+            "at": "2026-11-20T00:00:00Z"
+          }
+        ],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "action count used up",
+      "why": "the mandate allows one action and one is already on the chain",
+      "expected_reason": "over_actions",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:bb76417d5337ea1f1a9f81b0b5d3c1d81e9365abd5759e37afba57c625bf6fd8",
+          "proposal": "sha256:c0a585a8b716d3e158ebefac246b4026e126365df035ebb2698927e5a27d6faf",
+          "decision": "sha256:590a91b35e8eea8e8deea67d976f48b6a6b0b720e0ae9d820043e2e5d565f21d",
+          "action_root": "sha256:9525a20b143f51b3e4247c2a3f64961f9aabee65c561feadf792640873b017c4",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:fbd84ce77e7542037da2192984e742543da77d74e07389a3b76686bb551b6490",
+          "sig": "UlBXxYGbPtSLJ07Yace-e1ZYiSINs1S-Umojv6ywhWWHxaJDWBm3U3O0AtKmRXs3MRqzUwj1VXLTTROThOsqBg"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "1",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:bb76417d5337ea1f1a9f81b0b5d3c1d81e9365abd5759e37afba57c625bf6fd8",
+          "sig": "muEpAEGZCeTsvB0E_JPZGg21Td9OkW50W3saluTQsabSR3nxlydkiqfcZQlGOVB1HLcCz9Dvv-H8CuZOCBjADg"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:bb76417d5337ea1f1a9f81b0b5d3c1d81e9365abd5759e37afba57c625bf6fd8",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:c0a585a8b716d3e158ebefac246b4026e126365df035ebb2698927e5a27d6faf",
+          "sig": "ywNhVurQGhjDzSfrD7uWV5QVIAKysge3LE-RuI7U-KEwkMP8ndhr3pwFe9fbJ0K0lrQ3LqBNcts3rpuCTWI1BA"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:c0a585a8b716d3e158ebefac246b4026e126365df035ebb2698927e5a27d6faf",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:590a91b35e8eea8e8deea67d976f48b6a6b0b720e0ae9d820043e2e5d565f21d",
+          "sig": "LiZ-rrXjldHq-vBN_AyiY4HfEdqsOob6SCzz-bEuMqRmVUpC7emFTXc0d59CfdC8dd0HLfp53_Z_9DaWvRuoBw"
+        },
+        "actions": [
+          {
+            "event": "action",
+            "name": "transfer",
+            "args": {
+              "amount": "10.00",
+              "to": "acct-42"
+            },
+            "result": "ok",
+            "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+            "did": "sha256:590a91b35e8eea8e8deea67d976f48b6a6b0b720e0ae9d820043e2e5d565f21d",
+            "kid": "actor-key",
+            "at": "2026-11-20T00:00:00Z"
+          }
+        ],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      }
+    },
+    {
+      "case": "replayed proposal",
+      "why": "the same proposal was accepted once already",
+      "expected_reason": "replay",
+      "measured": true,
+      "request": {
+        "envelope": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "action_root": "absent",
+          "settlement": "absent",
+          "issued": "2026-11-20T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "assembler-key",
+          "eid": "sha256:5c8c9f0efef25af762707b2ef119fbed62abcef7c8327e043fa51aeb2865fa71",
+          "sig": "8YJlMSVTpFeCoOWsEeuy1ZzuXngpU80J2n2_wA4H0Eq8QAPB_MsD-4PJqLiFkbC4l1O2fkKbTQS53KoX477_Ag"
+        },
+        "mandate": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "principal": "principal-1",
+          "purpose": "settle one transfer",
+          "scope": [
+            "transfer"
+          ],
+          "limits": {
+            "max_actions": "4",
+            "max_spend": "100.00",
+            "currencies": [
+              "AUD"
+            ]
+          },
+          "not_before": "2026-01-01T00:00:00Z",
+          "not_after": "2027-12-31T00:00:00Z",
+          "alg": "ed25519",
+          "kid": "mandate-key",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+        },
+        "proposal": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+          "proposer": "planner-1",
+          "intent": "transfer 10.00 AUD",
+          "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+          "alg": "ed25519",
+          "kid": "proposer-key",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+        },
+        "decision": {
+          "ver": "1",
+          "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+          "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+          "verdict": "allow",
+          "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+          "decided_by": "policy-engine-1",
+          "reason": "within limits",
+          "alg": "ed25519",
+          "kid": "decision-key",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+        },
+        "actions": [],
+        "tool": "transfer",
+        "args": {
+          "amount": "10.00",
+          "to": "acct-42"
+        },
+        "actorKid": "actor-key"
+      },
+      "note": "first post allowed=true, second post allowed=false"
+    }
+  ],
+  "settled_run": {
+    "note": "The same contract after the action ran: one action record on the chain and a settlement bound to the decision. This is what the breach pack and the settlement path verify.",
+    "package": {
+      "envelope": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "mandate": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "proposal": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "decision": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+        "action_root": "sha256:2ff612ea4036c2c11e04db1926bc009a080392642158b01961271fc1745bf011",
+        "settlement": "sha256:0c8d8b7a35b13c3fdc71fd4b13361175bbc6d76021ddaef48dace68b25419939",
+        "issued": "2026-11-20T00:00:00Z",
+        "alg": "ed25519",
+        "kid": "assembler-key",
+        "eid": "sha256:dad900028613fd0839523938c452ab43cb4507dab79f6b8c118b9ac602ee94ba",
+        "sig": "GfeayRAfsvzvcgCcUBCzoRNK-CKThYQMf8_u0wJc6QXALVF3drJU1gGXNd7InIg7cKYWfjGKwUUIg1XKnIZgCA"
+      },
+      "mandate": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "principal": "principal-1",
+        "purpose": "settle one transfer",
+        "scope": [
+          "transfer"
+        ],
+        "limits": {
+          "max_actions": "4",
+          "max_spend": "100.00",
+          "currencies": [
+            "AUD"
+          ]
+        },
+        "not_before": "2026-01-01T00:00:00Z",
+        "not_after": "2027-12-31T00:00:00Z",
+        "alg": "ed25519",
+        "kid": "mandate-key",
+        "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "sig": "sQdgeaO9_onOaHlEGZN2GLmI3Op2hvOFnpH1LD3qsXlrO08WwX1B5gT918PPOXsEI4Ayn8YORB878a2nEiGLAA"
+      },
+      "proposal": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "mid": "sha256:d9fac42e27bdc48ebece6c41411e9ccee860dd31441fb3369f39d27ef2e1b05d",
+        "proposer": "planner-1",
+        "intent": "transfer 10.00 AUD",
+        "args_digest": "sha256:d5c3a5ad235e513300fee22df22712c2c83bda331152bda3b925021f92e2da17",
+        "alg": "ed25519",
+        "kid": "proposer-key",
+        "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "sig": "ShpImbuwQExTrnKtnaiwaRl9vRvM_zZaxn3tSB_BjGhW_ZVZOTw5hg9C4VXoSMWT0B0dwwzqLmKRxTeRz9fYCw"
+      },
+      "decision": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "pid": "sha256:ebc24e3cb5bac5ab0996e872de14ac6d72280d74f5cce58aa7178d59168b9328",
+        "verdict": "allow",
+        "policy_digest": "sha256:2f10e34ae24fc959d4dddda4557b779892f39c971520791b57ed005e4ae69611",
+        "decided_by": "policy-engine-1",
+        "reason": "within limits",
+        "alg": "ed25519",
+        "kid": "decision-key",
+        "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+        "sig": "WSw8fdlMHMBjo5hbSEyENmKLBVgDs7Ed1Brcb4MLfqsuo2qUIag2pSEXvEWrcqR4abbCoDUUZAmHRN-CTCd_AA"
+      },
+      "settlement": {
+        "ver": "1",
+        "run": "09a6446a1ae005377ef7bbda9ee01516676e4c1a49e06f082e0f072e8e26dbf7",
+        "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+        "payer": "payer-1",
+        "payee": "payee-1",
+        "amount": "10.00",
+        "asset": "AUD",
+        "status": "settled",
+        "ref": "provider-ref-1",
+        "scheme": "test-scheme",
+        "observed_at": "2026-11-20T00:00:00Z",
+        "alg": "ed25519",
+        "kid": "provider-key",
+        "sid": "sha256:0c8d8b7a35b13c3fdc71fd4b13361175bbc6d76021ddaef48dace68b25419939",
+        "sig": "ZieIHRhD_DQ_gdbjz5Le30eTD1QRE4KDlOVoi9E3YMKomNr2uJA8sZYqQvT547k3ush-sJEJDYkNBpd5R6dXBQ"
+      },
+      "actions": [
+        {
+          "event": "action",
+          "name": "transfer",
+          "args": {
+            "amount": "10.00",
+            "to": "acct-42"
+          },
+          "result": "ok",
+          "prev": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+          "did": "sha256:8cd9d017cfe7bdd2732886ff8e76a3cfbdad78de1edfdb5bdb6ef9ec3266a81d",
+          "kid": "actor-key",
+          "at": "2026-11-20T00:00:00Z"
+        }
+      ]
+    }
+  },
+  "how_to_check": [
+    "npm run build && npm run check:example — re-runs the gate over every case in this file and fails if an answer changes",
+    "POST the `request` object of any refusal case to the receiver: the answer must be refused with the stated reason",
+    "The `allow` case must be permitted; the `settled_run` package must verify clean with the keyring above"
+  ]
+}
