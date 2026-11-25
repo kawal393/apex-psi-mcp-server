@@ -15,17 +15,18 @@ points that did not exist in the published 1.2.2:
 | `apex-psi-mcp/receiver` | the gate that refuses an action nobody permitted |
 | `apex-psi-mcp/sender` | the wrapper that seals before the action and binds the settlement to the decision |
 
-Install the version that carries them:
-
-```
-npm i apex-psi-mcp@<version>
-```
-
-If that version is not on npm yet, install straight from the repository, which
-carries the same code and the same tests:
+The npm registry still serves 1.2.2, which does not carry these three entry
+points. Install straight from the repository, which carries the same code and
+the same tests:
 
 ```
 npm i github:kawal393/apex-psi-mcp-server
+```
+
+When a release carrying them reaches npm, the install becomes:
+
+```
+npm i apex-psi-mcp@<version>
 ```
 
 The frozen contract is `conformance/agent-03.json` in that repository. It
