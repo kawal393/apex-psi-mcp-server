@@ -61,6 +61,17 @@ jobs:
       # still says what the gate says, so this re-runs the gate over every case in the file.
       - name: The signed example must still match the gate
         run: node scripts/agent-example-check.mjs
+      # The money rules of a payment door live in their own module, because the receiver
+      # gate checks a spend limit only against a settlement and a payment request carries
+      # no settlement. Without this the door would charge the tier ceiling whatever the
+      # mandate said. Offline, no network.
+      - name: The payment rules must bind the tool and apply the mandate's limit
+        run: node scripts/payment-check.mjs
+      # The brief other builders paste from carries code. Code in a document rots, so this
+      # pulls the TypeScript out of the brief, puts it beside the real vendored modules
+      # with the Deno imports stubbed, and compiles it with this repository's compiler.
+      - name: The source in the brief must compile and keep the rules
+        run: node scripts/paste-check.mjs
       # On 16 Nov the published 1.2.0 still announced itself as 1.1.2, because the version was
       # a literal in the source and the literal was not bumped. This asks the built server over
       # stdio, the way a client does, and compares the answer with the package it ships.

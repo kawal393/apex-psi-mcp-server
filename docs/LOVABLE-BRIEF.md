@@ -256,3 +256,29 @@ The fix, the function source, the migration and the acceptance checks are in
 the checkout path. The one rule it turns on: the human door stays as it is,
 and the agent door is a new function that asks the gate first.
 
+### 9a. Revision 2 — the agent door needs two more changes
+
+The agent door is deployed and the replay key is now the proposal id alone, so
+the money door spends a proposal once, forever. Two things are still wrong, and
+they are in the source this document gave you, not in your build:
+
+1. **The payment tool is never bound.** The door must refuse any request whose
+   `tool` is not the payment tool, even when the gate permits it. The rules are
+   now shipped as `apex-psi-mcp/payment` — vendor `src/payment.ts` beside
+   `receiver.ts` and call `evaluatePayment`.
+2. **The mandate's spend limit is never applied to the amount.** The gate
+   checks `max_spend` and `currencies` only against a settlement, so a request
+   with no settlement carries no limit. `evaluatePayment` applies the
+   mandate's own limit to the amount about to be charged.
+
+And one change to the conformance door: its replay key must be
+`conformance:${session}:${pid}` and the session must be required. Keyed on the
+proposal id alone, the published example's one valid case is spent for good and
+every later visitor is told `replay`. A test bed may be re-runnable; the money
+door may not.
+
+The signed example now carries a `payment` section — one permitted payment with
+`tier` and `amount_minor`, and seven refusals with the reason each must carry.
+Every reason in it was measured against the built gate.
+
+

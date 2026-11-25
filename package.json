@@ -10,7 +10,8 @@
     "./gate": "./dist/gate.js",
     "./agent": "./dist/agent.js",
     "./receiver": "./dist/receiver.js",
-    "./sender": "./dist/sender.js"
+    "./sender": "./dist/sender.js",
+    "./payment": "./dist/payment.js"
   },
   "files": [
     "dist",
@@ -25,7 +26,7 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "check:roundtrip": "node scripts/roundtrip-check.mjs",
-    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/agent-gate-check.mjs && node scripts/agent-example-check.mjs && node scripts/server-version-check.mjs",
+    "check:all": "npm run build && node scripts/roundtrip-check.mjs && node scripts/anchor-tool-check.mjs && node scripts/card-copy-check.mjs && node scripts/registry-card-check.mjs && node scripts/gate-check.mjs && node scripts/agent-gate-check.mjs && node scripts/agent-example-check.mjs && node scripts/payment-check.mjs && node scripts/paste-check.mjs && node scripts/server-version-check.mjs",
     "check:registry-card": "node scripts/registry-card-check.mjs",
     "check:card-copy": "node scripts/card-copy-check.mjs",
     "check:version": "node scripts/server-version-check.mjs",
@@ -34,7 +35,10 @@
     "check:gate": "node scripts/gate-check.mjs",
     "check:agent": "node scripts/agent-gate-check.mjs",
     "check:example": "node scripts/agent-example-check.mjs",
+    "check:payment": "node scripts/payment-check.mjs",
+    "check:paste": "node scripts/paste-check.mjs",
     "make:example": "node scripts/make-signed-example.mjs",
+    "keyring:secret": "node scripts/keyring-secret.mjs",
     "check:parity": "node scripts/agent-parity-check.mjs"
   },
   "keywords": [

@@ -13,7 +13,7 @@
 // Run:  node scripts/make-signed-example.mjs
 
 import { existsSync, writeFileSync } from "node:fs";
-import { generateKeyPairSync, randomBytes } from "node:crypto";
+import { createHash, generateKeyPairSync, randomBytes } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -31,6 +31,9 @@ const { signStatement, digestRef, GENESIS_REF } = await import(
 );
 const { createReceiverGate } = await import(
   `file://${join(root, "dist", "receiver.js").replace(/\\/g, "/")}`
+);
+const { evaluatePayment } = await import(
+  `file://${join(root, "dist", "payment.js").replace(/\\/g, "/")}`
 );
 
 const RUN = randomBytes(32).toString("hex");
@@ -57,6 +60,15 @@ const resolveKey = (kid) => keyring[kid] ?? null;
 const spki = Object.fromEntries(
   Object.entries(keyring).map(([kid, key]) => [kid, key.export({ type: "spki", format: "der" }).toString("base64")]),
 );
+
+// The fingerprint of the keyring, so an operator can check that the secret they
+// installed is the keyring of the file they published, without printing a key.
+function keyringFingerprint() {
+  const canonical = JSON.stringify(
+    Object.fromEntries(Object.entries(spki).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))),
+  );
+  return createHash("sha256").update(canonical).digest("hex");
+}
 
 function sign(statement, kind, key) {
   return signStatement(statement, kind, key);
@@ -93,7 +105,7 @@ function build(options = {}) {
       run,
       mid: options.proposalMid ?? mandate.mid,
       proposer: "planner-1",
-      intent: "transfer 10.00 AUD",
+      intent: options.intent ?? "transfer 10.00 AUD",
       args_digest: options.argsDigest ?? digestRef(args),
       alg: "ed25519",
       kid: "proposer-key",
@@ -444,6 +456,174 @@ for (const entry of cases) {
   });
 }
 
+// The payment section: one permitted payment, and the refusals a payment door
+// must make. Two of them are the gate's; the rest are the door's own money
+// rules, because a spend limit belongs to the mandate and the gate cannot read
+// a limit out of a request. Both are measured here, against the built code.
+const PAY_TIERS = {
+  pro: { priceId: "price_pro_placeholder", label: "Pro", currency: "USD", maxMinor: 200000 },
+  ultra: { priceId: "price_ultra_placeholder", label: "Ultra", currency: "USD", maxMinor: 2000000 },
+};
+const PAY_ARGS = { tier: "pro", amount_minor: 1100 };
+const PAY_LIMITS = { max_actions: "1", max_spend: "11.00", currencies: ["USD"] };
+
+function payPackage(overrides = {}) {
+  return build({
+    scope: ["checkout"],
+    limits: PAY_LIMITS,
+    args: PAY_ARGS,
+    intent: "start the Pro subscription",
+    ...overrides,
+  });
+}
+
+function payReq(pkg, args = PAY_ARGS, overrides = {}) {
+  return request(pkg, { tool: "checkout", args, ...overrides });
+}
+
+async function measurePayment(req, args) {
+  const gate = createReceiverGate({ resolveKey, mode: "enforce" });
+  const gateResult = await gate.authorize(req);
+  const verdict = evaluatePayment(
+    { tool: req.tool, args: args ?? req.args, mandate: req.mandate },
+    PAY_TIERS,
+  );
+  return { gateResult, verdict };
+}
+
+const payAllowPkg = payPackage();
+const payAllowReq = payReq(payAllowPkg);
+const payAllow = await measurePayment(payAllowReq, PAY_ARGS);
+if (!payAllow.gateResult.allowed || !payAllow.verdict.allowed) {
+  console.error(
+    `STOP: the payment example was refused — gate=${payAllow.gateResult.reason} door=${payAllow.verdict.reason}`,
+  );
+  process.exit(2);
+}
+
+const payCases = [];
+
+// 1. no mandate.
+payCases.push({
+  case: "a payment with no mandate",
+  why: "the request carries no authority to spend",
+  expected_reason: "missing_authority",
+  checked_by: "gate",
+  request: payReq(payAllowPkg, PAY_ARGS, { mandate: undefined }),
+});
+
+// 2. the same proposal posted twice.
+{
+  const pkg = payPackage();
+  const req = payReq(pkg);
+  const gate = createReceiverGate({ resolveKey, mode: "enforce" });
+  const first = await gate.authorize(req);
+  const second = await gate.authorize(req);
+  if (first.allowed !== true || second.allowed !== false || second.reason !== "replay") {
+    console.error(
+      `STOP: the payment replay case measured first=${first.allowed} second=${second.reason}`,
+    );
+    process.exit(2);
+  }
+  payCases.push({
+    case: "the same payment proposal posted twice",
+    why: "one proposal buys one payment",
+    expected_reason: "replay",
+    checked_by: "gate",
+    post_twice: true,
+    request: req,
+  });
+}
+
+// 3. a forged signature.
+{
+  const pkg = payPackage();
+  const tampered = { ...pkg.decision, sig: pkg.decision.sig.slice(0, -4) + "AAAA" };
+  payCases.push({
+    case: "a payment with a forged signature",
+    why: "the last characters of the decision signature were changed",
+    expected_reason: "signature_invalid",
+    checked_by: "gate",
+    request: payReq(pkg, PAY_ARGS, { decision: tampered }),
+  });
+}
+
+// 4. a tier the door does not sell.
+{
+  const args = { tier: "platinum", amount_minor: 1100 };
+  const pkg = payPackage({ args });
+  const req = payReq(pkg, args);
+  const measured = await measurePayment(req, args);
+  if (!measured.gateResult.allowed) {
+    console.error(`STOP: the tier case was refused by the gate — ${measured.gateResult.reason}`);
+    process.exit(2);
+  }
+  payCases.push({
+    case: "a tier the door does not sell",
+    why: "the price list is the server's, and this tier is not on it",
+    expected_reason: "tier_not_permitted",
+    checked_by: "door",
+    request: req,
+  });
+}
+
+// 5. an amount above the mandate's spend limit.
+{
+  const args = { tier: "ultra", amount_minor: 2000000 };
+  const pkg = payPackage({ args });
+  const req = payReq(pkg, args);
+  const measured = await measurePayment(req, args);
+  if (!measured.gateResult.allowed) {
+    console.error(`STOP: the over-spend case was refused by the gate — ${measured.gateResult.reason}`);
+    process.exit(2);
+  }
+  payCases.push({
+    case: "an amount above the mandate limit",
+    why: "the mandate caps spending at 11.00 and this asks for 20000.00",
+    expected_reason: "over_spend",
+    checked_by: "door",
+    request: req,
+  });
+}
+
+// 6. a currency the mandate does not permit.
+{
+  const pkg = payPackage({
+    limits: { max_actions: "1", max_spend: "11.00", currencies: ["AUD"] },
+  });
+  const req = payReq(pkg);
+  const measured = await measurePayment(req, PAY_ARGS);
+  if (!measured.gateResult.allowed) {
+    console.error(`STOP: the currency case was refused by the gate — ${measured.gateResult.reason}`);
+    process.exit(2);
+  }
+  payCases.push({
+    case: "a currency the mandate does not permit",
+    why: "the mandate permits AUD and the price list sells USD",
+    expected_reason: "currency_not_permitted",
+    checked_by: "door",
+    request: req,
+  });
+}
+
+// 7. a payment made through another tool.
+{
+  const pkg = payPackage({ scope: ["checkout", "transfer"] });
+  const req = payReq(pkg, PAY_ARGS, { tool: "transfer" });
+  const measured = await measurePayment(req, PAY_ARGS);
+  if (!measured.gateResult.allowed) {
+    console.error(`STOP: the tool case was refused by the gate — ${measured.gateResult.reason}`);
+    process.exit(2);
+  }
+  payCases.push({
+    case: "a payment made through another tool",
+    why: "a permission for one tool is not a permission for the payment door",
+    expected_reason: "tool_not_permitted",
+    checked_by: "door",
+    request: req,
+  });
+}
+
 const document = {
   profile: "PSI-ACT/1",
   source: "draft-singh-psi-agent-03",
@@ -456,14 +636,32 @@ const document = {
     "and fails if the answer changes.",
   run: RUN,
   keyring: spki,
+  keyring_fingerprint: `sha256:${keyringFingerprint()}`,
   keyring_note:
-    "kid -> Ed25519 public key, base64 SPKI. A receiver builds its keyring from the server environment, never from the browser.",
+    "kid -> Ed25519 public key, base64 SPKI. A receiver builds its keyring from the server environment, never from the browser. " +
+    "The fingerprint is the SHA-256 of this object with its keys in sorted order; a receiver prints it so an operator can confirm " +
+    "the keyring it trusts is the keyring of the file a stranger downloaded.",
   allow: {
     case: "a valid run",
     expected: { allowed: true },
     request: allowReq,
   },
   refusals: measured,
+  payment: {
+    note:
+      "One permitted payment and the refusals a payment door must make. The gate proves the permission was " +
+      "signed; the door's own rules apply the mandate's spend limit and currency to the amount about to be " +
+      "charged, because a limit belongs to the mandate and cannot be read out of a request. The price ids " +
+      "below are placeholders: a live door uses its own price ids from the server environment.",
+    tiers: PAY_TIERS,
+    tool: "checkout",
+    allow: {
+      case: "a permitted payment",
+      expected: { allowed: true },
+      request: payAllowReq,
+    },
+    refusals: payCases,
+  },
   settled_run: {
     note:
       "The same contract after the action ran: one action record on the chain and a settlement bound to the decision. " +
@@ -481,6 +679,8 @@ const document = {
     "npm run build && npm run check:example — re-runs the gate over every case in this file and fails if an answer changes",
     "POST the `request` object of any refusal case to the receiver: the answer must be refused with the stated reason",
     "The `allow` case must be permitted; the `settled_run` package must verify clean with the keyring above",
+    "The `payment.allow` request must be permitted by the gate and by the payment rules; each `payment.refusals` entry carries `checked_by`: `gate` means the gate refuses it, `door` means the gate permits it and the door's money rules refuse it",
+    "The case marked `post_twice` must be posted twice: the first post is permitted, the second is refused as `replay`",
   ],
 };
 
@@ -489,3 +689,5 @@ writeFileSync(outPath, JSON.stringify(document, null, 2) + "\n", "utf8");
 console.log(`wrote ${outPath}`);
 console.log(`allow case: allowed, permit ${allowResult.permit?.header ?? "(none)"}`);
 console.log(`refusal cases: ${measured.length}, every one measured against the built gate`);
+console.log(`payment cases: 1 permitted + ${payCases.length} refused, every one measured`);
+console.log(`keyring fingerprint: sha256:${keyringFingerprint()}`);

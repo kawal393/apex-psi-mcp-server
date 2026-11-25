@@ -10,13 +10,13 @@
 // Exit 0 = the example matches the code. Exit 1 = it does not. Exit 2 = nothing to check.
 
 import { existsSync, readFileSync } from "node:fs";
-import { createPublicKey } from "node:crypto";
+import { createHash, createPublicKey } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
-for (const file of ["agent.js", "receiver.js"]) {
+for (const file of ["agent.js", "receiver.js", "payment.js"]) {
   if (!existsSync(join(root, "dist", file))) {
     console.error(`STOP: dist/${file} is not built — run \`npm run build\` first`);
     process.exit(2);
@@ -30,6 +30,7 @@ if (!existsSync(examplePath)) {
 
 const { verifyRunPackage } = await import(`file://${join(root, "dist", "agent.js").replace(/\\/g, "/")}`);
 const { createReceiverGate } = await import(`file://${join(root, "dist", "receiver.js").replace(/\\/g, "/")}`);
+const { evaluatePayment } = await import(`file://${join(root, "dist", "payment.js").replace(/\\/g, "/")}`);
 
 const doc = JSON.parse(readFileSync(examplePath, "utf8"));
 
@@ -91,12 +92,88 @@ for (const entry of doc.refusals ?? []) {
   }
 }
 
+// 3. the payment section: the gate and the door's money rules.
+if (doc.payment) {
+  const tiers = doc.payment.tiers ?? {};
+  const allow = doc.payment.allow?.request;
+  if (allow) {
+    const gate = createReceiverGate({ resolveKey, mode: "enforce" });
+    const gateResult = await gate.authorize(allow);
+    const verdict = evaluatePayment(
+      { tool: allow.tool, args: allow.args, mandate: allow.mandate },
+      tiers,
+    );
+    if (gateResult.allowed && verdict.allowed) {
+      pass("the example's permitted payment is permitted", `${verdict.tier} ${verdict.amountMinor}`);
+    } else {
+      fail(
+        "the example's permitted payment is permitted",
+        `gate=${gateResult.reason ?? "allowed"} door=${verdict.reason ?? "allowed"}`,
+      );
+    }
+  } else {
+    fail("the example's permitted payment is permitted", "the file carries no payment.allow.request");
+  }
+
+  for (const entry of doc.payment.refusals ?? []) {
+    const req = entry.request;
+    if (entry.post_twice === true) {
+      const gate = createReceiverGate({ resolveKey, mode: "enforce" });
+      const first = await gate.authorize(req);
+      const second = await gate.authorize(req);
+      if (first.allowed && !second.allowed && second.reason === entry.expected_reason) {
+        pass(`refuses ${entry.case}`, entry.expected_reason);
+      } else {
+        fail(`refuses ${entry.case}`, `first=${first.allowed} second=${second.reason}`);
+      }
+      continue;
+    }
+    const gate = createReceiverGate({ resolveKey, mode: "enforce" });
+    const gateResult = await gate.authorize(req);
+    if (entry.checked_by === "door") {
+      // The gate must permit it: the refusal belongs to the door's money rules.
+      const verdict = evaluatePayment(
+        { tool: req.tool, args: req.args, mandate: req.mandate },
+        tiers,
+      );
+      if (gateResult.allowed && !verdict.allowed && verdict.reason === entry.expected_reason) {
+        pass(`refuses ${entry.case}`, entry.expected_reason);
+      } else {
+        fail(
+          `refuses ${entry.case}`,
+          `gate=${gateResult.allowed ? "allowed" : gateResult.reason} door=${verdict.reason} wanted=${entry.expected_reason}`,
+        );
+      }
+      continue;
+    }
+    if (!gateResult.allowed && gateResult.reason === entry.expected_reason) {
+      pass(`refuses ${entry.case}`, entry.expected_reason);
+    } else {
+      fail(
+        `refuses ${entry.case}`,
+        `allowed=${gateResult.allowed} reason=${gateResult.reason} wanted=${entry.expected_reason}`,
+      );
+    }
+  }
+}
+
 // 4. the file must not carry a private key.
 {
   const text = readFileSync(examplePath, "utf8");
   const privates = text.match(/PRIVATE KEY/g) ?? [];
   if (privates.length === 0) pass("the example carries no private key");
   else fail("the example carries no private key", `${privates.length} marker(s)`);
+}
+
+// 5. the keyring fingerprint must be the fingerprint of the keyring in the file,
+// so an operator can prove the secret a receiver trusts is this file's keyring.
+{
+  const canonical = JSON.stringify(
+    Object.fromEntries(Object.entries(doc.keyring ?? {}).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))),
+  );
+  const actual = `sha256:${createHash("sha256").update(canonical).digest("hex")}`;
+  if (actual === doc.keyring_fingerprint) pass("the keyring fingerprint matches the keyring", actual);
+  else fail("the keyring fingerprint matches the keyring", `file=${doc.keyring_fingerprint} actual=${actual}`);
 }
 
 if (failures) {
