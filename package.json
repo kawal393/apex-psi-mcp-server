@@ -1,6 +1,6 @@
 {
   "name": "apex-psi-mcp",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "mcpName": "io.github.kawal393/apex-psi-mcp",
   "description": "APEX PSI MCP server - append-only evidence receipts for AI decisions and documents: seal a record, verify a hash against the public ledger, check a chain, cite a receipt, read Bitcoin anchoring status. Verification is free and needs no account.",
   "type": "module",

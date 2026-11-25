@@ -1,6 +1,6 @@
 # APEX PSI MCP — install instructions for AI agents and MCP clients
 
-Package: `apex-psi-mcp` on npm (current: 1.2.2) — stdio, no account, no key.
+Package: `apex-psi-mcp` on npm (current: 1.3.0) — stdio, no account, no key.
 Source: https://github.com/kawal393/apex-psi-mcp-server
 Registry name: `io.github.kawal393/apex-psi-mcp`
 Site: https://www.ai-governance-standard.com
@@ -88,6 +88,38 @@ Python runtime has the same gate: `apex_psi.ExecutionGate`.
 
 The gate enforces the order. It cannot reach a process that never routes its side effect through
 it, and it cannot attest what a model did inside a GPU.
+
+## The receiver gate — refuse an action nobody permitted (1.3.0)
+
+A second gate, on the other side: the process that performs the side effect asks "was this
+action permitted?" and refuses the answer it was not given. It is the same idea from the
+receiving end, and it is what a payment or admin API should run.
+
+```js
+import { createReceiverGate } from "apex-psi-mcp/receiver";
+
+const gate = createReceiverGate({
+  resolveKey: (kid) => keyring[kid],   // kid -> Ed25519 public key
+  mode: "enforce",                      // "shadow" while you wire it up
+});
+
+const result = await gate.run(
+  { envelope, mandate, proposal, decision, settlement, actions, tool: "checkout", args, actorKid },
+  () => performCheckout(args),
+);
+```
+
+`gate.run` refuses before `performCheckout` is called, and answers with a stable reason code
+(`missing_authority`, `decision_not_allow`, `over_spend`, `currency_not_permitted`,
+`over_actions`, `replay`, `args_mismatch`, `scope_not_permitted`, `outside_window`,
+`signature_invalid`, `key_unresolved`, `algorithm_unavailable`, `decision_key_is_action_key`,
+`mandate_key_is_decision_key`, `mandate_key_is_action_key`, and the binding and chain codes).
+Three more entry points come with it: `apex-psi-mcp/agent` (the contract, types and
+verification) and `apex-psi-mcp/sender` (seal first, act second, bind the settlement).
+
+A frozen contract and a signed test run ship with the package, in `conformance/`:
+`agent-03.json` (the rules) and `agent-03-example.json` (one signed run, plus 17 requests that
+must each be refused, each with the reason). The reasons were measured against the built code.
 
 ## Accept it works in two minutes
 

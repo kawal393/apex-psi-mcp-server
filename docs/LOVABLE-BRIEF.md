@@ -32,7 +32,11 @@ yet:
 | `https://www.ai-governance-standard.com/machine-checkout` | **No** | the gate's address. The live site serves no such route today; the 200 a browser gets is the single-page app shell, not a gate |
 | `https://www.ai-governance-standard.com/breach-pack` | **No** | the refusal bundle. Same: not on the live site |
 | `https://www.ai-governance-standard.com/verify?hash=<64 hex>` | Yes | the verification door — a receipt is checked here by anyone |
-| `https://www.ai-governance-standard.com/mcp` | Yes | the MCP endpoint (npm `apex-psi-mcp`, 1.2.2) |
+| `https://www.ai-governance-standard.com/mcp` | Yes | the MCP endpoint (npm `apex-psi-mcp`, 1.3.0) |
+
+A gate function named `machine-checkout` is deployed on the APEX PSI project
+and answers today, but it runs dormant until a receiver keyring secret exists,
+and its address is deliberately not printed on the site yet.
 
 So: the gate is not published anywhere yet, and you are the one who publishes
 it. Build it as a Supabase edge function on the APEX PSI project, and the
@@ -44,8 +48,8 @@ and answering. A dead address in public copy is worse than no address.
 ## 1. What already exists, and where it lives
 
 The portable core is the npm package `apex-psi-mcp`
-(https://github.com/kawal393/apex-psi-mcp-server). It carries three new entry
-points that did not exist in the published 1.2.2:
+(https://github.com/kawal393/apex-psi-mcp-server). It carries three entry
+points that did not exist in 1.2.2:
 
 | Import | What it is |
 |---|---|
@@ -53,18 +57,16 @@ points that did not exist in the published 1.2.2:
 | `apex-psi-mcp/receiver` | the gate that refuses an action nobody permitted |
 | `apex-psi-mcp/sender` | the wrapper that seals before the action and binds the settlement to the decision |
 
-The npm registry still serves 1.2.2, which does not carry these three entry
-points. Install straight from the repository, which carries the same code and
-the same tests:
+The npm registry carries these three entry points from version 1.3.0:
+
+```
+npm i apex-psi-mcp@1.3.0
+```
+
+The repository carries the same code and the same tests, if you install from it instead:
 
 ```
 npm i github:kawal393/apex-psi-mcp-server
-```
-
-When a release carrying them reaches npm, the install becomes:
-
-```
-npm i apex-psi-mcp@<version>
 ```
 
 The frozen contract is `conformance/agent-03.json` in that repository. It

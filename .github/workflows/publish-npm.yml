@@ -69,6 +69,14 @@ jobs:
           tar -tzf "$TGZ" | tee pack.list
           grep -q "^package/dist/index.js$" pack.list || { echo "STOP: dist/index.js is missing from the tarball"; exit 1; }
           grep -q "^package/dist/gate.js$" pack.list || { echo "STOP: dist/gate.js is missing from the tarball"; exit 1; }
+          # 1.3.0 is the release that carries the receiver gate. A tarball without these three
+          # modules would advertise a gate that nobody can install, which is the same broken
+          # promise the card guard exists to catch.
+          grep -q "^package/dist/agent.js$" pack.list || { echo "STOP: dist/agent.js is missing from the tarball"; exit 1; }
+          grep -q "^package/dist/receiver.js$" pack.list || { echo "STOP: dist/receiver.js is missing from the tarball"; exit 1; }
+          grep -q "^package/dist/sender.js$" pack.list || { echo "STOP: dist/sender.js is missing from the tarball"; exit 1; }
+          grep -q "^package/conformance/agent-03.json$" pack.list || { echo "STOP: the frozen contract is missing from the tarball"; exit 1; }
+          grep -q "^package/conformance/agent-03-example.json$" pack.list || { echo "STOP: the signed example is missing from the tarball"; exit 1; }
           grep -q "^package/README.md$" pack.list || { echo "STOP: the README is missing from the tarball"; exit 1; }
           grep -q "^package/package.json$" pack.list || { echo "STOP: package.json is missing from the tarball"; exit 1; }
           rm -f "$TGZ"
